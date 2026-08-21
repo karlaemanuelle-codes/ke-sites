@@ -1,0 +1,23 @@
+/* =========================================================
+   THEME.CSS — GERADO AUTOMATICAMENTE pelo build.py a partir de
+   config/salon.config.json. NÃO EDITE ESTE ARQUIVO DIRETAMENTE.
+   Para reskinar o template para um novo cliente, altere o config.
+   ========================================================= */
+:root {
+  --color-primary: #1E5AA8;
+  --color-primary-dark: #153F79;
+  --color-primary-light: #6FA8DC;
+  --color-secondary: #0F2A47;
+  --color-accent: #F97316;
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #F0F5FB;
+  --color-text: #0F2A47;
+  --color-text-soft: #54677D;
+  --color-border: color-mix(in srgb, #0F2A47 12%, transparent);
+
+  --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-body: 'Barlow', -apple-system, 'Segoe UI', sans-serif;
+  --font-system: -apple-system, 'Segoe UI', system-ui, sans-serif;
+
+  --radius: 12px;
+}

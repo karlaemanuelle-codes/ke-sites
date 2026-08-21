@@ -8,7 +8,13 @@ __pycache__/
 
 # Saida gerada pelos builds (regenerada a partir do codigo-fonte)
 platform/dist/
-products/*/dist/
+products/salao-de-beleza/dist/
+products/ct-de-volei/dist/intermediario/
+products/ct-de-volei/dist/avancado/
+# products/ct-de-volei/dist/basico/ NAO esta listado aqui de proposito: e publicado
+# via Cloudflare Workers (Git integration), que nao roda o build.py em Python - por
+# isso o HTML ja gerado desse nivel precisa estar versionado no Git. Nenhum outro
+# produto/nivel foi liberado.
 
 # Segredos (precaucao - nunca deve existir, mas por seguranca)
 .env

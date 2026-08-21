@@ -1,0 +1,177 @@
+/* =========================================================
+   BASE.CSS — Template-Mestre KE Sites (motor reutilizável — nicho: CT de Vôlei)
+   Reset, tipografia fluida, grid/container, utilitários.
+   Não depende do config (tokens de cor/fonte vêm de theme.css).
+   ========================================================= */
+
+*, *::before, *::after { box-sizing: border-box; }
+html {
+  -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth;
+  width: 100%;
+  overflow-x: hidden; /* impede que o painel off-canvas (nav mobile) traduzido gere scroll fantasma */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  margin: 0;
+  min-width: 0;
+  width: 100%;
+  overflow-x: hidden; /* rede de segurança — a causa real é resolvida com width:100%/max-width abaixo */
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input, button, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+p { margin: 0 0 1em; }
+h1, h2, h3, h4 { margin: 0 0 0.5em; font-family: var(--font-display); font-weight: 600; line-height: 1.15; letter-spacing: 0.01em; }
+
+table { border-collapse: collapse; width: 100%; }
+
+/* -------- Tipografia fluida (clamp evita "desktop reduzido") -------- */
+h1, .h1 { font-size: clamp(2rem, 1.4rem + 2.6vw, 3.6rem); }
+h2, .h2 { font-size: clamp(1.6rem, 1.2rem + 1.8vw, 2.6rem); }
+h3, .h3 { font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.6rem); }
+h4, .h4 { font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.2rem); }
+.lead { font-size: clamp(1rem, 0.92rem + 0.35vw, 1.15rem); color: var(--color-text-soft); }
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-system);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+/* -------- Layout: container fluido, nunca largura fixa -------- */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+.section {
+  padding-block: clamp(2.5rem, 6vw, 5.5rem);
+}
+
+.section-head {
+  max-width: 640px;
+  margin-bottom: clamp(1.75rem, 4vw, 3rem);
+}
+.section-head.center { margin-inline: auto; text-align: center; }
+
+/* -------- Grid responsivo com auto-fit (nunca "quebra" fixo) -------- */
+.grid {
+  display: grid;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+  grid-template-columns: 1fr;
+  width: 100%;
+  min-width: 0;
+}
+.grid > * { min-width: 0; } /* impede filhos de estourar a viewport */
+
+@media (min-width: 640px) {
+  .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 768px) {
+  .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1024px) {
+  .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .grid-2-wide { grid-template-columns: 1.1fr 0.9fr; align-items: center; }
+}
+
+.flex { display: flex; flex-wrap: wrap; gap: 1rem; min-width: 0; }
+.flex > * { min-width: 0; }
+.flex-center { align-items: center; justify-content: center; }
+.flex-between { align-items: center; justify-content: space-between; }
+.flex-col { flex-direction: column; }
+.gap-sm { gap: 0.5rem; }
+.gap-lg { gap: 2rem; }
+
+.stack > * + * { margin-top: 1rem; }
+
+.hidden { display: none !important; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+.skip-link {
+  position: absolute; left: 1rem; top: -3rem;
+  background: var(--color-primary); color: #fff;
+  padding: 0.6rem 1rem; border-radius: 8px; z-index: 1000;
+  transition: top 0.2s ease;
+}
+.skip-link:focus { top: 1rem; }
+
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* -------- Media responsivo -------- */
+.media-frame {
+  width: 100%;
+  aspect-ratio: var(--ratio, 4 / 3);
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-width: 0;
+}
+.media-frame > * { width: 100%; height: 100%; object-fit: cover; }
+
+/* -------- Utilitários de texto/cor -------- */
+.text-center { text-align: center; }
+.text-soft { color: var(--color-text-soft); }
+.text-primary { color: var(--color-primary); }
+.bg-alt { background: var(--color-bg-alt); }
+.mt-0 { margin-top: 0; }
+
+/* -------- Tabelas responsivas (nunca overflow forçado no body) -------- */
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+}
+.table-scroll table { min-width: 560px; }
+.table-scroll th, .table-scroll td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.95rem;
+}
+
+/* -------- Breakpoints de referência usados no projeto --------
+   320 / 360 / 390 / 430 / 768 / 1024 / 1440
+   Estratégia: mobile-first, unidades fluidas (%, clamp, minmax),
+   sem min-width em containers e sem larguras fixas em px. */
+@media (max-width: 359px) {
+  .container { padding-inline: 0.85rem; }
+}
