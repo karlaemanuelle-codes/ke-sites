@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "templateName": "KE Sites — Template-Mestre CT de Vôlei",
+    "version": "1.0.0",
+    "note": "Config central. Para criar um novo CT, altere SOMENTE este arquivo e os arquivos em config/data/. Não espalhe dados do cliente pelos templates."
+  },
+  "identidade": {
+    "nome": "Ace Vôlei Clube",
+    "nomeCurto": "Ace",
+    "segmento": "Centro de Treinamento de Vôlei",
+    "slogan": "Onde grandes jogadores começam",
+    "descricaoCurta": "Centro de treinamento de vôlei de alto rendimento, com turmas para todas as idades, treinadores certificados e estrutura completa de quadras.",
+    "descricaoLonga": "O Ace Vôlei Clube nasceu para formar atletas e apaixonados pelo esporte, do primeiro saque à quadra profissional. Unimos metodologia de treino validada, treinadores certificados e uma estrutura pensada para performance e para o prazer de jogar.",
+    "logoText": "Ace",
+    "favicon": "assets/img/favicon.svg",
+    "cidade": "Rio de Janeiro",
+    "estado": "RJ",
+    "enderecoCompleto": "Av. das Quadras, 120 — Barra da Tijuca, Rio de Janeiro/RJ",
+    "cep": "22640-100",
+    "googleMapsEmbed": "https://www.google.com/maps?q=Barra+da+Tijuca,Rio+de+Janeiro,RJ&output=embed",
+    "googleMapsLink": "https://maps.google.com/?q=Ace+Volei+Clube+Barra+da+Tijuca+Rio+de+Janeiro",
+    "telefone": "+55 21 99999-8888",
+    "whatsapp": "5521999998888",
+    "whatsappMensagemPadrao": "Olá! Vim pelo site e gostaria de saber mais sobre as turmas do Ace Vôlei Clube 🏐",
+    "email": "contato@acevoleiclube.com.br",
+    "instagram": "@acevoleiclube",
+    "instagramLink": "https://instagram.com/acevoleiclube",
+    "horario": [
+      { "dias": "Segunda a Sexta", "horas": "7h às 22h" },
+      { "dias": "Sábado", "horas": "8h às 14h" },
+      { "dias": "Domingo", "horas": "Fechado" }
+    ]
+  },
+  "tema": {
+    "corPrimaria": "#1E5AA8",
+    "corPrimariaEscura": "#153F79",
+    "corPrimariaClara": "#6FA8DC",
+    "corSecundaria": "#0F2A47",
+    "corAcento": "#F97316",
+    "corFundo": "#FFFFFF",
+    "corFundoAlt": "#F0F5FB",
+    "corTexto": "#0F2A47",
+    "corTextoSuave": "#54677D",
+    "fonteDisplay": "'Barlow Condensed', 'Arial Narrow', sans-serif",
+    "fonteCorpo": "'Barlow', -apple-system, 'Segoe UI', sans-serif",
+    "fonteSistema": "-apple-system, 'Segoe UI', system-ui, sans-serif",
+    "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap",
+    "raioBorda": "12px"
+  },
+  "cta": {
+    "principal": "Fazer aula experimental",
+    "secundario": "Falar no WhatsApp",
+    "servicos": "Conhecer modalidades",
+    "experiencia": "Agendar experiência",
+    "beautyClub": "Conhecer o Clube do Atleta",
+    "promocoes": "Ver planos e combos",
+    "noivas": "Conhecer pacotes para eventos"
+  },
+  "mensagensComerciais": {
+    "faixaConfianca": "Mais de 10 anos formando atletas no Rio de Janeiro",
+    "objecaoPreco": "Investimento com resultado: metodologia validada, treinadores certificados e acompanhamento de evolução em todo plano.",
+    "objecaoConfianca": "Treinadores com certificação CBV, estrutura própria e mais de 3.000 alunos formados.",
+    "objecaoDisponibilidade": "Matrícula online e confirmação em minutos pelo WhatsApp — turmas em vários horários.",
+    "avisoDemo": "Ambiente de demonstração — nenhum dado real é processado, salvo ou cobrado."
+  },
+  "social": {
+    "instagramSeguidores": "31,4 mil",
+    "avaliacaoMedia": 4.9,
+    "totalAvaliacoes": 348
+  },
+  "seo": {
+    "tituloPadrao": "Ace Vôlei Clube — Centro de Treinamento de Vôlei no Rio de Janeiro",
+    "descricaoPadrao": "Ace Vôlei Clube: centro de treinamento de vôlei no Rio de Janeiro. Turmas para todas as idades, treinadores certificados. Agende pelo WhatsApp.",
+    "descricaoPadraoAvancado": "Ace Vôlei Clube: centro de treinamento de vôlei no Rio de Janeiro. Turmas, Clube do Atleta e experiências exclusivas. Agende pelo WhatsApp.",
+    "palavrasChave": "centro de treinamento de vôlei, escolinha de vôlei, aula de vôlei Rio de Janeiro, vôlei de praia, matrícula vôlei",
+    "palavrasChaveAvancado": "centro de treinamento de vôlei, escolinha de vôlei, aula de vôlei Rio de Janeiro, vôlei de praia, Clube do Atleta, matrícula vôlei",
+    "ogImage": "assets/img/og-cover.svg",
+    "idioma": "pt-BR"
+  },
+  "_bookingPageFilename": "matricula.html"
+}

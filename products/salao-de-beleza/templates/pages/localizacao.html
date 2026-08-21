@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Localização</span>
+      <h1>Venha nos visitar</h1>
+    </div>
+    <div class="grid grid-2-wide">
+      <div class="stack" data-reveal>
+        <div class="card">
+          <h2 class="h4">Endereço</h2>
+          <p>{{ config.identidade.enderecoCompleto }}</p>
+          <p class="text-soft" style="font-size:.88rem;">CEP {{ config.identidade.cep }}</p>
+          <a class="btn btn-outline btn-sm" style="margin-top:.5rem;" href="{{ config.identidade.googleMapsLink }}" target="_blank" rel="noopener">Abrir no Google Maps</a>
+        </div>
+        <div class="card">
+          <h2 class="h4">Horário de funcionamento</h2>
+          <ul>
+            {% for h in config.identidade.horario %}
+            <li class="text-soft" style="padding:.25rem 0;">{{ h.dias }}: {{ h.horas }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="card">
+          <h2 class="h4">Como chegar</h2>
+          <p class="text-soft" style="font-size:.92rem;">A 5 minutos a pé da estação de metrô mais próxima. Estacionamento conveniado em frente ao salão.</p>
+        </div>
+      </div>
+      <iframe class="map-frame" style="min-height:420px;" src="{{ config.identidade.googleMapsEmbed }}" title="Mapa de localização do {{ config.identidade.nome }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+{% include "partials/cta_final.html" %}
+{% endblock %}

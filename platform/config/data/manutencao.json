@@ -1,0 +1,7 @@
+{
+  "planos": [
+    { "id": "essencial", "nomeKey": "manutencao.essencial.nome", "precoMesBRL": 149, "itensKeys": ["manutencaoItens.hospedagem", "manutencaoItens.pequenosAjustes", "manutencaoItens.suporte"] },
+    { "id": "profissional", "nomeKey": "manutencao.profissional.nome", "precoMesBRL": 249, "destaque": true, "itensKeys": ["manutencaoItens.hospedagem", "manutencaoItens.pequenosAjustes", "manutencaoItens.suporte", "manutencaoItens.atualizacoesConteudo", "manutencaoItens.suportePrioritario"] },
+    { "id": "premium", "nomeKey": "manutencao.premium.nome", "precoMesBRL": 399, "itensKeys": ["manutencaoItens.hospedagem", "manutencaoItens.pequenosAjustes", "manutencaoItens.suporte", "manutencaoItens.atualizacoesConteudo", "manutencaoItens.suportePrioritario", "manutencaoItens.evolucaoContinua"] }
+  ]
+}

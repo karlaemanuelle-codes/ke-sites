@@ -1,0 +1,7 @@
+[
+  { "id": "shampoo-reconstrucao", "nome": "Shampoo Reconstrução Intensa", "categoria": "Cabelo", "preco": 89, "descricao": "Fórmula profissional para cabelos danificados quimicamente." },
+  { "id": "mascara-hidratacao", "nome": "Máscara de Hidratação Profunda", "categoria": "Cabelo", "preco": 119, "descricao": "Uso semanal, recupera maciez e brilho." },
+  { "id": "oleo-finalizador", "nome": "Óleo Finalizador Lumière", "categoria": "Cabelo", "preco": 79, "descricao": "Controle de frizz com toque seco, sem peso." },
+  { "id": "serum-facial", "nome": "Sérum Facial Vitamina C", "categoria": "Skincare", "preco": 149, "descricao": "Uniformiza o tom da pele e ilumina o rosto." },
+  { "id": "kit-manicure-home", "nome": "Kit Manicure Home Care", "categoria": "Unhas", "preco": 99, "descricao": "Kit para manutenção do esmalte em gel entre visitas." }
+]

@@ -1,0 +1,12 @@
+{
+  "promocoes": [
+    { "titulo": "Matrícula Grátis", "descricao": "Isenção da taxa de matrícula para novos alunos até o fim do mês.", "validade": "Válido este mês", "selo": "Novidade" },
+    { "titulo": "Indique um Atleta", "descricao": "Você e o indicado ganham 1 mês com 20% de desconto.", "validade": "Sem prazo para acabar", "selo": "Fidelidade" },
+    { "titulo": "Turma Dupla", "descricao": "10% de desconto ao matricular-se em duas modalidades.", "validade": "Válido o ano todo", "selo": "Recorrente" }
+  ],
+  "combos": [
+    { "nome": "Combo Dupla Modalidade", "itens": ["Vôlei de Quadra Adulto", "Vôlei de Praia Iniciante"], "precoDe": 630, "precoPor": 499, "economiaPercentual": 21 },
+    { "nome": "Combo Família", "itens": ["Iniciação Infantil", "Adulto Recreativo"], "precoDe": 470, "precoPor": 389, "economiaPercentual": 17 },
+    { "nome": "Combo Performance", "itens": ["Adulto Competitivo", "Personal Training de Vôlei"], "precoDe": 570, "precoPor": 469, "economiaPercentual": 18 }
+  ]
+}

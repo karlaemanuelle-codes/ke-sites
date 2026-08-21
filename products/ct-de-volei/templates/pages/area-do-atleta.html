@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section" style="padding-bottom:0;">
+  <div class="container section-head center">
+    <span class="eyebrow">Área do Atleta</span>
+    <h1>Seu espaço {{ config.identidade.nomeCurto }}</h1>
+    <span class="badge-demo">⚠️ DEMO ONLY — ambiente de demonstração, sem login ou dados reais</span>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="max-width:420px;">
+    <div class="card" id="client-login-card" data-reveal>
+      <h2 class="h4">Entrar (demonstração)</h2>
+      <p class="text-soft" style="font-size:.85rem;">Nenhuma senha é solicitada ou armazenada nesta demonstração.</p>
+      <form id="form-client-login" class="stack" style="margin-top:1rem;">
+        <div class="field">
+          <label for="cl-nome">Seu primeiro nome</label>
+          <input type="text" id="cl-nome" name="nome" placeholder="Ex: Fernanda" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Entrar na área demo</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="client-dashboard" hidden>
+  <div class="container">
+    <h2 class="h3" id="client-greeting" data-reveal>Olá!</h2>
+
+    <div class="client-shell" style="margin-top:1.5rem;">
+      <aside class="client-card text-center" data-reveal>
+        <div class="points-ring" style="--pct:64;"><span>640 pts</span></div>
+        <p class="text-soft" style="font-size:.85rem; margin-top:1rem;">Faltam 360 pontos para o próximo benefício do Clube do Atleta.</p>
+        <a class="btn btn-outline btn-sm btn-block" href="clube-do-atleta.html" style="margin-top:.75rem;">Ver benefícios</a>
+      </aside>
+
+      <div class="stack">
+        <div class="client-card" data-reveal>
+          <h3 class="h4">Próximos treinos</h3>
+          <div class="table-scroll" style="margin-top:.75rem;">
+            <table>
+              <thead><tr><th>Modalidade</th><th>Treinador</th><th>Data</th></tr></thead>
+              <tbody>
+                <tr><td>Vôlei de Quadra — Avançado</td><td>Rafael Mendes</td><td>28/08 · 19h</td></tr>
+                <tr><td>Vôlei de Praia</td><td>Carla Nunes</td><td>29/08 · 08h</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="client-card" data-reveal>
+          <h3 class="h4">Histórico</h3>
+          <div class="table-scroll" style="margin-top:.75rem;">
+            <table>
+              <thead><tr><th>Modalidade</th><th>Data</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>Vôlei de Quadra — Avançado</td><td>21/08</td><td>Concluído</td></tr>
+                <tr><td>Turma Especial — Sub-15</td><td>14/08</td><td>Concluído</td></tr>
+                <tr><td>Vôlei de Praia</td><td>07/08</td><td>Concluído</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="client-card" data-reveal>
+          <h3 class="h4">Meus vouchers</h3>
+          <div class="grid grid-2" style="margin-top:.75rem;">
+            {% for v in vouchers[:2] %}
+            <div class="card text-center" style="padding:1rem;">
+              <p style="font-weight:700; margin:0;">{{ v.tipo }}</p>
+              <p class="price" style="font-size:1.1rem;">R$ {{ "%.0f"|format(v.valor) }}</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "partials/cta_final.html" %}
+{% endblock %}
+
+{% block extra_js %}
+<script src="assets/js/client-area-demo.js" defer></script>
+{% endblock %}

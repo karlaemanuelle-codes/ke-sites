@@ -1,0 +1,42 @@
+[
+  {
+    "id": "camila-rocha",
+    "nome": "Camila Rocha",
+    "cargo": "Colorista Master & Diretora Técnica",
+    "especialidades": ["Coloração", "Morena Iluminada", "Reconstrução Capilar"],
+    "bio": "16 anos de experiência, formada em colorimetria avançada em São Paulo e Milão. Referência em transformações naturais.",
+    "avaliacao": 5.0,
+    "avaliacoesTotal": 214,
+    "instagram": "@camila.rocha.hair"
+  },
+  {
+    "id": "bruno-alencar",
+    "nome": "Bruno Alencar",
+    "cargo": "Hair Stylist Sênior",
+    "especialidades": ["Corte Feminino", "Penteados para Eventos"],
+    "bio": "Especialista em cortes autorais e penteados de festa, com passagens por semanas de moda em São Paulo.",
+    "avaliacao": 4.9,
+    "avaliacoesTotal": 178,
+    "instagram": "@bruno.alencar.hair"
+  },
+  {
+    "id": "juliana-prado",
+    "nome": "Juliana Prado",
+    "cargo": "Esteticista Facial & Corporal",
+    "especialidades": ["Limpeza de Pele", "Drenagem Linfática", "Massagem Relaxante"],
+    "bio": "Pós-graduada em estética avançada, com protocolos exclusivos de skincare para peles sensíveis.",
+    "avaliacao": 4.9,
+    "avaliacoesTotal": 156,
+    "instagram": "@ju.prado.estetica"
+  },
+  {
+    "id": "renata-souza",
+    "nome": "Renata Souza",
+    "cargo": "Especialista em Unhas & Design",
+    "especialidades": ["Manicure Premium", "Esmaltação em Gel", "Nail Art"],
+    "bio": "Certificada internacionalmente em nail design, com foco em saúde das unhas e acabamento impecável.",
+    "avaliacao": 4.8,
+    "avaliacoesTotal": 132,
+    "instagram": "@renata.nails"
+  }
+]

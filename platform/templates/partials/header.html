@@ -1,0 +1,50 @@
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand" aria-label="{{ config.identidade.nome }} — {{ t('nav.inicio') }}">
+      <span class="dot" aria-hidden="true"></span>{{ config.identidade.logoText }}
+    </a>
+
+    <nav class="nav-desktop" aria-label="{{ t('nav.inicio') }}">
+      <ul>
+        <li><a href="index.html#templates" data-nav-link="templates">{{ t('nav.templates') }}</a></li>
+        <li><a href="index.html#nichos" data-nav-link="nichos">{{ t('nav.nichos') }}</a></li>
+        <li><a href="index.html#planos" data-nav-link="planos">{{ t('nav.planos') }}</a></li>
+        <li><a href="index.html#faq" data-nav-link="faq">{{ t('faqSection.eyebrow') }}</a></li>
+        <li><a href="contato.html" data-nav-link="contato">{{ t('nav.contato') }}</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-cta">
+      <div class="locale-switch" aria-label="Language / Idioma / Idioma">
+        {% for loc in locales %}
+        <a href="{{ locale_href(loc) }}" class="{{ 'is-active' if loc == locale else '' }}" {% if loc == locale %}aria-current="true"{% endif %}>{{ loc.split('-')[0]|upper }}</a>
+        {% endfor %}
+      </div>
+      <a class="btn btn-outline btn-sm" href="{{ whatsapp_link() }}" target="_blank" rel="noopener">{{ t('ctaFinalSection.ctaSecundario') }}</a>
+      <a class="btn btn-primary btn-sm" href="personalizar.html">{{ t('nav.cta') }}</a>
+    </div>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-mobile" aria-label="{{ t('nav.inicio') }}">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <nav class="nav-mobile" id="nav-mobile" aria-label="{{ t('nav.inicio') }}" aria-hidden="true">
+    <ul>
+      <li><a href="index.html#templates" data-nav-link="templates">{{ t('nav.templates') }}</a></li>
+      <li><a href="index.html#nichos" data-nav-link="nichos">{{ t('nav.nichos') }}</a></li>
+      <li><a href="index.html#planos" data-nav-link="planos">{{ t('nav.planos') }}</a></li>
+      <li><a href="index.html#faq" data-nav-link="faq">{{ t('faqSection.eyebrow') }}</a></li>
+      <li><a href="contato.html" data-nav-link="contato">{{ t('nav.contato') }}</a></li>
+    </ul>
+    <div class="locale-switch locale-switch-mobile">
+      {% for loc in locales %}
+      <a href="{{ locale_href(loc) }}" class="{{ 'is-active' if loc == locale else '' }}" {% if loc == locale %}aria-current="true"{% endif %}>{{ loc.split('-')[0]|upper }}</a>
+      {% endfor %}
+    </div>
+    <div class="header-cta">
+      <a class="btn btn-primary btn-block" href="personalizar.html">{{ t('nav.cta') }}</a>
+      <a class="btn btn-whatsapp btn-block" href="{{ whatsapp_link() }}" target="_blank" rel="noopener">{{ t('ctaFinalSection.ctaSecundario') }}</a>
+    </div>
+  </nav>
+</header>

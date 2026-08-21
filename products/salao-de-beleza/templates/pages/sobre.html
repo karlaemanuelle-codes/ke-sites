@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-2-wide">
+      <div data-reveal>
+        <span class="eyebrow">Sobre nós</span>
+        <h1>{{ config.identidade.nome }}: técnica, sensibilidade e sofisticação</h1>
+        <p class="lead" style="margin-top:1rem;">{{ config.identidade.descricaoLonga }}</p>
+        <p class="text-soft" style="margin-top:1rem;">{{ config.mensagensComerciais.faixaConfianca }}. Nosso compromisso é simples: cada cliente sai se sentindo mais confiante do que chegou.</p>
+        <a class="btn btn-primary" style="margin-top:1rem;" href="{{ primary_cta_href }}" {{ primary_cta_attrs|safe }}>{{ config.cta.principal }}</a>
+      </div>
+      <div class="media-frame" style="--ratio:4/5;">{{ ph('Equipe do ' + config.identidade.nome, '4/5') }}</div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-alt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Nossos valores</span>
+      <h2>O que guia cada atendimento</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="card text-center" data-reveal>
+        <h3 class="h4">Técnica antes de tudo</h3>
+        <p class="text-soft" style="font-size:.92rem;">Formação contínua e produtos de grade profissional em cada serviço.</p>
+      </div>
+      <div class="card text-center" data-reveal>
+        <h3 class="h4">Escuta ativa</h3>
+        <p class="text-soft" style="font-size:.92rem;">Nenhum atendimento começa sem entender o que você realmente quer.</p>
+      </div>
+      <div class="card text-center" data-reveal>
+        <h3 class="h4">Transparência</h3>
+        <p class="text-soft" style="font-size:.92rem;">Valores claros e combinados antes de qualquer serviço.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "partials/cta_final.html" %}
+{% endblock %}

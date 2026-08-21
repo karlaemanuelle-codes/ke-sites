@@ -1,0 +1,38 @@
+{
+  "categorias": [
+    {
+      "id": "cabelo",
+      "nome": "Cabelo",
+      "icone": "scissors",
+      "servicos": [
+        { "id": "corte-feminino", "nome": "Corte Feminino", "descricao": "Corte personalizado com análise de formato de rosto e textura.", "duracao": "50 min", "precoDe": 180, "destaque": true },
+        { "id": "coloracao", "nome": "Coloração", "descricao": "Coloração global com produtos profissionais de baixo dano.", "duracao": "2h", "precoDe": 320, "destaque": true },
+        { "id": "morena-iluminada", "nome": "Morena Iluminada", "descricao": "Técnica de mechas naturais para luminosidade sem contraste forte.", "duracao": "3h", "precoDe": 480, "destaque": true },
+        { "id": "escova-modelada", "nome": "Escova Modelada", "descricao": "Escova com modelagem e finalização premium.", "duracao": "40 min", "precoDe": 110, "destaque": false },
+        { "id": "hidratacao-profunda", "nome": "Hidratação Profunda", "descricao": "Reconstrução capilar com ativos de alta performance.", "duracao": "1h", "precoDe": 150, "destaque": false },
+        { "id": "penteado-noiva", "nome": "Penteado para Eventos", "descricao": "Penteado exclusivo para festas, formaturas e casamentos.", "duracao": "1h30", "precoDe": 260, "destaque": false }
+      ]
+    },
+    {
+      "id": "estetica",
+      "nome": "Estética Facial & Corporal",
+      "icone": "sparkle",
+      "servicos": [
+        { "id": "limpeza-pele", "nome": "Limpeza de Pele Profunda", "descricao": "Higienização, esfoliação e extração com máscara calmante.", "duracao": "1h", "precoDe": 190, "destaque": true },
+        { "id": "design-sobrancelha", "nome": "Design de Sobrancelhas", "descricao": "Design personalizado com henna opcional.", "duracao": "30 min", "precoDe": 90, "destaque": true },
+        { "id": "massagem-relaxante", "nome": "Massagem Relaxante", "descricao": "Massagem corporal para alívio de tensão e bem-estar.", "duracao": "50 min", "precoDe": 170, "destaque": false },
+        { "id": "drenagem", "nome": "Drenagem Linfática", "descricao": "Técnica manual para redução de inchaço e retenção.", "duracao": "50 min", "precoDe": 160, "destaque": false }
+      ]
+    },
+    {
+      "id": "manicure",
+      "nome": "Mãos & Pés",
+      "icone": "hand",
+      "servicos": [
+        { "id": "manicure-premium", "nome": "Manicure Premium", "descricao": "Cuidado completo das unhas com esmaltação de longa duração.", "duracao": "45 min", "precoDe": 80, "destaque": true },
+        { "id": "pedicure-spa", "nome": "Pedicure Spa", "descricao": "Ritual completo com esfoliação e hidratação dos pés.", "duracao": "1h", "precoDe": 95, "destaque": false },
+        { "id": "esmaltacao-gel", "nome": "Esmaltação em Gel", "descricao": "Alta durabilidade e brilho premium.", "duracao": "1h", "precoDe": 130, "destaque": false }
+      ]
+    }
+  ]
+}

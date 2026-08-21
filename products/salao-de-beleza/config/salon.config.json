@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "templateName": "KE Sites — Template-Mestre Salão de Beleza",
+    "version": "1.0.0",
+    "note": "Config central. Para criar um novo salão, altere SOMENTE este arquivo e os arquivos em config/data/. Não espalhe dados do cliente pelos templates."
+  },
+  "identidade": {
+    "nome": "Studio Lumière",
+    "nomeCurto": "Lumière",
+    "segmento": "Salão de Beleza Premium",
+    "slogan": "Onde a beleza encontra a sofisticação",
+    "descricaoCurta": "Salão de beleza premium especializado em cabelo, estética e experiências de bem-estar, com atendimento personalizado e profissionais de alta performance.",
+    "descricaoLonga": "O Studio Lumière nasceu para oferecer uma experiência de beleza completa: técnica de altíssimo nível, ambiente sofisticado e um atendimento que trata cada cliente como protagonista. Unimos tendência, ciência capilar e cuidado estético em um espaço pensado para o seu bem-estar do início ao fim.",
+    "logoText": "Lumière",
+    "favicon": "assets/img/favicon.svg",
+    "cidade": "São Paulo",
+    "estado": "SP",
+    "enderecoCompleto": "Rua das Orquídeas, 482 — Jardins, São Paulo/SP",
+    "cep": "01401-000",
+    "googleMapsEmbed": "https://www.google.com/maps?q=Jardins,São+Paulo,SP&output=embed",
+    "googleMapsLink": "https://maps.google.com/?q=Studio+Lumiere+Jardins+Sao+Paulo",
+    "telefone": "+55 11 4002-8922",
+    "whatsapp": "5511940028922",
+    "whatsappMensagemPadrao": "Olá! Vim pelo site e gostaria de agendar um horário no Studio Lumière ✨",
+    "email": "contato@studiolumiere.com.br",
+    "instagram": "@studiolumiere",
+    "instagramLink": "https://instagram.com/studiolumiere",
+    "horario": [
+      { "dias": "Terça a Sexta", "horas": "9h às 20h" },
+      { "dias": "Sábado", "horas": "9h às 18h" },
+      { "dias": "Domingo e Segunda", "horas": "Fechado" }
+    ]
+  },
+  "tema": {
+    "corPrimaria": "#8a6d3b",
+    "corPrimariaEscura": "#6b5029",
+    "corPrimariaClara": "#c9a765",
+    "corSecundaria": "#2b2420",
+    "corAcento": "#a34a5c",
+    "corFundo": "#fffdfa",
+    "corFundoAlt": "#f7f1e8",
+    "corTexto": "#2b2420",
+    "corTextoSuave": "#6b6259",
+    "fonteDisplay": "'Cormorant Garamond', Georgia, serif",
+    "fonteCorpo": "'Marcellus', 'Cormorant Garamond', Georgia, serif",
+    "fonteSistema": "-apple-system, 'Segoe UI', system-ui, sans-serif",
+    "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Marcellus&display=swap",
+    "raioBorda": "18px"
+  },
+  "cta": {
+    "principal": "Agendar horário",
+    "secundario": "Falar no WhatsApp",
+    "servicos": "Conhecer serviços",
+    "experiencia": "Agendar experiência",
+    "beautyClub": "Conhecer o Beauty Club",
+    "promocoes": "Ver promoções",
+    "noivas": "Conhecer pacotes de noivas"
+  },
+  "mensagensComerciais": {
+    "faixaConfianca": "Mais de 12 anos cuidando da beleza de São Paulo",
+    "objecaoPreco": "Investimento com resultado: produtos profissionais, técnica avançada e garantia de satisfação em todo serviço químico.",
+    "objecaoConfianca": "Equipe certificada, produtos de grade profissional e mais de 8.000 atendimentos realizados.",
+    "objecaoDisponibilidade": "Agenda online 24h e confirmação em minutos pelo WhatsApp.",
+    "avisoDemo": "Ambiente de demonstração — nenhum dado real é processado, salvo ou cobrado."
+  },
+  "social": {
+    "instagramSeguidores": "48,2 mil",
+    "avaliacaoMedia": 4.9,
+    "totalAvaliacoes": 612
+  },
+  "seo": {
+    "tituloPadrao": "Studio Lumière — Salão de Beleza Premium em São Paulo",
+    "descricaoPadrao": "Studio Lumière: salão de beleza premium em São Paulo. Cabelo, estética e experiências exclusivas. Agende pelo WhatsApp.",
+    "descricaoPadraoAvancado": "Studio Lumière: salão de beleza premium em São Paulo. Cabelo, estética, Beauty Club e experiências exclusivas. Agende pelo WhatsApp.",
+    "palavrasChave": "salão de beleza, salão premium, cabeleireiro São Paulo, estética, agendamento salão",
+    "palavrasChaveAvancado": "salão de beleza, salão premium, cabeleireiro São Paulo, estética, Beauty Club, agendamento salão",
+    "ogImage": "assets/img/og-cover.svg",
+    "idioma": "pt-BR"
+  }
+}

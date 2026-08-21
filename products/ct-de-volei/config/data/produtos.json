@@ -1,0 +1,7 @@
+[
+  { "id": "bola-oficial", "nome": "Bola Oficial Ace Training", "categoria": "Equipamento", "preco": 189, "descricao": "Bola de vôlei oficial, mesma usada nos treinos do clube." },
+  { "id": "joelheira-pro", "nome": "Joelheira Pro Performance", "categoria": "Equipamento", "preco": 99, "descricao": "Proteção e conforto para treinos de alta intensidade." },
+  { "id": "camisa-oficial", "nome": "Camisa Oficial Ace", "categoria": "Vestuário", "preco": 139, "descricao": "Camisa de treino em tecido dry-fit, cores oficiais do clube." },
+  { "id": "tornozeleira", "nome": "Tornozeleira de Compressão", "categoria": "Equipamento", "preco": 79, "descricao": "Suporte e prevenção de lesões para treinos e jogos." },
+  { "id": "kit-iniciante", "nome": "Kit Iniciante Vôlei", "categoria": "Equipamento", "preco": 249, "descricao": "Bola, joelheira e squeeze — tudo para começar a treinar." }
+]

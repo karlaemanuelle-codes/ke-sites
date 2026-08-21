@@ -1,0 +1,41 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <h4>{{ config.identidade.nome }}</h4>
+        <p style="opacity:.85; margin-top:.75rem; max-width:32ch;">{{ config.identidade.descricaoCurta }}</p>
+        <p style="margin-top:1rem; font-size:.85rem; opacity:.75;">{{ config.mensagensComerciais.faixaConfianca }}</p>
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <ul>
+          {% for item in footer_links %}
+            {% if item.min_tier <= tier_rank %}<li><a href="{{ item.href }}">{{ item.label }}</a></li>{% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="{{ whatsapp_link() }}" target="_blank" rel="noopener">WhatsApp: {{ config.identidade.telefone }}</a></li>
+          <li><a href="mailto:{{ config.identidade.email }}">{{ config.identidade.email }}</a></li>
+          <li><a href="{{ config.identidade.instagramLink }}" target="_blank" rel="noopener">{{ config.identidade.instagram }}</a></li>
+          <li>{{ config.identidade.enderecoCompleto }}</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Horário</h4>
+        <ul>
+          {% for h in config.identidade.horario %}
+          <li>{{ h.dias }}: {{ h.horas }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom flex flex-between">
+      <span>© <span data-current-year></span> {{ config.identidade.nome }}. Todos os direitos reservados.</span>
+      <span>Template-Mestre desenvolvido por KE Sites · nível {{ tier|capitalize }}</span>
+    </div>
+  </div>
+</footer>

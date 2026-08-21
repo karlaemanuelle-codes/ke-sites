@@ -1,0 +1,23 @@
+[
+  {
+    "id": "atleta-base",
+    "nome": "Clube do Atleta Base",
+    "precoMes": 149,
+    "destaque": false,
+    "beneficios": ["2 treinos por semana", "10% off em produtos da loja", "Acesso ao app de frequência", "Camisa oficial de boas-vindas"]
+  },
+  {
+    "id": "atleta-performance",
+    "nome": "Clube do Atleta Performance",
+    "precoMes": 279,
+    "destaque": true,
+    "beneficios": ["Treinos ilimitados na modalidade escolhida", "1 personal training por mês", "15% off em produtos da loja", "Acompanhamento de evolução individual", "Prioridade em torneios internos", "Convites para clínicas especiais"]
+  },
+  {
+    "id": "atleta-elite",
+    "nome": "Clube do Atleta Elite",
+    "precoMes": 459,
+    "destaque": false,
+    "beneficios": ["Treinos ilimitados em todas as modalidades", "2 personal trainings por mês", "20% off em produtos da loja", "Preparação física individualizada", "Acesso antecipado a torneios e clínicas", "Concierge esportivo dedicado"]
+  }
+]

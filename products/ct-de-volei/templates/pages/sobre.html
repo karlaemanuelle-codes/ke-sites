@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-2-wide">
+      <div data-reveal>
+        <span class="eyebrow">Sobre nós</span>
+        <h1>{{ config.identidade.nome }}: técnica, disciplina e paixão pelo esporte</h1>
+        <p class="lead" style="margin-top:1rem;">{{ config.identidade.descricaoLonga }}</p>
+        <p class="text-soft" style="margin-top:1rem;">{{ config.mensagensComerciais.faixaConfianca }}. Nosso compromisso é simples: cada atleta sai de cada treino melhor do que chegou.</p>
+        <a class="btn btn-primary" style="margin-top:1rem;" href="{{ primary_cta_href }}" {{ primary_cta_attrs|safe }}>{{ config.cta.principal }}</a>
+      </div>
+      <div class="media-frame" style="--ratio:4/5;">{{ ph('Equipe do ' + config.identidade.nome, '4/5') }}</div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-alt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Nossos valores</span>
+      <h2>O que guia cada treino</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="card text-center" data-reveal>
+        <h3 class="h4">Técnica antes de tudo</h3>
+        <p class="text-soft" style="font-size:.92rem;">Formação contínua e metodologia de treino validada em cada modalidade.</p>
+      </div>
+      <div class="card text-center" data-reveal>
+        <h3 class="h4">Escuta ativa</h3>
+        <p class="text-soft" style="font-size:.92rem;">Nenhum treino começa sem entender o nível e o objetivo de cada atleta.</p>
+      </div>
+      <div class="card text-center" data-reveal>
+        <h3 class="h4">Transparência</h3>
+        <p class="text-soft" style="font-size:.92rem;">Mensalidades claras e combinadas antes de qualquer matrícula.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "partials/cta_final.html" %}
+{% endblock %}

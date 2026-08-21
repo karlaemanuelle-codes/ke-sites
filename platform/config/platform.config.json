@@ -1,0 +1,50 @@
+{
+  "identidade": {
+    "nome": "KE Sites",
+    "nomeCurto": "KE Sites",
+    "logoText": "KE Sites",
+    "descricaoCurta": "Template Factory e plataforma comercial de sites profissionais para pequenos e médios negócios.",
+    "email": "contato@kesites.com",
+    "whatsapp": "5511999990000",
+    "whatsappMensagemPadrao": "Olá! Quero saber mais sobre os templates da KE Sites.",
+    "instagram": "@kesites",
+    "instagramLink": "https://instagram.com/kesites",
+    "favicon": "assets/img/favicon.svg"
+  },
+  "tema": {
+    "corPrimaria": "#4F46E5",
+    "corPrimariaEscura": "#3730A3",
+    "corPrimariaClara": "#A5B4FC",
+    "corSecundaria": "#0F172A",
+    "corAcento": "#14B8A6",
+    "corFundo": "#FFFFFF",
+    "corTexto": "#0F172A",
+    "corTextoSuave": "#54607A",
+    "corFundoAlt": "#F5F5FF",
+    "corBorda": "#E4E4F5",
+    "fonteDisplay": "'Sora', 'Segoe UI', sans-serif",
+    "fonteCorpo": "'Inter', -apple-system, 'Segoe UI', sans-serif",
+    "fonteSistema": "-apple-system, 'Segoe UI', system-ui, sans-serif",
+    "raioBorda": "14px",
+    "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+  },
+  "seo": {
+    "ogImage": "assets/img/og-cover.svg",
+    "siteUrl": "https://kesites.exemplo"
+  },
+  "social": {
+    "totalTemplates": 2,
+    "totalNichosPlanejados": 10,
+    "avaliacaoMedia": "4.9"
+  },
+  "moedaPadraoPorLocale": {
+    "pt-BR": "BRL",
+    "en-US": "USD",
+    "es-ES": "EUR"
+  },
+  "paisPadraoPorLocale": {
+    "pt-BR": "Brasil",
+    "en-US": "Estados Unidos",
+    "es-ES": "Espanha"
+  }
+}

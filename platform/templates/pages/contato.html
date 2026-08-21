@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">{{ t('nav.contato') }}</span>
+      <h1>{{ t('ctaFinalSection.titulo') }}</h1>
+      <p class="lead">{{ t('ctaFinalSection.subtitulo') }}</p>
+    </div>
+
+    <div class="grid grid-2-wide">
+      <div class="card" data-reveal>
+        <h2 class="h4">{{ t('form.enviar') }}</h2>
+        <p class="text-soft" style="font-size:.85rem;">{{ t('form.avisoDemo') }}</p>
+        <a class="btn btn-primary btn-block" style="margin-top:1rem;" href="personalizar.html">{{ t('nav.cta') }}</a>
+      </div>
+
+      <div class="stack" data-reveal>
+        <div class="card">
+          <h2 class="h4">{{ t('footer.contato') }}</h2>
+          <ul class="stack" style="margin-top:.75rem;">
+            <li><a class="btn btn-outline btn-block" href="{{ whatsapp_link() }}" target="_blank" rel="noopener">WhatsApp · {{ config.identidade.whatsapp }}</a></li>
+            <li><a class="btn btn-ghost btn-block" href="mailto:{{ config.identidade.email }}">{{ config.identidade.email }}</a></li>
+            <li><a class="btn btn-ghost btn-block" href="{{ config.identidade.instagramLink }}" target="_blank" rel="noopener">{{ config.identidade.instagram }}</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "partials/cta_final.html" %}
+{% endblock %}

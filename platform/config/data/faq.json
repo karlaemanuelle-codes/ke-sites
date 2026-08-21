@@ -1,0 +1,10 @@
+{
+  "faq": [
+    { "perguntaKey": "faq.q1.pergunta", "respostaKey": "faq.q1.resposta" },
+    { "perguntaKey": "faq.q2.pergunta", "respostaKey": "faq.q2.resposta" },
+    { "perguntaKey": "faq.q3.pergunta", "respostaKey": "faq.q3.resposta" },
+    { "perguntaKey": "faq.q4.pergunta", "respostaKey": "faq.q4.resposta" },
+    { "perguntaKey": "faq.q5.pergunta", "respostaKey": "faq.q5.resposta" },
+    { "perguntaKey": "faq.q6.pergunta", "respostaKey": "faq.q6.resposta" }
+  ]
+}

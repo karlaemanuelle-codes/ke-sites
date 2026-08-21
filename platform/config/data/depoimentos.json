@@ -1,0 +1,7 @@
+{
+  "depoimentos": [
+    { "nomeKey": "depoimentos.d1.nome", "papelKey": "depoimentos.d1.papel", "textoKey": "depoimentos.d1.texto", "avaliacao": 5 },
+    { "nomeKey": "depoimentos.d2.nome", "papelKey": "depoimentos.d2.papel", "textoKey": "depoimentos.d2.texto", "avaliacao": 5 },
+    { "nomeKey": "depoimentos.d3.nome", "papelKey": "depoimentos.d3.papel", "textoKey": "depoimentos.d3.texto", "avaliacao": 4 }
+  ]
+}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section" style="padding-bottom:0;">
+  <div class="container section-head center">
+    <span class="eyebrow">Loja do Atleta</span>
+    <h1>Leve o equipamento oficial para casa</h1>
+    <p class="lead">Produtos selecionados pela nossa comissão técnica, os mesmos usados aqui no clube.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-4">
+      {% for produto in produtos %}
+      <article class="card card-product" data-reveal>
+        <div class="media-frame">{{ ph(produto.nome, '1/1') }}</div>
+        <span class="tag" style="margin-bottom:.4rem; display:inline-block;">{{ produto.categoria }}</span>
+        <h2 class="h4" style="font-size:1rem;">{{ produto.nome }}</h2>
+        <p class="text-soft" style="font-size:.85rem;">{{ produto.descricao }}</p>
+        <p class="price">R$ {{ "%.0f"|format(produto.preco) }}</p>
+        <button type="button" class="btn btn-primary btn-sm btn-block" data-modal-open="modal-pix" data-product="{{ produto.nome }}" data-price="{{ '%.0f'|format(produto.preco) }}">Comprar</button>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<div class="modal-overlay" id="modal-pix" role="dialog" aria-modal="true" aria-labelledby="modal-pix-title" aria-hidden="true">
+  <div class="modal-box text-center">
+    <div class="modal-head">
+      <h2 id="modal-pix-title" class="h4" style="margin:0;">Pagamento via Pix</h2>
+      <button class="modal-close" type="button" data-modal-close aria-label="Fechar">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1 1l14 14M15 1L1 15"/></svg>
+      </button>
+    </div>
+    <span class="badge-demo" style="margin-bottom:1rem;">⚠️ DEMO ONLY — nenhuma cobrança real é gerada</span>
+    <p id="modal-pix-product" style="font-weight:600;">Produto</p>
+    <p id="modal-pix-price" class="price" style="justify-content:center; display:flex;">R$ 0</p>
+    <div style="width:160px; margin-inline:auto; aspect-ratio:1/1; border-radius:12px; background:repeating-conic-gradient(var(--color-secondary) 0% 25%, #fff 0% 50%) 0 0/20px 20px; border:1px solid var(--color-border);" role="img" aria-label="Código Pix simulado para demonstração"></div>
+    <p class="text-soft" style="font-size:.82rem; margin-top:1rem;">Em um site em produção, este QR code seria gerado por um provedor de pagamento real integrado à sua conta.</p>
+    <button type="button" class="btn btn-outline btn-block" data-modal-close data-autofocus style="margin-top:1rem;">Fechar simulação</button>
+  </div>
+</div>
+
+{% include "partials/cta_final.html" %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var trigger = e.target.closest('[data-modal-open="modal-pix"]');
+    if (!trigger) return;
+    var nameEl = document.getElementById('modal-pix-product');
+    var priceEl = document.getElementById('modal-pix-price');
+    if (nameEl) nameEl.textContent = trigger.getAttribute('data-product') || 'Produto';
+    if (priceEl) priceEl.textContent = 'R$ ' + (trigger.getAttribute('data-price') || '0');
+  });
+})();
+</script>
+{% endblock %}

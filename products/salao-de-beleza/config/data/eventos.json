@@ -1,0 +1,18 @@
+{
+  "eventosGerais": [
+    { "titulo": "Workshop de Automaquiagem", "data": "28 de setembro", "descricao": "Aprenda técnicas profissionais de maquiagem para o dia a dia com nossa equipe.", "vagasLimitadas": true },
+    { "titulo": "Noite Beauty Club", "data": "10 de outubro", "descricao": "Evento exclusivo para assinaturas, com brindes e experiências surpresa.", "vagasLimitadas": true }
+  ],
+  "pacotesNoivas": [
+    {
+      "nome": "Noiva Clássica",
+      "precoDe": 890,
+      "itens": ["Teste de penteado", "Penteado do grande dia", "Maquiagem", "Manicure e pedicure"]
+    },
+    {
+      "nome": "Noiva Premium",
+      "precoDe": 1490,
+      "itens": ["2 testes de penteado", "Penteado e maquiagem no local", "Hidratação capilar pré-casamento", "Manicure, pedicure e day spa", "Acompanhante para retoques"]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "planos": [
+    { "id": "basico", "nomeKey": "planos.basico.nome", "taglineKey": "planos.basico.tagline", "precoOficialBRL": 2997, "precoPromoBRL": 2497, "destaque": false },
+    { "id": "intermediario", "nomeKey": "planos.intermediario.nome", "taglineKey": "planos.intermediario.tagline", "precoOficialBRL": 4997, "precoPromoBRL": 3997, "destaque": true },
+    { "id": "avancado", "nomeKey": "planos.avancado.nome", "taglineKey": "planos.avancado.tagline", "precoOficialBRL": 8997, "precoPromoBRL": 6997, "destaque": false }
+  ],
+  "recursos": [
+    { "key": "recursos.site_responsivo", "basico": true, "intermediario": true, "avancado": true },
+    { "key": "recursos.paginas_principais", "basico": true, "intermediario": true, "avancado": true },
+    { "key": "recursos.whatsapp_contato", "basico": true, "intermediario": true, "avancado": true },
+    { "key": "recursos.promocoes_combos", "basico": false, "intermediario": true, "avancado": true },
+    { "key": "recursos.agendamento_demo", "basico": false, "intermediario": true, "avancado": true },
+    { "key": "recursos.depoimentos_eventos", "basico": false, "intermediario": true, "avancado": true },
+    { "key": "recursos.area_cliente_demo", "basico": false, "intermediario": false, "avancado": true },
+    { "key": "recursos.painel_admin_demo", "basico": false, "intermediario": false, "avancado": true },
+    { "key": "recursos.planos_assinatura", "basico": false, "intermediario": false, "avancado": true },
+    { "key": "recursos.loja_demo", "basico": false, "intermediario": false, "avancado": true },
+    { "key": "recursos.suporte_prioritario", "basico": false, "intermediario": true, "avancado": true }
+  ]
+}

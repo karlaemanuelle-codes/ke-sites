@@ -1,0 +1,18 @@
+{
+  "eventosGerais": [
+    { "titulo": "Torneio Interno de Verão", "data": "20 de setembro", "descricao": "Torneio interno aberto a todas as turmas, com premiação e confraternização.", "vagasLimitadas": true },
+    { "titulo": "Clínica com Ex-Seleção Brasileira", "data": "5 de outubro", "descricao": "Clínica especial de um dia com um ex-atleta da seleção brasileira de vôlei.", "vagasLimitadas": true }
+  ],
+  "pacotesEspeciais": [
+    {
+      "nome": "Day Camp Escolar",
+      "precoDe": 690,
+      "itens": ["Meio período de treino guiado", "Lanche esportivo incluso", "Kit de participação", "Certificado de participação"]
+    },
+    {
+      "nome": "Evento Corporativo",
+      "precoDe": 1290,
+      "itens": ["Vivência de vôlei para equipes", "Treinador dedicado ao evento", "Material esportivo incluso", "Dinâmicas de integração"]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+<section class="section">
+  <div class="container">
+    <div class="cta-final" data-reveal>
+      <h2>{{ cta_final_title|default('Pronta para viver a experiência ' + config.identidade.nomeCurto + '?') }}</h2>
+      <p class="lead" style="max-width:52ch; margin-inline:auto;">{{ cta_final_text|default(config.mensagensComerciais.objecaoDisponibilidade) }}</p>
+      <div class="hero-actions flex-center" style="margin-top:1.75rem;">
+        <a class="btn btn-primary" href="{{ primary_cta_href }}" {{ primary_cta_attrs|safe }}>{{ config.cta.principal }}</a>
+        <a class="btn btn-outline" style="border-color:#fff; color:#fff;" href="{{ whatsapp_link() }}" target="_blank" rel="noopener">{{ config.cta.secundario }}</a>
+      </div>
+    </div>
+  </div>
+</section>

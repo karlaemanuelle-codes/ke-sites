@@ -1,0 +1,33 @@
+{
+  "categorias": [
+    {
+      "id": "quadra",
+      "nome": "Vôlei de Quadra",
+      "icone": "volleyball",
+      "servicos": [
+        { "id": "iniciacao-infantil", "nome": "Iniciação Infantil (6-10 anos)", "descricao": "Coordenação motora, fundamentos básicos e o primeiro contato com o esporte, com foco em diversão.", "duracao": "50 min", "precoDe": 220, "destaque": true },
+        { "id": "sub14-sub17", "nome": "Sub-14 e Sub-17", "descricao": "Formação técnica e tática para atletas em desenvolvimento, com participação em torneios.", "duracao": "1h30", "precoDe": 320, "destaque": true },
+        { "id": "adulto-competitivo", "nome": "Adulto Competitivo", "descricao": "Treino de alto rendimento para quem compete em ligas amadoras e universitárias.", "duracao": "2h", "precoDe": 380, "destaque": true },
+        { "id": "adulto-recreativo", "nome": "Adulto Recreativo", "descricao": "Treino leve e social, ideal para quem quer jogar bem sem compromisso competitivo.", "duracao": "1h", "precoDe": 250, "destaque": false }
+      ]
+    },
+    {
+      "id": "praia",
+      "nome": "Vôlei de Praia",
+      "icone": "sun",
+      "servicos": [
+        { "id": "praia-iniciante", "nome": "Vôlei de Praia Iniciante", "descricao": "Fundamentos da areia: deslocamento, saque e ataque adaptados ao vôlei de praia.", "duracao": "1h", "precoDe": 280, "destaque": true },
+        { "id": "praia-dupla", "nome": "Treino de Dupla", "descricao": "Treino tático focado em duplas, leitura de jogo e posicionamento.", "duracao": "1h30", "precoDe": 350, "destaque": false }
+      ]
+    },
+    {
+      "id": "especial",
+      "nome": "Turmas Especiais",
+      "icone": "star",
+      "servicos": [
+        { "id": "volei-adaptado", "nome": "Vôlei Adaptado", "descricao": "Turma inclusiva com metodologia adaptada, conduzida por treinadores especializados.", "duracao": "1h", "precoDe": 220, "destaque": false },
+        { "id": "personal-training", "nome": "Personal Training de Vôlei", "descricao": "Treino individual focado em fundamentos específicos e evolução acelerada.", "duracao": "1h", "precoDe": 190, "destaque": false }
+      ]
+    }
+  ]
+}

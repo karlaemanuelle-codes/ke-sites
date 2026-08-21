@@ -1,0 +1,14 @@
+{
+  "nichos": [
+    { "id": "salao-de-beleza", "icone": "💇", "nomeKey": "nichos.salao", "disponivel": true, "templateId": "salao-de-beleza" },
+    { "id": "volei", "icone": "🏐", "nomeKey": "nichos.volei", "disponivel": true, "templateId": "ct-de-volei" },
+    { "id": "barbearia", "icone": "💈", "nomeKey": "nichos.barbearia", "disponivel": false, "templateId": null },
+    { "id": "restaurante", "icone": "🍽️", "nomeKey": "nichos.restaurante", "disponivel": false, "templateId": null },
+    { "id": "academia", "icone": "🏋️", "nomeKey": "nichos.academia", "disponivel": false, "templateId": null },
+    { "id": "clinica", "icone": "🏥", "nomeKey": "nichos.clinica", "disponivel": false, "templateId": null },
+    { "id": "fisioterapeuta", "icone": "🦵", "nomeKey": "nichos.fisioterapeuta", "disponivel": false, "templateId": null },
+    { "id": "massoterapeuta", "icone": "💆", "nomeKey": "nichos.massoterapeuta", "disponivel": false, "templateId": null },
+    { "id": "nutricionista", "icone": "🥗", "nomeKey": "nichos.nutricionista", "disponivel": false, "templateId": null },
+    { "id": "correspondente-bancario", "icone": "🏦", "nomeKey": "nichos.correspondente", "disponivel": false, "templateId": null }
+  ]
+}

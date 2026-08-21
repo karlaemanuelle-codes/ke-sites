@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+  <div class="container" style="max-width:820px;">
+    <div class="section-head center">
+      <span class="eyebrow">Perguntas frequentes</span>
+      <h1>Tire suas dúvidas</h1>
+    </div>
+
+    <div data-reveal>
+      {% for item in faq.basico %}
+      <details class="faq-item">
+        <summary>{{ item.pergunta }}<span class="icon" aria-hidden="true">+</span></summary>
+        <p>{{ item.resposta }}</p>
+      </details>
+      {% endfor %}
+
+      {% if tier_rank >= 3 %}
+        {% for item in faq.avancado %}
+        <details class="faq-item">
+          <summary>{{ item.pergunta }}<span class="icon" aria-hidden="true">+</span></summary>
+          <p>{{ item.resposta }}</p>
+        </details>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    <div class="text-center" style="margin-top:2.5rem;">
+      <p class="text-soft">Não encontrou sua dúvida?</p>
+      <a class="btn btn-outline" href="{{ whatsapp_link('Olá! Tenho uma dúvida sobre as modalidades do ' + config.identidade.nomeCurto + '.') }}" target="_blank" rel="noopener">Perguntar no WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+{% include "partials/cta_final.html" %}
+{% endblock %}

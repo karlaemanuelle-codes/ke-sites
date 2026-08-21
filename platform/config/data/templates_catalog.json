@@ -1,0 +1,38 @@
+{
+  "templates": [
+    {
+      "id": "salao-de-beleza",
+      "nomeKey": "templates.salao.nome",
+      "nichoId": "salao-de-beleza",
+      "nichoNomeKey": "nichos.salao",
+      "descricaoKey": "templates.salao.descricao",
+      "niveis": ["basico", "intermediario", "avancado"],
+      "destaqueKeys": [
+        "templates.salao.destaque1",
+        "templates.salao.destaque2",
+        "templates.salao.destaque3",
+        "templates.salao.destaque4"
+      ],
+      "corDestaque": "#B76E79",
+      "monograma": "SB",
+      "demoBase": "../demos/salao-de-beleza"
+    },
+    {
+      "id": "ct-de-volei",
+      "nomeKey": "templates.volei.nome",
+      "nichoId": "volei",
+      "nichoNomeKey": "nichos.volei",
+      "descricaoKey": "templates.volei.descricao",
+      "niveis": ["basico", "intermediario", "avancado"],
+      "destaqueKeys": [
+        "templates.volei.destaque1",
+        "templates.volei.destaque2",
+        "templates.volei.destaque3",
+        "templates.volei.destaque4"
+      ],
+      "corDestaque": "#1E5AA8",
+      "monograma": "CV",
+      "demoBase": "../demos/ct-de-volei"
+    }
+  ]
+}

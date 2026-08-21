@@ -1,0 +1,288 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="hero">
+  <div class="container">
+    <div class="grid grid-2-wide">
+      <div data-reveal>
+        <span class="eyebrow">{{ config.identidade.segmento }}</span>
+        <h1>{{ config.identidade.slogan }}</h1>
+        <p class="lead" style="margin-top:1rem; max-width:48ch;">{{ config.identidade.descricaoCurta }}</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="{{ primary_cta_href }}" {{ primary_cta_attrs|safe }}>{{ config.cta.principal }}</a>
+          <a class="btn btn-outline" href="servicos.html">{{ config.cta.servicos }}</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>{{ config.social.avaliacaoMedia }}★</strong><span>{{ config.social.totalAvaliacoes }}+ avaliações</span></div>
+          <div><strong>{{ profissionais|length }}</strong><span>especialistas na equipe</span></div>
+          <div><strong>{{ config.social.instagramSeguidores }}</strong><span>seguidoras no Instagram</span></div>
+        </div>
+      </div>
+      <div class="hero-art" data-reveal aria-hidden="true">
+        <span class="hero-badge">{{ config.mensagensComerciais.faixaConfianca }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Benefícios / diferenciais -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Por que o {{ config.identidade.nomeCurto }}</span>
+      <h2>Excelência técnica, experiência premium</h2>
+    </div>
+    <div class="grid grid-4">
+      <div class="card text-center" data-reveal>
+        <h3 class="h4">Equipe certificada</h3>
+        <p class="text-soft" style="font-size:.92rem;">{{ config.mensagensComerciais.objecaoConfianca }}</p>
+      </div>
+      <div class="card text-center" data-reveal>
+        <h3 class="h4">Produtos profissionais</h3>
+        <p class="text-soft" style="font-size:.92rem;">Linhas de grade profissional selecionadas para cada tipo de fio e pele.</p>
+      </div>
+      <div class="card text-center" data-reveal>
+        <h3 class="h4">Agenda facilitada</h3>
+        <p class="text-soft" style="font-size:.92rem;">{{ config.mensagensComerciais.objecaoDisponibilidade }}</p>
+      </div>
+      <div class="card text-center" data-reveal>
+        <h3 class="h4">Investimento justo</h3>
+        <p class="text-soft" style="font-size:.92rem;">{{ config.mensagensComerciais.objecaoPreco }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Serviços principais -->
+<section class="section bg-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Serviços</span>
+      <h2>O melhor do cuidado, em um só lugar</h2>
+      <p class="lead">Da coloração ao skincare — cada serviço pensado para o seu ritmo de vida.</p>
+    </div>
+    <div class="grid grid-3">
+      {% for cat in servicos.categorias %}
+        {% for s in cat.servicos %}
+          {% if s.destaque %}
+          <article class="card card-service" data-reveal>
+            <div class="media-frame">{{ ph(s.nome, '16/10') }}</div>
+            <span class="eyebrow" style="margin-bottom:.35rem;">{{ cat.nome }}</span>
+            <h3 class="h4">{{ s.nome }}</h3>
+            <p class="text-soft" style="font-size:.92rem;">{{ s.descricao }}</p>
+            <p class="price"><span class="from">a partir de</span>R$ {{ "%.0f"|format(s.precoDe) }}</p>
+          </article>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+    <div class="text-center" style="margin-top:2rem;">
+      <a class="btn btn-outline" href="servicos.html">Ver todos os serviços</a>
+    </div>
+  </div>
+</section>
+
+<!-- Profissionais -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Nossa equipe</span>
+      <h2>Profissionais que fazem a diferença</h2>
+    </div>
+    <div class="grid grid-3">
+      {% for p in profissionais[:3] %}
+      <article class="card card-pro" data-reveal>
+        <div class="media-frame">{{ ph(p.nome, '1/1', monogram=p.nome) }}</div>
+        <h3 class="h4" style="margin-top:.75rem;">{{ p.nome }}</h3>
+        <p class="text-soft" style="font-size:.88rem; margin:0;">{{ p.cargo }}</p>
+        <p class="rating">★ {{ p.avaliacao }} · {{ p.avaliacoesTotal }} avaliações</p>
+        <div class="tag-list">
+          {% for esp in p.especialidades[:2] %}<span class="tag">{{ esp }}</span>{% endfor %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    <div class="text-center" style="margin-top:2rem;">
+      <a class="btn btn-outline" href="profissionais.html">Conhecer toda a equipe</a>
+    </div>
+  </div>
+</section>
+
+<!-- Experiência do salão -->
+<section class="section bg-alt">
+  <div class="container">
+    <div class="grid grid-2-wide">
+      <div data-reveal>
+        <span class="eyebrow">A experiência {{ config.identidade.nomeCurto }}</span>
+        <h2>Do agendamento ao resultado, cuidamos de cada detalhe</h2>
+        <p class="lead" style="margin-top:.75rem;">{{ config.identidade.descricaoLonga }}</p>
+        <div class="steps" style="margin-top:1.75rem;">
+          <div class="step is-done"><span class="num">1</span><strong>Agende</strong><p class="text-soft" style="font-size:.85rem; margin:.3rem 0 0;">Pelo site ou WhatsApp</p></div>
+          <div class="step is-done"><span class="num">2</span><strong>Seja recebida</strong><p class="text-soft" style="font-size:.85rem; margin:.3rem 0 0;">Boas-vindas com café e água aromatizada</p></div>
+          <div class="step is-done"><span class="num">3</span><strong>Viva o serviço</strong><p class="text-soft" style="font-size:.85rem; margin:.3rem 0 0;">Técnica, conforto e atenção aos detalhes</p></div>
+          <div class="step"><span class="num">4</span><strong>Saia radiante</strong><p class="text-soft" style="font-size:.85rem; margin:.3rem 0 0;">Com dicas de manutenção em casa</p></div>
+        </div>
+      </div>
+      <div class="media-frame" style="--ratio:4/5;">{{ ph('Ambiente do ' + config.identidade.nome, '4/5') }}</div>
+    </div>
+  </div>
+</section>
+
+{% if tier_rank >= 3 %}
+<!-- Beauty Club -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Beauty Club</span>
+      <h2>Beleza recorrente, com benefícios reais</h2>
+      <p class="lead">Assine um plano e transforme o autocuidado em rotina — com prioridade, descontos e mimos exclusivos.</p>
+    </div>
+    <div class="grid grid-3">
+      {% for plano in planos %}
+      <article class="card card-plan {{ 'is-featured' if plano.destaque }}" data-reveal>
+        {% if plano.destaque %}<span class="badge-featured">Mais escolhido</span>{% endif %}
+        <h3 class="h4">{{ plano.nome }}</h3>
+        <p class="price">R$ {{ plano.precoMes }}<span>/mês</span></p>
+        <ul>
+          {% for b in plano.beneficios %}<li>{{ b }}</li>{% endfor %}
+        </ul>
+        <a class="btn {{ 'btn-primary' if plano.destaque else 'btn-outline' }} btn-block" href="beauty-club.html">{{ config.cta.beautyClub }}</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if tier_rank >= 2 %}
+<!-- Promoções / Combos -->
+<section class="section bg-alt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Promoções</span>
+      <h2>Combos pensados para o seu bolso</h2>
+    </div>
+    <div class="grid grid-3">
+      {% for combo in promocoes.combos[:3] %}
+      <article class="card card-promo" data-reveal>
+        <span class="badge">-{{ combo.economiaPercentual }}%</span>
+        <h3 class="h4">{{ combo.nome }}</h3>
+        <ul style="margin:.5rem 0 1rem;">
+          {% for item in combo.itens %}<li class="text-soft" style="font-size:.88rem; padding:.15rem 0;">• {{ item }}</li>{% endfor %}
+        </ul>
+        <p class="price" style="margin-bottom:.25rem;">R$ {{ "%.0f"|format(combo.precoPor) }} <span style="text-decoration:line-through; font-size:.8rem; color:var(--color-text-soft);">R$ {{ "%.0f"|format(combo.precoDe) }}</span></p>
+      </article>
+      {% endfor %}
+    </div>
+    <div class="text-center" style="margin-top:2rem;">
+      <a class="btn btn-outline" href="promocoes.html">{{ config.cta.promocoes }}</a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if tier_rank >= 2 %}
+<!-- Eventos & Noivas -->
+<section class="section">
+  <div class="container">
+    <div class="grid grid-2-wide">
+      <div data-reveal>
+        <span class="eyebrow">Eventos{{ ' & Noivas' if tier_rank >= 3 }}</span>
+        <h2>{{ 'Momentos únicos merecem um cuidado à altura' if tier_rank >= 3 else 'Workshops e experiências exclusivas' }}</h2>
+        <p class="lead" style="margin-top:.75rem;">
+          {% if tier_rank >= 3 %}Do teste de penteado ao grande dia, criamos pacotes completos para noivas e madrinhas.{% else %}Participe dos nossos eventos e aprenda técnicas com nossa equipe.{% endif %}
+        </p>
+        <a class="btn btn-outline" style="margin-top:1rem;" href="eventos.html">{{ config.cta.noivas if tier_rank >= 3 else 'Ver eventos' }}</a>
+      </div>
+      <div class="media-frame" style="--ratio:4/5;">{{ ph('Eventos ' + config.identidade.nome, '4/5') }}</div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if tier_rank >= 3 %}
+<!-- Beauty Shop -->
+<section class="section bg-alt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Beauty Shop</span>
+      <h2>Leve o cuidado profissional para casa</h2>
+    </div>
+    <div class="grid grid-4">
+      {% for produto in produtos[:4] %}
+      <article class="card card-product" data-reveal>
+        <div class="media-frame">{{ ph(produto.nome, '1/1') }}</div>
+        <h3 class="h4" style="font-size:1rem;">{{ produto.nome }}</h3>
+        <p class="price">R$ {{ "%.0f"|format(produto.preco) }}</p>
+      </article>
+      {% endfor %}
+    </div>
+    <div class="text-center" style="margin-top:2rem;">
+      <a class="btn btn-outline" href="beauty-shop.html">Ver Beauty Shop completa</a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if tier_rank >= 2 %}
+<!-- Depoimentos -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Depoimentos</span>
+      <h2>Quem viveu, recomenda</h2>
+    </div>
+    <div class="grid grid-3">
+      {% for d in depoimentos[:3] %}
+      <blockquote class="card card-testimonial" data-reveal>
+        <div class="stars" aria-hidden="true">{{ '★' * d.avaliacao }}</div>
+        <p>"{{ d.texto }}"</p>
+        <footer>{{ d.nome }} · {{ d.servico }}</footer>
+      </blockquote>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Instagram / Galeria -->
+<section class="section bg-alt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">{{ config.identidade.instagram }}</span>
+      <h2>Inspire-se com nossos trabalhos</h2>
+    </div>
+    <div class="grid gallery-grid">
+      {% for i in range(8) %}
+      <div class="media-frame" data-reveal>{{ ph('Trabalho ' ~ (i+1) ~ ' do ' ~ config.identidade.nome, '1/1') }}</div>
+      {% endfor %}
+    </div>
+    <div class="text-center" style="margin-top:2rem;">
+      <a class="btn btn-outline" href="galeria.html">Ver galeria completa</a>
+      <a class="btn btn-ghost" href="{{ config.identidade.instagramLink }}" target="_blank" rel="noopener">Seguir no Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- Localização -->
+<section class="section">
+  <div class="container">
+    <div class="grid grid-2-wide">
+      <div data-reveal>
+        <span class="eyebrow">Localização</span>
+        <h2>Fácil de chegar, fácil de amar</h2>
+        <p class="lead" style="margin-top:.75rem;">{{ config.identidade.enderecoCompleto }}</p>
+        <ul class="stack" style="margin-top:1rem;">
+          {% for h in config.identidade.horario %}
+          <li class="text-soft">{{ h.dias }}: {{ h.horas }}</li>
+          {% endfor %}
+        </ul>
+        <a class="btn btn-outline" style="margin-top:1rem;" href="{{ config.identidade.googleMapsLink }}" target="_blank" rel="noopener">Ver no Google Maps</a>
+      </div>
+      <iframe class="map-frame" data-reveal src="{{ config.identidade.googleMapsEmbed }}" title="Mapa de localização do {{ config.identidade.nome }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+{% include "partials/cta_final.html" %}
+{% endblock %}

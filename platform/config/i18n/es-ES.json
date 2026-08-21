@@ -1,0 +1,367 @@
+{
+  "nav": {
+    "inicio": "Inicio",
+    "templates": "Plantillas",
+    "nichos": "Nichos",
+    "planos": "Planes",
+    "sobre": "Sobre nosotros",
+    "contato": "Contacto",
+    "cta": "Quiero un sitio"
+  },
+  "hero": {
+    "eyebrow": "Template Factory de KE Sites",
+    "titulo": "Tu negocio merece una presencia digital profesional.",
+    "subtitulo": "Soluciones digitales profesionales, personalizadas y pensadas para tu negocio.",
+    "ctaTemplates": "VER PLANTILLAS",
+    "ctaSite": "QUIERO UNA WEB",
+    "ctaPersonalizado": "QUIERO UNA WEB PERSONALIZADA",
+    "destaque": "Elige tu nicho. Elige tu nivel. Nosotros hacemos el resto.",
+    "statTemplates": "plantillas maestras listas",
+    "statNichos": "nichos mapeados",
+    "statNiveis": "niveles por plantilla"
+  },
+  "comoFunciona": {
+    "eyebrow": "Cómo funciona",
+    "titulo": "Del nicho a la web publicada, en 4 pasos",
+    "passo1Titulo": "Elige el nicho",
+    "passo1Texto": "Encuentra el segmento de tu negocio entre las plantillas maestras disponibles.",
+    "passo2Titulo": "Elige el nivel",
+    "passo2Texto": "Básico, Intermedio o Avanzado — cada uno con más funciones que el anterior.",
+    "passo3Titulo": "Míralo en funcionamiento",
+    "passo3Texto": "Navega por la demostración real de la plantilla, no solo por capturas estáticas.",
+    "passo4Titulo": "Personaliza y publica",
+    "passo4Texto": "Envíanos tus datos, recibe una propuesta y pon tu web en marcha con tu marca."
+  },
+  "templatesSection": {
+    "eyebrow": "Nuestras Plantillas Maestras",
+    "titulo": "Plantillas completas, probadas y listas para tu nicho",
+    "subtitulo": "Cada Plantilla Maestra es un sitio real y funcional, con 3 niveles de funciones — no es una maqueta.",
+    "verDemo": "VER DEMOSTRACIÓN",
+    "personalizar": "PERSONALIZAR ESTA WEB",
+    "niveisLabel": "Niveles disponibles"
+  },
+  "nichosSection": {
+    "eyebrow": "Encuentra tu nicho",
+    "titulo": "Una plantilla maestra para cada segmento",
+    "subtitulo": "Algunos nichos ya tienen una plantilla lista. Otros están en camino — la arquitectura ya está preparada para ellos.",
+    "emBreve": "PRÓXIMAMENTE",
+    "verTemplate": "Ver plantilla"
+  },
+  "compararSection": {
+    "eyebrow": "Compara los niveles",
+    "titulo": "Básico, Intermedio o Avanzado — elige lo que necesitas ahora",
+    "subtitulo": "La misma comparación aplica a cualquier nicho: lo que cambia es el contenido, no la estructura.",
+    "precoDesde": "desde",
+    "porMes": "proyecto",
+    "escolher": "Elegir este nivel",
+    "maisEscolhido": "MÁS ELEGIDO",
+    "precoOficialLabel": "Precio oficial",
+    "precoPromoLabel": "Precio promocional de lanzamiento",
+    "avisoPromo": "Condición de lanzamiento por tiempo limitado.",
+    "avisoConversao": "Valores en USD/EUR calculados con una tasa de cambio ilustrativa — no son cotizaciones oficiales. Consulta las condiciones para tu país.",
+    "sobMedidaNome": "A Medida",
+    "sobMedidaTagline": "Cuando ninguna plantilla lista cubre lo que necesitas",
+    "sobMedidaTexto": "Presupuesto personalizado, con el alcance definido junto contigo.",
+    "sobMedidaCta": "SOLICITAR PRESUPUESTO"
+  },
+  "porqueSection": {
+    "eyebrow": "Por qué KE Sites",
+    "titulo": "Plantillas listas, con la calidad de un sitio a medida",
+    "item1Titulo": "Demostraciones reales",
+    "item1Texto": "Navegas por el sitio real antes de decidir — no dependes solo de capturas.",
+    "item2Titulo": "Arquitectura reutilizable",
+    "item2Texto": "Cada componente está pensado para funcionar en cualquier nicho, con el mismo estándar de calidad.",
+    "item3Titulo": "Realmente responsivo",
+    "item3Texto": "Probado en cada ancho de pantalla, sin versiones reducidas de escritorio disfrazadas de móvil.",
+    "item4Titulo": "Sin letra pequeña",
+    "item4Texto": "El precio, el plazo y lo que incluye cada nivel quedan claros antes de contratar."
+  },
+  "prontoVsPersonalizado": {
+    "eyebrow": "Plantilla lista vs. web personalizada",
+    "titulo": "Dos formas de salir adelante",
+    "prontoTitulo": "Plantilla lista",
+    "prontoTexto": "Más rápida y más económica. Eliges el nicho, el nivel, personalizas los datos y publicas.",
+    "prontoCta": "ELEGIR PLANTILLA",
+    "personalizadoTitulo": "Web personalizada",
+    "personalizadoTexto": "Un proyecto diseñado desde cero para la identidad y las necesidades específicas de tu negocio.",
+    "personalizadoCta": "QUIERO UNA WEB PERSONALIZADA"
+  },
+  "contratacaoSection": {
+    "eyebrow": "Cómo funciona la contratación",
+    "titulo": "Del primer contacto a la web publicada",
+    "dominioTitulo": "Dominio",
+    "dominioTexto": "Siempre registrado a nombre del cliente — el dominio es tuyo, no de KE Sites.",
+    "hospedagemTitulo": "Alojamiento",
+    "hospedagemTexto": "Estructura de alojamiento configurada para tu web, con opciones según el nivel elegido.",
+    "personalizacaoTitulo": "Personalización",
+    "personalizacaoTexto": "Aplicamos tu marca, textos, imágenes e información de contacto a la plantilla elegida.",
+    "publicacaoTitulo": "Publicación",
+    "publicacaoTexto": "Revisión final y publicación de la web, lista para recibir visitantes.",
+    "manutencaoTitulo": "Mantenimiento",
+    "manutencaoTexto": "Planes de mantenimiento y actualización disponibles después de la publicación, bajo demanda."
+  },
+  "manutencaoSection": {
+    "eyebrow": "Mantenimiento",
+    "titulo": "Continuidad después de publicar tu web",
+    "subtitulo": "Planes de mantenimiento para mantener tu web actualizada, activa y cuidada dentro del alcance contratado.",
+    "porMes": "/mes",
+    "cta": "Hablar sobre mantenimiento"
+  },
+  "manutencao": {
+    "essencial": {
+      "nome": "Esencial"
+    },
+    "profissional": {
+      "nome": "Profesional"
+    },
+    "premium": {
+      "nome": "Premium"
+    }
+  },
+  "manutencaoItens": {
+    "hospedagem": "Alojamiento y monitoreo del sitio",
+    "pequenosAjustes": "Pequeños ajustes de contenido",
+    "suporte": "Soporte por WhatsApp",
+    "atualizacoesConteudo": "Actualizaciones de contenido mensuales",
+    "suportePrioritario": "Soporte prioritario",
+    "evolucaoContinua": "Evolución continua del sitio"
+  },
+  "afiliadosTeaser": {
+    "eyebrow": "KE Sites Partners",
+    "titulo": "¿Quieres ganar dinero con KE Sites?",
+    "texto": "Recomienda empresas que necesitan una presencia digital profesional y gana comisión por las ventas generadas a través de tu enlace.",
+    "cta": "SÉ AFILIADO"
+  },
+  "partnersTeaser": {
+    "eyebrow": "KE Sites Partners",
+    "titulo": "¿Quieres vender soluciones digitales a tus propios clientes?",
+    "texto": "Vende soluciones digitales profesionales sin tener que desarrollar los sitios — KE Sites se encarga de la producción.",
+    "cta": "SÉ PARTNER"
+  },
+  "faqSection": {
+    "eyebrow": "Preguntas frecuentes",
+    "titulo": "Resuelve tus dudas"
+  },
+  "ctaFinalSection": {
+    "titulo": "¿Listo para una web que realmente venda?",
+    "subtitulo": "Habla con nosotros y recibe una propuesta personalizada para tu negocio.",
+    "ctaPrincipal": "QUIERO RECIBIR UNA PROPUESTA",
+    "ctaSecundario": "Hablar por WhatsApp"
+  },
+  "templates": {
+    "salao": {
+      "nome": "Salón de Belleza — Plantilla Maestra",
+      "descricao": "Sitio completo para salones de belleza y estética, con reservas de demostración, área de clientes y Beauty Club.",
+      "destaque1": "Catálogo de servicios por categoría",
+      "destaque2": "Reserva de demostración en 4 pasos",
+      "destaque3": "Área de clientes y club de socios (demo)",
+      "destaque4": "Panel de administración de demostración"
+    },
+    "volei": {
+      "nome": "Club de Vóleibol — Plantilla Maestra",
+      "descricao": "Sitio completo para centros de entrenamiento deportivo, con inscripción de demostración, club del atleta y tienda.",
+      "destaque1": "Modalidades organizadas por categoría",
+      "destaque2": "Inscripción de demostración en 4 pasos",
+      "destaque3": "Área del atleta y Club del Atleta (demo)",
+      "destaque4": "Panel de administración de demostración"
+    }
+  },
+  "nichos": {
+    "salao": "Salón de Belleza",
+    "volei": "Vóleibol / Deportes",
+    "barbearia": "Barbería",
+    "restaurante": "Restaurante",
+    "academia": "Gimnasio",
+    "clinica": "Clínica",
+    "fisioterapeuta": "Fisioterapeuta",
+    "massoterapeuta": "Masajista",
+    "nutricionista": "Nutricionista",
+    "correspondente": "Agente Bancario / de Préstamos"
+  },
+  "planos": {
+    "basico": {
+      "nome": "Básico",
+      "tagline": "Presencia profesional en línea"
+    },
+    "intermediario": {
+      "nome": "Intermedio",
+      "tagline": "Básico + funciones de conversión"
+    },
+    "avancado": {
+      "nome": "Avanzado",
+      "tagline": "Intermedio + funciones premium"
+    }
+  },
+  "recursos": {
+    "site_responsivo": "Sitio responsivo (móvil, tablet, escritorio)",
+    "paginas_principais": "Páginas institucionales principales",
+    "whatsapp_contato": "Contacto directo por WhatsApp",
+    "promocoes_combos": "Promociones y combos",
+    "agendamento_demo": "Reserva / inscripción (demostración)",
+    "depoimentos_eventos": "Testimonios y página de eventos",
+    "area_cliente_demo": "Área de clientes (demostración)",
+    "painel_admin_demo": "Panel de administración (demostración)",
+    "planos_assinatura": "Planes de suscripción recurrente",
+    "loja_demo": "Tienda de productos (demostración)",
+    "suporte_prioritario": "Soporte prioritario"
+  },
+  "depoimentos": {
+    "eyebrow": "Testimonios",
+    "titulo": "Negocios que ya están en línea con KE Sites",
+    "aviso": "Contenido ilustrativo, usado para mostrar el diseño de esta sección — sustitúyelo por testimonios reales de clientes antes de publicar.",
+    "d1": {
+      "nome": "Marina Costa",
+      "papel": "Salón de belleza, São Paulo",
+      "texto": "La web estuvo lista en una semana, tal como la había visto en la demostración antes de contratar."
+    },
+    "d2": {
+      "nome": "Rodrigo Alves",
+      "papel": "Centro de entrenamiento deportivo, Río de Janeiro",
+      "texto": "Me gustó poder probar la plantilla funcionando antes de decidir el nivel. Eso me dio seguridad para elegir el avanzado."
+    },
+    "d3": {
+      "nome": "Camila Duarte",
+      "papel": "Pequeña empresaria, Minas Gerais",
+      "texto": "El proceso fue transparente de principio a fin — precio, plazo y lo incluido, todo acordado de antemano."
+    }
+  },
+  "faq": {
+    "q1": {
+      "pergunta": "¿El dominio queda a mi nombre?",
+      "resposta": "Sí. El dominio siempre se registra a nombre del cliente, incluso cuando KE Sites ayuda con el proceso de registro."
+    },
+    "q2": {
+      "pergunta": "¿Puedo ver la plantilla funcionando antes de contratar?",
+      "resposta": "Sí. Cada Plantilla Maestra tiene una demostración real y navegable en los tres niveles — Básico, Intermedio y Avanzado."
+    },
+    "q3": {
+      "pergunta": "¿Cuál es la diferencia entre plantilla lista y web personalizada?",
+      "resposta": "La plantilla lista usa una estructura probada para tu nicho, lo que reduce plazo y costo. La web personalizada se construye desde cero para necesidades específicas."
+    },
+    "q4": {
+      "pergunta": "¿La reserva y el panel de administración son reales?",
+      "resposta": "En las demostraciones, no — son simulaciones para que evalúes la experiencia. En un sitio en producción, estas funciones se conectan a sistemas reales según tu plan."
+    },
+    "q5": {
+      "pergunta": "Mi nicho todavía no tiene una plantilla lista. ¿Qué hago?",
+      "resposta": "La arquitectura de KE Sites ya está preparada para nuevos nichos. Contáctanos para conocer los plazos o evaluar una web personalizada."
+    },
+    "q6": {
+      "pergunta": "¿Hay mantenimiento después de publicar la web?",
+      "resposta": "Sí, ofrecemos planes de mantenimiento y actualización bajo demanda después de la publicación."
+    }
+  },
+  "form": {
+    "titulo": "Quiero personalizar esta web",
+    "subtitulo": "Completa tus datos y nuestro equipo se pondrá en contacto con una propuesta.",
+    "nome": "Nombre",
+    "empresa": "Empresa / Negocio",
+    "nicho": "Nicho",
+    "pais": "País",
+    "cidade": "Ciudad",
+    "whatsapp": "WhatsApp",
+    "email": "Correo electrónico",
+    "instagram": "Instagram",
+    "nivelDesejado": "Nivel deseado",
+    "nivelBasico": "Básico",
+    "nivelIntermediario": "Intermedio",
+    "nivelAvancado": "Avanzado",
+    "nivelNaoSei": "Aún no lo sé",
+    "observacoes": "Observaciones",
+    "enviar": "QUIERO RECIBIR UNA PROPUESTA",
+    "avisoDemo": "⚠️ SOLO DEMOSTRACIÓN — este formulario es una simulación. Ningún dato se envía a un servidor ni se procesa de verdad."
+  },
+  "obrigado": {
+    "titulo": "Hemos recibido tu solicitud (demostración)",
+    "texto": "En un sitio en producción, tu solicitud se enviaría a nuestro equipo comercial y quedaría registrada en un CRM. Aquí, esta página solo ilustra el siguiente paso del embudo.",
+    "voltar": "Volver al inicio"
+  },
+  "footer": {
+    "descricao": "Template Factory y plataforma comercial de sitios web profesionales para pequeñas y medianas empresas.",
+    "navegacao": "Navegación",
+    "contato": "Contacto",
+    "direitos": "Todos los derechos reservados.",
+    "avisoDemo": "Sitio de demostración — las funciones marcadas como SOLO DEMOSTRACIÓN son simuladas."
+  },
+  "badges": {
+    "emBreve": "PRÓXIMAMENTE",
+    "demoOnly": "SOLO DEMOSTRACIÓN"
+  },
+  "misc": {
+    "skipLink": "Saltar al contenido"
+  },
+  "parceria": {
+    "afiliado": {
+      "eyebrow": "Programa de Afiliados",
+      "titulo": "Sé Afiliado KE Sites",
+      "subtitulo": "Recomienda empresas que necesitan una presencia digital profesional y gana comisión por las ventas generadas a través de tu enlace.",
+      "comissaoTitulo": "Comisión inicial",
+      "comissaoValor": "10% por venta",
+      "comissaoTexto": "Está planeada una futura estructura de progresión (Start 10% · Pro 12% · Elite 15%), pero aún no está vigente — los criterios se definirán y comunicarán oficialmente antes de aplicarse.",
+      "statusTitulo": "Dónde estamos ahora",
+      "statusTexto": "El registro, el enlace exclusivo, el seguimiento automático de clics/ventas y el panel de rendimiento del afiliado forman parte de la próxima fase del roadmap de la plataforma y aún no están disponibles. Deja tu interés abajo para que te avisemos cuando abra.",
+      "cta": "QUIERO SER AFILIADO"
+    },
+    "partner": {
+      "eyebrow": "KE Sites Partners",
+      "titulo": "Sé Partner KE Sites",
+      "subtitulo": "Vende soluciones digitales profesionales sin tener que desarrollar los sitios — KE Sites actúa como estructura de producción detrás de ti.",
+      "comissaoTitulo": "Condiciones comerciales",
+      "comissaoValor": "Por definir",
+      "comissaoTexto": "Los Partners/Revendedores podrán tener en el futuro condiciones comerciales especiales y la posibilidad de operar en white-label. Ninguna condición está definida ni vigente todavía.",
+      "statusTitulo": "Dónde estamos ahora",
+      "statusTexto": "El programa Partner formal — con capacitación, materiales y una estructura comercial dedicada — forma parte de una fase futura del roadmap. Deja tu interés abajo para que te avisemos cuando abra.",
+      "cta": "QUIERO SER PARTNER"
+    },
+    "comum": {
+      "distincaoTitulo": "Afiliado o Partner — ¿cuál es tu perfil?",
+      "afiliadoResumoTitulo": "Afiliado",
+      "afiliadoResumoTexto": "Recomienda clientes. KE Sites vende, produce y paga una comisión por la venta generada.",
+      "partnerResumoTitulo": "Partner / Revendedor",
+      "partnerResumoTexto": "Vende directamente a sus propios clientes. KE Sites actúa como estructura de producción detrás de escena.",
+      "regrasTitulo": "Reglas generales",
+      "regra1": "No cambiar precios ni condiciones sin autorización de KE Sites.",
+      "regra2": "No prometer funcionalidades que no estén confirmadas en el alcance contratado.",
+      "regra3": "No garantizar resultados financieros, cantidad de clientes o posicionamiento en Google.",
+      "regra4": "No presentarse como empleado/a de KE Sites.",
+      "regra5": "Ante cualquier duda sobre qué se puede o no ofrecer: consultar primero con KE Sites.",
+      "formTitulo": "Deja tu interés",
+      "formSubtitulo": "Sin compromiso — es solo para avisarte cuando el programa abra.",
+      "avisoDemo": "⚠️ SOLO DEMOSTRACIÓN — este formulario es una simulación. Ningún dato se envía a un servidor ni se procesa de verdad.",
+      "nome": "Nombre",
+      "whatsapp": "WhatsApp",
+      "email": "Correo electrónico",
+      "instagram": "Instagram",
+      "observacoes": "Cuéntanos un poco sobre ti (opcional)",
+      "enviar": "ENVIAR INTERÉS"
+    }
+  },
+  "checkout": {
+    "titulo": "Finalizar la contratación",
+    "subtitulo": "Revisa tu pedido y elige cómo prefieres pagar.",
+    "avisoDemo": "⚠️ SOLO DEMO — este checkout es una simulación visual. No se procesa ningún pago real ni se recopilan datos de tarjeta aquí. En producción, este paso se conecta al checkout seguro de un proveedor de pagos certificado.",
+    "resumoTitulo": "Tu pedido",
+    "alterarPlano": "Cambiar plan",
+    "semPlano": "Aún no se ha seleccionado ningún plan.",
+    "escolherPlano": "Elegir un plan",
+    "comoPagar": "¿Cómo prefieres pagar?",
+    "pix": "Pix",
+    "cartao": "Tarjeta de crédito",
+    "avista": "Pago único",
+    "parcelar": "En cuotas",
+    "parcelasLabel": "¿En cuántas cuotas?",
+    "pixInstrucao": "Al confirmar, recibirías un código QR y un código para copiar y pegar y pagar desde la app de tu banco.",
+    "pixCopiar": "Copiar código Pix",
+    "pixAguardando": "Esperando el pago",
+    "confirmarPagar": "Confirmar y pagar",
+    "continuarWhatsapp": "Prefiero hablar con alguien",
+    "confiancaTitulo": "Pago procesado por un proveedor certificado",
+    "confiancaTexto": "KE Sites nunca almacena números de tarjeta ni CVV. Los datos de pago están protegidos por el proveedor responsable del procesamiento.",
+    "metodosIndisponiveisNota": "Pix y el pago en varias cuotas son propios del mercado brasileño. Para tu mercado, el pago se procesa con tarjeta, con billeteras digitales cuando el proveedor las ofrezca.",
+    "totalLabel": "Total",
+    "mercado": "Mercado",
+    "template": "Plantilla",
+    "plano": "Plan",
+    "termosNota": "Al confirmar, aceptas las condiciones comerciales indicadas en esta simulación."
+  }
+}

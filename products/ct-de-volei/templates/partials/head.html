@@ -1,0 +1,37 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ page_title }} | {{ config.identidade.nome }}</title>
+<meta name="description" content="{{ page_description }}">
+<meta name="keywords" content="{{ page_keywords }}">
+<meta name="author" content="{{ config.identidade.nome }}">
+<link rel="canonical" href="{{ canonical_url }}">
+<link rel="icon" type="image/svg+xml" href="{{ config.identidade.favicon }}">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ page_title }} | {{ config.identidade.nome }}">
+<meta property="og:description" content="{{ page_description }}">
+<meta property="og:locale" content="{{ config.seo.idioma|replace('-','_') }}">
+<meta property="og:site_name" content="{{ config.identidade.nome }}">
+<meta property="og:image" content="{{ config.seo.ogImage }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page_title }} | {{ config.identidade.nome }}">
+<meta name="twitter:description" content="{{ page_description }}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="{{ config.tema.googleFontsUrl }}" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/theme.css">
+<link rel="stylesheet" href="assets/css/components.css">
+
+<!-- JSON-LD: structured data (type set by jsonld_type per product) -->
+<script type="application/ld+json">
+{{ jsonld_localbusiness|safe }}
+</script>
+{% if jsonld_extra %}
+<script type="application/ld+json">
+{{ jsonld_extra|safe }}
+</script>
+{% endif %}

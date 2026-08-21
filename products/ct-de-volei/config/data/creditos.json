@@ -1,0 +1,6 @@
+[
+  { "id": "cr-100", "tipo": "Voucher", "valor": 100, "descricao": "Ideal para presentear a primeira experiência no Ace Vôlei Clube." },
+  { "id": "cr-250", "tipo": "Voucher", "valor": 250, "descricao": "Cobre um mês de mensalidade em turmas recreativas." },
+  { "id": "cr-500", "tipo": "Voucher", "valor": 500, "descricao": "Perfeito para presentear um combo de duas modalidades." },
+  { "id": "cr-experimental", "tipo": "Aula Experimental", "valor": 0, "descricao": "Aula experimental gratuita para novos alunos — DEMO ONLY." }
+]

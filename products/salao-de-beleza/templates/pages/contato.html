@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Contato</span>
+      <h1>Vamos conversar</h1>
+      <p class="lead">Prefere falar direto? Chame no WhatsApp. Prefere escrever com calma? Use o formulário abaixo.</p>
+    </div>
+
+    <div class="grid grid-2-wide">
+      <div class="card" data-reveal>
+        <h2 class="h4">Envie uma mensagem</h2>
+        <p class="text-soft" style="font-size:.85rem;">Ao enviar, abriremos o WhatsApp com sua mensagem pronta para envio.</p>
+        <form id="form-contato" class="stack" style="margin-top:1rem;">
+          <div class="form-row cols-2">
+            <div class="field">
+              <label for="ct-nome">Nome</label>
+              <input type="text" id="ct-nome" name="nome" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="ct-telefone">Telefone</label>
+              <input type="tel" id="ct-telefone" name="telefone" autocomplete="tel">
+            </div>
+          </div>
+          <div class="field">
+            <label for="ct-mensagem">Mensagem</label>
+            <textarea id="ct-mensagem" name="mensagem" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-whatsapp btn-block">Enviar pelo WhatsApp</button>
+        </form>
+      </div>
+
+      <div class="stack" data-reveal>
+        <div class="card">
+          <h2 class="h4">Fale direto com a gente</h2>
+          <ul class="stack" style="margin-top:.75rem;">
+            <li><a class="btn btn-outline btn-block" href="{{ whatsapp_link() }}" target="_blank" rel="noopener">WhatsApp · {{ config.identidade.telefone }}</a></li>
+            <li><a class="btn btn-ghost btn-block" href="mailto:{{ config.identidade.email }}">{{ config.identidade.email }}</a></li>
+            <li><a class="btn btn-ghost btn-block" href="{{ config.identidade.instagramLink }}" target="_blank" rel="noopener">{{ config.identidade.instagram }}</a></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2 class="h4">Endereço</h2>
+          <p class="text-soft">{{ config.identidade.enderecoCompleto }}</p>
+          <a href="localizacao.html" class="btn btn-outline btn-sm" style="margin-top:.5rem;">Ver localização completa</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "partials/cta_final.html" %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function () {
+  var form = document.getElementById('form-contato');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var nome = form.nome.value.trim();
+    var telefone = form.telefone.value.trim();
+    var mensagem = form.mensagem.value.trim();
+    var msg = 'Olá! Meu nome é ' + (nome || '---') + '.';
+    if (telefone) msg += ' Meu telefone: ' + telefone + '.';
+    msg += ' ' + mensagem;
+    window.open('https://wa.me/{{ config.identidade.whatsapp }}?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+  });
+})();
+</script>
+{% endblock %}

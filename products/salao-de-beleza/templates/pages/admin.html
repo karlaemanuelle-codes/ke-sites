@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section" style="padding-bottom:1rem;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Painel Administrativo</span>
+      <h1>Gestão {{ config.identidade.nomeCurto }}</h1>
+      <span class="badge-demo">⚠️ DEMO ONLY — dados fictícios, apenas no seu navegador, nada é enviado a um servidor</span>
+    </div>
+  </div>
+</section>
+
+<section class="container" style="padding-bottom:4rem;">
+  <div class="admin-shell card" style="padding:0;">
+    <aside class="admin-sidebar">
+      <nav role="tablist" aria-label="Seções do painel administrativo">
+        <button type="button" class="admin-tab" role="tab" id="tab-dashboard" aria-controls="panel-dashboard" aria-selected="true" data-tab="dashboard">Dashboard</button>
+        <button type="button" class="admin-tab" role="tab" id="tab-clientes" aria-controls="panel-clientes" aria-selected="false" data-tab="clientes" tabindex="-1">Clientes</button>
+        <button type="button" class="admin-tab" role="tab" id="tab-agendamentos" aria-controls="panel-agendamentos" aria-selected="false" data-tab="agendamentos" tabindex="-1">Agendamentos</button>
+        <button type="button" class="admin-tab" role="tab" id="tab-servicos" aria-controls="panel-servicos" aria-selected="false" data-tab="servicos" tabindex="-1">Serviços</button>
+        <button type="button" class="admin-tab" role="tab" id="tab-profissionais" aria-controls="panel-profissionais" aria-selected="false" data-tab="profissionais" tabindex="-1">Profissionais</button>
+        <button type="button" class="admin-tab" role="tab" id="tab-produtos" aria-controls="panel-produtos" aria-selected="false" data-tab="produtos" tabindex="-1">Produtos</button>
+        <button type="button" class="admin-tab" role="tab" id="tab-promocoes" aria-controls="panel-promocoes" aria-selected="false" data-tab="promocoes" tabindex="-1">Promoções</button>
+        <button type="button" class="admin-tab" role="tab" id="tab-vouchers" aria-controls="panel-vouchers" aria-selected="false" data-tab="vouchers" tabindex="-1">Vouchers</button>
+        <button type="button" class="admin-tab" role="tab" id="tab-depoimentos" aria-controls="panel-depoimentos" aria-selected="false" data-tab="depoimentos" tabindex="-1">Depoimentos</button>
+        <button type="button" class="admin-tab" role="tab" id="tab-eventos" aria-controls="panel-eventos" aria-selected="false" data-tab="eventos" tabindex="-1">Eventos</button>
+        <button type="button" class="admin-tab" role="tab" id="tab-config" aria-controls="panel-config" aria-selected="false" data-tab="config" tabindex="-1">Configurações</button>
+      </nav>
+    </aside>
+
+    <div class="admin-panel">
+      <div role="tabpanel" id="panel-dashboard" aria-labelledby="tab-dashboard">
+        <div class="stat-row">
+          <div class="stat-card"><strong>128</strong><span class="text-soft">Clientes ativas</span></div>
+          <div class="stat-card"><strong>14</strong><span class="text-soft">Agendamentos hoje</span></div>
+          <div class="stat-card"><strong>R$ 18.420</strong><span class="text-soft">Receita do mês (demo)</span></div>
+          <div class="stat-card"><strong>{{ config.social.avaliacaoMedia }}★</strong><span class="text-soft">Avaliação média</span></div>
+        </div>
+        <p class="text-soft" style="font-size:.85rem;">Estes números são ilustrativos. Em produção, viriam do seu sistema de agenda e financeiro.</p>
+      </div>
+
+      <div role="tabpanel" id="panel-clientes" aria-labelledby="tab-clientes" hidden>
+        <div class="flex flex-between" style="margin-bottom:1rem;">
+          <h2 class="h4" style="margin:0;">Clientes</h2>
+        </div>
+        <form id="form-add-cliente" class="form-row cols-2" style="margin-bottom:1rem;">
+          <div class="field"><label for="ad-cliente-nome">Nome</label><input type="text" id="ad-cliente-nome" required></div>
+          <div class="field"><label for="ad-cliente-tel">Telefone</label><input type="tel" id="ad-cliente-tel"></div>
+          <button type="submit" class="btn btn-primary btn-sm" style="align-self:end;">Adicionar cliente (demo)</button>
+        </form>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Nome</th><th>Telefone</th><th>Última visita</th><th></th></tr></thead>
+            <tbody id="clientes-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div role="tabpanel" id="panel-agendamentos" aria-labelledby="tab-agendamentos" hidden>
+        <h2 class="h4">Agendamentos de hoje</h2>
+        <div class="table-scroll" style="margin-top:.75rem;">
+          <table>
+            <thead><tr><th>Horário</th><th>Cliente</th><th>Serviço</th><th>Profissional</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>09:00</td><td>Fernanda Lima</td><td>Morena Iluminada</td><td>Camila Rocha</td><td>Confirmado</td></tr>
+              <tr><td>11:00</td><td>Patrícia Nogueira</td><td>Manicure Premium</td><td>Renata Souza</td><td>Confirmado</td></tr>
+              <tr><td>14:00</td><td>Aline Costa</td><td>Limpeza de Pele Profunda</td><td>Juliana Prado</td><td>Aguardando</td></tr>
+              <tr><td>16:00</td><td>Isabela Martins</td><td>Corte Feminino</td><td>Bruno Alencar</td><td>Confirmado</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div role="tabpanel" id="panel-servicos" aria-labelledby="tab-servicos" hidden>
+        <h2 class="h4">Serviços cadastrados</h2>
+        <div class="table-scroll" style="margin-top:.75rem;">
+          <table>
+            <thead><tr><th>Serviço</th><th>Categoria</th><th>Duração</th><th>Preço</th><th></th></tr></thead>
+            <tbody>
+              {% for cat in servicos.categorias %}{% for s in cat.servicos %}
+              <tr><td>{{ s.nome }}</td><td>{{ cat.nome }}</td><td>{{ s.duracao }}</td><td>R$ {{ "%.0f"|format(s.precoDe) }}</td><td><button class="btn btn-ghost btn-sm" type="button" disabled title="Demo — edição indisponível">Editar</button></td></tr>
+              {% endfor %}{% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div role="tabpanel" id="panel-profissionais" aria-labelledby="tab-profissionais" hidden>
+        <h2 class="h4">Profissionais</h2>
+        <div class="table-scroll" style="margin-top:.75rem;">
+          <table>
+            <thead><tr><th>Nome</th><th>Cargo</th><th>Avaliação</th><th></th></tr></thead>
+            <tbody>
+              {% for p in profissionais %}
+              <tr><td>{{ p.nome }}</td><td>{{ p.cargo }}</td><td>★ {{ p.avaliacao }}</td><td><button class="btn btn-ghost btn-sm" type="button" disabled title="Demo — edição indisponível">Editar</button></td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div role="tabpanel" id="panel-produtos" aria-labelledby="tab-produtos" hidden>
+        <h2 class="h4">Produtos — Beauty Shop</h2>
+        <div class="table-scroll" style="margin-top:.75rem;">
+          <table>
+            <thead><tr><th>Produto</th><th>Categoria</th><th>Preço</th><th></th></tr></thead>
+            <tbody>
+              {% for pr in produtos %}
+              <tr><td>{{ pr.nome }}</td><td>{{ pr.categoria }}</td><td>R$ {{ "%.0f"|format(pr.preco) }}</td><td><button class="btn btn-ghost btn-sm" type="button" disabled title="Demo — edição indisponível">Editar</button></td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div role="tabpanel" id="panel-promocoes" aria-labelledby="tab-promocoes" hidden>
+        <h2 class="h4">Promoções ativas</h2>
+        <div class="table-scroll" style="margin-top:.75rem;">
+          <table>
+            <thead><tr><th>Título</th><th>Selo</th><th>Validade</th><th></th></tr></thead>
+            <tbody>
+              {% for promo in promocoes.promocoes %}
+              <tr><td>{{ promo.titulo }}</td><td>{{ promo.selo }}</td><td>{{ promo.validade }}</td><td><button class="btn btn-ghost btn-sm" type="button" disabled title="Demo — edição indisponível">Editar</button></td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div role="tabpanel" id="panel-vouchers" aria-labelledby="tab-vouchers" hidden>
+        <h2 class="h4">Vouchers & Gift Cards</h2>
+        <div class="table-scroll" style="margin-top:.75rem;">
+          <table>
+            <thead><tr><th>Tipo</th><th>Valor</th><th>Descrição</th></tr></thead>
+            <tbody>
+              {% for v in vouchers %}
+              <tr><td>{{ v.tipo }}</td><td>R$ {{ "%.0f"|format(v.valor) }}</td><td>{{ v.descricao }}</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div role="tabpanel" id="panel-depoimentos" aria-labelledby="tab-depoimentos" hidden>
+        <h2 class="h4">Depoimentos publicados</h2>
+        <div class="table-scroll" style="margin-top:.75rem;">
+          <table>
+            <thead><tr><th>Cliente</th><th>Serviço</th><th>Nota</th><th></th></tr></thead>
+            <tbody>
+              {% for d in depoimentos %}
+              <tr><td>{{ d.nome }}</td><td>{{ d.servico }}</td><td>★ {{ d.avaliacao }}</td><td><button class="btn btn-ghost btn-sm" type="button" disabled title="Demo — moderação indisponível">Moderar</button></td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div role="tabpanel" id="panel-eventos" aria-labelledby="tab-eventos" hidden>
+        <h2 class="h4">Eventos & Pacotes de Noivas</h2>
+        <div class="table-scroll" style="margin-top:.75rem;">
+          <table>
+            <thead><tr><th>Nome</th><th>Data / Detalhe</th></tr></thead>
+            <tbody>
+              {% for ev in eventos.eventosGerais %}<tr><td>{{ ev.titulo }}</td><td>{{ ev.data }}</td></tr>{% endfor %}
+              {% for pc in eventos.pacotesNoivas %}<tr><td>{{ pc.nome }}</td><td>a partir de R$ {{ "%.0f"|format(pc.precoDe) }}</td></tr>{% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div role="tabpanel" id="panel-config" aria-labelledby="tab-config" hidden>
+        <h2 class="h4">Configurações do salão</h2>
+        <p class="text-soft" style="font-size:.88rem; margin-bottom:1rem;">Estes valores vêm do arquivo central <code>config/salon.config.json</code> — a base do Template Factory KE Sites. Alterar ali atualiza o site inteiro.</p>
+        <div class="form-row cols-2">
+          <div class="field"><label>Nome</label><input type="text" value="{{ config.identidade.nome }}" disabled></div>
+          <div class="field"><label>WhatsApp</label><input type="text" value="{{ config.identidade.telefone }}" disabled></div>
+          <div class="field"><label>E-mail</label><input type="text" value="{{ config.identidade.email }}" disabled></div>
+          <div class="field"><label>Instagram</label><input type="text" value="{{ config.identidade.instagram }}" disabled></div>
+          <div class="field"><label>Cor primária</label><input type="text" value="{{ config.tema.corPrimaria }}" disabled></div>
+          <div class="field"><label>Cor de acento</label><input type="text" value="{{ config.tema.corAcento }}" disabled></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="assets/js/admin-demo.js" defer></script>
+{% endblock %}

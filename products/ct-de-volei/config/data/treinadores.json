@@ -1,0 +1,42 @@
+[
+  {
+    "id": "rafael-mendes",
+    "nome": "Rafael Mendes",
+    "cargo": "Diretor Técnico & Treinador Sub-17",
+    "especialidades": ["Formação de Base", "Tática de Ataque", "Preparação para Torneios"],
+    "bio": "Ex-atleta de vôlei profissional, certificação CBV nível 3, 14 anos formando atletas competitivos.",
+    "avaliacao": 5.0,
+    "avaliacoesTotal": 186,
+    "instagram": "@rafa.mendes.volei"
+  },
+  {
+    "id": "carla-nunes",
+    "nome": "Carla Nunes",
+    "cargo": "Treinadora de Iniciação Infantil",
+    "especialidades": ["Coordenação Motora", "Iniciação Infantil", "Vôlei Adaptado"],
+    "bio": "Especialista em pedagogia do esporte, referência em iniciação infantil e inclusão no Rio de Janeiro.",
+    "avaliacao": 4.9,
+    "avaliacoesTotal": 154,
+    "instagram": "@carla.volei.kids"
+  },
+  {
+    "id": "diego-farias",
+    "nome": "Diego Farias",
+    "cargo": "Treinador de Vôlei de Praia",
+    "especialidades": ["Vôlei de Praia", "Tática de Dupla", "Preparação Física"],
+    "bio": "Ex-atleta de circuito nacional de vôlei de praia, especialista em tática de dupla e leitura de jogo.",
+    "avaliacao": 4.9,
+    "avaliacoesTotal": 121,
+    "instagram": "@diego.praia.volei"
+  },
+  {
+    "id": "patricia-lemos",
+    "nome": "Patrícia Lemos",
+    "cargo": "Treinadora Adulto & Personal",
+    "especialidades": ["Adulto Competitivo", "Personal Training", "Preparação Física"],
+    "bio": "Preparadora física certificada, conduz os treinos de personal training e turmas adultas competitivas.",
+    "avaliacao": 4.8,
+    "avaliacoesTotal": 98,
+    "instagram": "@paty.volei.pro"
+  }
+]

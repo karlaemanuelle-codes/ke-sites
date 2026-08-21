@@ -1,0 +1,40 @@
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand" aria-label="{{ config.identidade.nome }} — página inicial">
+      <span class="dot" aria-hidden="true"></span>{{ config.identidade.logoText }}
+    </a>
+
+    <nav class="nav-desktop" aria-label="Navegação principal">
+      <ul>
+        {% for item in nav_items %}
+          {% if item.min_tier <= tier_rank %}
+          <li><a href="{{ item.href }}" data-nav-link="{{ item.id }}">{{ item.label }}</a></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <div class="header-cta">
+      <a class="btn btn-outline btn-sm" href="{{ whatsapp_link() }}" target="_blank" rel="noopener">{{ config.cta.secundario }}</a>
+      <a class="btn btn-primary btn-sm" href="{{ primary_cta_href }}" {{ primary_cta_attrs|safe }}>{{ config.cta.principal }}</a>
+    </div>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-mobile" aria-label="Abrir menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <nav class="nav-mobile" id="nav-mobile" aria-label="Navegação móvel" aria-hidden="true">
+    <ul>
+      {% for item in nav_items %}
+        {% if item.min_tier <= tier_rank %}
+        <li><a href="{{ item.href }}" data-nav-link="{{ item.id }}">{{ item.label }}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+    <div class="header-cta">
+      <a class="btn btn-primary btn-block" href="{{ primary_cta_href }}" {{ primary_cta_attrs|safe }}>{{ config.cta.principal }}</a>
+      <a class="btn btn-whatsapp btn-block" href="{{ whatsapp_link() }}" target="_blank" rel="noopener">{{ config.cta.secundario }}</a>
+    </div>
+  </nav>
+</header>

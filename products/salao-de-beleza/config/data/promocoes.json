@@ -1,0 +1,12 @@
+{
+  "promocoes": [
+    { "titulo": "Terça da Coloração", "descricao": "15% de desconto em coloração e mechas às terças-feiras.", "validade": "Válido todas as terças", "selo": "Recorrente" },
+    { "titulo": "Indique uma Amiga", "descricao": "Você e sua amiga ganham R$ 40 de desconto no próximo serviço.", "validade": "Sem prazo para acabar", "selo": "Fidelidade" },
+    { "titulo": "Primeira Visita Beauty Club", "descricao": "50% de desconto na primeira mensalidade do Beauty Club.", "validade": "Para novas assinantes", "selo": "Novidade" }
+  ],
+  "combos": [
+    { "nome": "Combo Dia de Diva", "itens": ["Corte Feminino", "Escova Modelada", "Manicure Premium"], "precoDe": 370, "precoPor": 289, "economiaPercentual": 22 },
+    { "nome": "Combo Noiva Preview", "itens": ["Penteado para Eventos", "Design de Sobrancelhas", "Manicure Premium"], "precoDe": 430, "precoPor": 349, "economiaPercentual": 19 },
+    { "nome": "Combo Skin Glow", "itens": ["Limpeza de Pele Profunda", "Massagem Relaxante"], "precoDe": 360, "precoPor": 299, "economiaPercentual": 17 }
+  ]
+}

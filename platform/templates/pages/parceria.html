@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section" style="padding-bottom:0;">
+  <div class="container section-head center">
+    <span class="eyebrow">{{ t('parceria.' + tipo + '.eyebrow') }}</span>
+    <h1>{{ t('parceria.' + tipo + '.titulo') }}</h1>
+    <p class="lead">{{ t('parceria.' + tipo + '.subtitulo') }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-2-wide">
+      <div class="card" data-reveal>
+        <span class="eyebrow">{{ t('parceria.' + tipo + '.comissaoTitulo') }}</span>
+        <p class="price" style="margin:.25rem 0 .75rem;">{{ t('parceria.' + tipo + '.comissaoValor') }}</p>
+        <p class="text-soft">{{ t('parceria.' + tipo + '.comissaoTexto') }}</p>
+      </div>
+      <div class="card" data-reveal>
+        <span class="badge-demo">{{ t('badges.demoOnly') }}</span>
+        <h2 class="h4" style="margin-top:.75rem;">{{ t('parceria.' + tipo + '.statusTitulo') }}</h2>
+        <p class="text-soft">{{ t('parceria.' + tipo + '.statusTexto') }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-alt">
+  <div class="container">
+    <div class="section-head center">
+      <h2>{{ t('parceria.comum.distincaoTitulo') }}</h2>
+    </div>
+    <div class="grid grid-2">
+      <article class="card" {% if tipo == 'afiliado' %}style="border-color:var(--color-primary); border-width:2px;"{% endif %} data-reveal>
+        <h3 class="h4">{{ t('parceria.comum.afiliadoResumoTitulo') }}</h3>
+        <p class="text-soft">{{ t('parceria.comum.afiliadoResumoTexto') }}</p>
+        {% if tipo != 'afiliado' %}<a class="btn btn-outline btn-sm" style="margin-top:.75rem;" href="afiliados.html">{{ t('parceria.afiliado.cta') }}</a>{% endif %}
+      </article>
+      <article class="card" {% if tipo == 'partner' %}style="border-color:var(--color-primary); border-width:2px;"{% endif %} data-reveal>
+        <h3 class="h4">{{ t('parceria.comum.partnerResumoTitulo') }}</h3>
+        <p class="text-soft">{{ t('parceria.comum.partnerResumoTexto') }}</p>
+        {% if tipo != 'partner' %}<a class="btn btn-outline btn-sm" style="margin-top:.75rem;" href="partners.html">{{ t('parceria.partner.cta') }}</a>{% endif %}
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="max-width:640px;">
+    <h2 class="h4">{{ t('parceria.comum.regrasTitulo') }}</h2>
+    <ul class="stack" style="margin-top:1rem;">
+      <li class="text-soft">— {{ t('parceria.comum.regra1') }}</li>
+      <li class="text-soft">— {{ t('parceria.comum.regra2') }}</li>
+      <li class="text-soft">— {{ t('parceria.comum.regra3') }}</li>
+      <li class="text-soft">— {{ t('parceria.comum.regra4') }}</li>
+      <li class="text-soft">— {{ t('parceria.comum.regra5') }}</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section bg-alt">
+  <div class="container lead-form-shell">
+    <div class="section-head center">
+      <span class="eyebrow">{{ t('parceria.' + tipo + '.eyebrow') }}</span>
+      <h2>{{ t('parceria.comum.formTitulo') }}</h2>
+      <p class="lead">{{ t('parceria.comum.formSubtitulo') }}</p>
+      <span class="badge-demo" style="margin-top:.75rem;">{{ t('parceria.comum.avisoDemo') }}</span>
+    </div>
+
+    <form id="form-parceria" class="card" style="margin-top:1.5rem;" novalidate>
+      <p class="sr-only" role="status" aria-live="polite" id="parceria-live"></p>
+      <div class="form-row cols-2">
+        <div class="field">
+          <label for="pc-nome">{{ t('parceria.comum.nome') }}</label>
+          <input type="text" id="pc-nome" name="nome" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="pc-whatsapp">{{ t('parceria.comum.whatsapp') }}</label>
+          <input type="tel" id="pc-whatsapp" name="whatsapp" autocomplete="tel" required>
+        </div>
+      </div>
+      <div class="form-row cols-2" style="margin-top:1rem;">
+        <div class="field">
+          <label for="pc-email">{{ t('parceria.comum.email') }}</label>
+          <input type="email" id="pc-email" name="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="pc-instagram">{{ t('parceria.comum.instagram') }}</label>
+          <input type="text" id="pc-instagram" name="instagram" placeholder="@">
+        </div>
+      </div>
+      <div class="field" style="margin-top:1rem;">
+        <label for="pc-observacoes">{{ t('parceria.comum.observacoes') }}</label>
+        <textarea id="pc-observacoes" name="observacoes" rows="3"></textarea>
+      </div>
+      <input type="hidden" name="tipo" value="{{ tipo }}">
+      <button type="submit" class="btn btn-primary btn-block" style="margin-top:1.5rem;">{{ t('parceria.comum.enviar') }}</button>
+    </form>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function () {
+  var form = document.getElementById('form-parceria');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    // ⚠️ DEMO ONLY — nenhum dado é enviado a um servidor real.
+    window.location.href = 'obrigado.html';
+  });
+})();
+</script>
+{% endblock %}

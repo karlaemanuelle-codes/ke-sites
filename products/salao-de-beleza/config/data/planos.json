@@ -1,0 +1,23 @@
+[
+  {
+    "id": "essencial",
+    "nome": "Beauty Club Essencial",
+    "precoMes": 129,
+    "destaque": false,
+    "beneficios": ["1 escova modelada por mês", "10% off em serviços avulsos", "Prioridade de agenda em dias úteis", "Brinde de aniversário"]
+  },
+  {
+    "id": "signature",
+    "nome": "Beauty Club Signature",
+    "precoMes": 249,
+    "destaque": true,
+    "beneficios": ["2 serviços de cabelo por mês", "1 manicure premium por mês", "15% off em todos os serviços", "Prioridade total de agenda", "Concierge de beleza dedicado", "Convites para eventos exclusivos"]
+  },
+  {
+    "id": "prestige",
+    "nome": "Beauty Club Prestige",
+    "precoMes": 449,
+    "destaque": false,
+    "beneficios": ["Serviços de cabelo ilimitados*", "2 tratamentos de estética por mês", "20% off em produtos Beauty Shop", "Concierge de beleza dedicado", "Acesso antecipado a lançamentos", "*sujeito a agenda disponível"]
+  }
+]

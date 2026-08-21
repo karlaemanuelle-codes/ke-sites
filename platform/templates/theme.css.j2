@@ -1,0 +1,24 @@
+/* =========================================================
+   THEME.CSS — GERADO AUTOMATICAMENTE pelo build.py a partir de
+   config/platform.config.json. NÃO EDITE ESTE ARQUIVO DIRETAMENTE.
+   Mesmo motor de tema dos produtos (Salão de Beleza, CT de Vôlei) —
+   só o config muda, provando que o sistema de temas é reutilizável.
+   ========================================================= */
+:root {
+  --color-primary: {{ tema.corPrimaria }};
+  --color-primary-dark: {{ tema.corPrimariaEscura }};
+  --color-primary-light: {{ tema.corPrimariaClara }};
+  --color-secondary: {{ tema.corSecundaria }};
+  --color-accent: {{ tema.corAcento }};
+  --color-bg: {{ tema.corFundo }};
+  --color-bg-alt: {{ tema.corFundoAlt }};
+  --color-text: {{ tema.corTexto }};
+  --color-text-soft: {{ tema.corTextoSuave }};
+  --color-border: color-mix(in srgb, {{ tema.corSecundaria }} 12%, transparent);
+
+  --font-display: {{ tema.fonteDisplay }};
+  --font-body: {{ tema.fonteCorpo }};
+  --font-system: {{ tema.fonteSistema }};
+
+  --radius: {{ tema.raioBorda }};
+}

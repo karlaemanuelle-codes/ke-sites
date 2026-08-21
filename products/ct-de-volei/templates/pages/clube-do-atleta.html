@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section" style="padding-bottom:0;">
+  <div class="container section-head center">
+    <span class="eyebrow">Clube do Atleta</span>
+    <h1>Assine o treino que cabe na sua rotina</h1>
+    <p class="lead">Planos mensais com aulas inclusas, descontos e prioridade de turma — cancele quando quiser.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-3">
+      {% for plano in planos %}
+      <article class="card card-plan {{ 'is-featured' if plano.destaque }}" data-reveal>
+        {% if plano.destaque %}<span class="badge-featured">Mais escolhido</span>{% endif %}
+        <h2 class="h4">{{ plano.nome }}</h2>
+        <p class="price">R$ {{ plano.precoMes }}<span>/mês</span></p>
+        <ul>
+          {% for b in plano.beneficios %}<li>{{ b }}</li>{% endfor %}
+        </ul>
+        <a class="btn {{ 'btn-primary' if plano.destaque else 'btn-outline' }} btn-block" href="{{ whatsapp_link('Olá! Quero assinar o ' + plano.nome + '.') }}" target="_blank" rel="noopener">Assinar {{ plano.nome.split(' ')[-1] }}</a>
+      </article>
+      {% endfor %}
+    </div>
+    <p class="text-center text-soft" style="margin-top:1.5rem; font-size:.82rem;">{{ config.mensagensComerciais.avisoDemo }} A assinatura seria processada em um checkout real de produção.</p>
+  </div>
+</section>
+
+<section class="section bg-alt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Vouchers & Aulas Experimentais</span>
+      <h2>Presenteie quem você ama com uma aula</h2>
+      <span class="badge-demo">⚠️ DEMO ONLY — emissão simulada</span>
+    </div>
+    <div class="grid grid-4" style="margin-top:1.5rem;">
+      {% for v in vouchers %}
+      <article class="card text-center" data-reveal>
+        <h3 class="h4">{{ v.tipo }}</h3>
+        <p class="price">R$ {{ "%.0f"|format(v.valor) }}</p>
+        <p class="text-soft" style="font-size:.85rem;">{{ v.descricao }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% include "partials/cta_final.html" %}
+{% endblock %}

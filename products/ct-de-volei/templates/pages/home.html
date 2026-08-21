@@ -1,0 +1,288 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="hero">
+  <div class="container">
+    <div class="grid grid-2-wide">
+      <div data-reveal>
+        <span class="eyebrow">{{ config.identidade.segmento }}</span>
+        <h1>{{ config.identidade.slogan }}</h1>
+        <p class="lead" style="margin-top:1rem; max-width:48ch;">{{ config.identidade.descricaoCurta }}</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="{{ primary_cta_href }}" {{ primary_cta_attrs|safe }}>{{ config.cta.principal }}</a>
+          <a class="btn btn-outline" href="modalidades.html">{{ config.cta.servicos }}</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>{{ config.social.avaliacaoMedia }}★</strong><span>{{ config.social.totalAvaliacoes }}+ avaliações</span></div>
+          <div><strong>{{ treinadores|length }}</strong><span>especialistas na equipe</span></div>
+          <div><strong>{{ config.social.instagramSeguidores }}</strong><span>seguidoras no Instagram</span></div>
+        </div>
+      </div>
+      <div class="hero-art" data-reveal aria-hidden="true">
+        <span class="hero-badge">{{ config.mensagensComerciais.faixaConfianca }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Benefícios / diferenciais -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Por que o {{ config.identidade.nomeCurto }}</span>
+      <h2>Excelência técnica, experiência premium</h2>
+    </div>
+    <div class="grid grid-4">
+      <div class="card text-center" data-reveal>
+        <h3 class="h4">Equipe certificada</h3>
+        <p class="text-soft" style="font-size:.92rem;">{{ config.mensagensComerciais.objecaoConfianca }}</p>
+      </div>
+      <div class="card text-center" data-reveal>
+        <h3 class="h4">Estrutura completa</h3>
+        <p class="text-soft" style="font-size:.92rem;">Quadras próprias, materiais oficiais e metodologia de treino validada pela CBV.</p>
+      </div>
+      <div class="card text-center" data-reveal>
+        <h3 class="h4">Agenda facilitada</h3>
+        <p class="text-soft" style="font-size:.92rem;">{{ config.mensagensComerciais.objecaoDisponibilidade }}</p>
+      </div>
+      <div class="card text-center" data-reveal>
+        <h3 class="h4">Investimento justo</h3>
+        <p class="text-soft" style="font-size:.92rem;">{{ config.mensagensComerciais.objecaoPreco }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modalidades principais -->
+<section class="section bg-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Modalidades</span>
+      <h2>Treino para todo tipo de atleta, em um só clube</h2>
+      <p class="lead">Da iniciação infantil ao vôlei de praia — cada modalidade pensada para o seu objetivo.</p>
+    </div>
+    <div class="grid grid-3">
+      {% for cat in servicos.categorias %}
+        {% for s in cat.servicos %}
+          {% if s.destaque %}
+          <article class="card card-service" data-reveal>
+            <div class="media-frame">{{ ph(s.nome, '16/10') }}</div>
+            <span class="eyebrow" style="margin-bottom:.35rem;">{{ cat.nome }}</span>
+            <h3 class="h4">{{ s.nome }}</h3>
+            <p class="text-soft" style="font-size:.92rem;">{{ s.descricao }}</p>
+            <p class="price"><span class="from">a partir de</span>R$ {{ "%.0f"|format(s.precoDe) }}</p>
+          </article>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+    <div class="text-center" style="margin-top:2rem;">
+      <a class="btn btn-outline" href="modalidades.html">Ver todas as modalidades</a>
+    </div>
+  </div>
+</section>
+
+<!-- Treinadores -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Nossa equipe</span>
+      <h2>Treinadores que fazem a diferença</h2>
+    </div>
+    <div class="grid grid-3">
+      {% for p in treinadores[:3] %}
+      <article class="card card-pro" data-reveal>
+        <div class="media-frame">{{ ph(p.nome, '1/1', monogram=p.nome) }}</div>
+        <h3 class="h4" style="margin-top:.75rem;">{{ p.nome }}</h3>
+        <p class="text-soft" style="font-size:.88rem; margin:0;">{{ p.cargo }}</p>
+        <p class="rating">★ {{ p.avaliacao }} · {{ p.avaliacoesTotal }} avaliações</p>
+        <div class="tag-list">
+          {% for esp in p.especialidades[:2] %}<span class="tag">{{ esp }}</span>{% endfor %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    <div class="text-center" style="margin-top:2rem;">
+      <a class="btn btn-outline" href="treinadores.html">Conhecer toda a equipe</a>
+    </div>
+  </div>
+</section>
+
+<!-- Experiência do clube -->
+<section class="section bg-alt">
+  <div class="container">
+    <div class="grid grid-2-wide">
+      <div data-reveal>
+        <span class="eyebrow">A experiência {{ config.identidade.nomeCurto }}</span>
+        <h2>Da matrícula à quadra, cuidamos de cada detalhe</h2>
+        <p class="lead" style="margin-top:.75rem;">{{ config.identidade.descricaoLonga }}</p>
+        <div class="steps" style="margin-top:1.75rem;">
+          <div class="step is-done"><span class="num">1</span><strong>Matricule-se</strong><p class="text-soft" style="font-size:.85rem; margin:.3rem 0 0;">Pelo site ou WhatsApp</p></div>
+          <div class="step is-done"><span class="num">2</span><strong>Seja avaliado</strong><p class="text-soft" style="font-size:.85rem; margin:.3rem 0 0;">Avaliação de nível na primeira aula</p></div>
+          <div class="step is-done"><span class="num">3</span><strong>Viva o treino</strong><p class="text-soft" style="font-size:.85rem; margin:.3rem 0 0;">Técnica, intensidade e acompanhamento próximo</p></div>
+          <div class="step"><span class="num">4</span><strong>Evolua a cada semana</strong><p class="text-soft" style="font-size:.85rem; margin:.3rem 0 0;">Com feedback constante do treinador</p></div>
+        </div>
+      </div>
+      <div class="media-frame" style="--ratio:4/5;">{{ ph('Ambiente do ' + config.identidade.nome, '4/5') }}</div>
+    </div>
+  </div>
+</section>
+
+{% if tier_rank >= 3 %}
+<!-- Clube do Atleta -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Clube do Atleta</span>
+      <h2>Treino recorrente, com benefícios reais</h2>
+      <p class="lead">Assine um plano e transforme o treino em rotina — com prioridade, evolução acompanhada e mimos exclusivos.</p>
+    </div>
+    <div class="grid grid-3">
+      {% for plano in planos %}
+      <article class="card card-plan {{ 'is-featured' if plano.destaque }}" data-reveal>
+        {% if plano.destaque %}<span class="badge-featured">Mais escolhido</span>{% endif %}
+        <h3 class="h4">{{ plano.nome }}</h3>
+        <p class="price">R$ {{ plano.precoMes }}<span>/mês</span></p>
+        <ul>
+          {% for b in plano.beneficios %}<li>{{ b }}</li>{% endfor %}
+        </ul>
+        <a class="btn {{ 'btn-primary' if plano.destaque else 'btn-outline' }} btn-block" href="clube-do-atleta.html">{{ config.cta.beautyClub }}</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if tier_rank >= 2 %}
+<!-- Promoções / Combos -->
+<section class="section bg-alt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Promoções</span>
+      <h2>Combos pensados para o seu bolso</h2>
+    </div>
+    <div class="grid grid-3">
+      {% for combo in promocoes.combos[:3] %}
+      <article class="card card-promo" data-reveal>
+        <span class="badge">-{{ combo.economiaPercentual }}%</span>
+        <h3 class="h4">{{ combo.nome }}</h3>
+        <ul style="margin:.5rem 0 1rem;">
+          {% for item in combo.itens %}<li class="text-soft" style="font-size:.88rem; padding:.15rem 0;">• {{ item }}</li>{% endfor %}
+        </ul>
+        <p class="price" style="margin-bottom:.25rem;">R$ {{ "%.0f"|format(combo.precoPor) }} <span style="text-decoration:line-through; font-size:.8rem; color:var(--color-text-soft);">R$ {{ "%.0f"|format(combo.precoDe) }}</span></p>
+      </article>
+      {% endfor %}
+    </div>
+    <div class="text-center" style="margin-top:2rem;">
+      <a class="btn btn-outline" href="planos-combos.html">{{ config.cta.promocoes }}</a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if tier_rank >= 2 %}
+<!-- Eventos & Torneios -->
+<section class="section">
+  <div class="container">
+    <div class="grid grid-2-wide">
+      <div data-reveal>
+        <span class="eyebrow">Eventos{{ ' & Torneios' if tier_rank >= 3 }}</span>
+        <h2>{{ 'Torneios e vivências para elevar seu jogo' if tier_rank >= 3 else 'Workshops e experiências exclusivas' }}</h2>
+        <p class="lead" style="margin-top:.75rem;">
+          {% if tier_rank >= 3 %}De torneios internos a eventos corporativos e escolares, criamos experiências sob medida para grupos e equipes.{% else %}Participe dos nossos eventos e aprenda técnicas com nossa equipe.{% endif %}
+        </p>
+        <a class="btn btn-outline" style="margin-top:1rem;" href="eventos.html">{{ config.cta.noivas if tier_rank >= 3 else 'Ver eventos' }}</a>
+      </div>
+      <div class="media-frame" style="--ratio:4/5;">{{ ph('Eventos ' + config.identidade.nome, '4/5') }}</div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if tier_rank >= 3 %}
+<!-- Loja do Atleta -->
+<section class="section bg-alt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Loja do Atleta</span>
+      <h2>Leve o equipamento oficial para casa</h2>
+    </div>
+    <div class="grid grid-4">
+      {% for produto in produtos[:4] %}
+      <article class="card card-product" data-reveal>
+        <div class="media-frame">{{ ph(produto.nome, '1/1') }}</div>
+        <h3 class="h4" style="font-size:1rem;">{{ produto.nome }}</h3>
+        <p class="price">R$ {{ "%.0f"|format(produto.preco) }}</p>
+      </article>
+      {% endfor %}
+    </div>
+    <div class="text-center" style="margin-top:2rem;">
+      <a class="btn btn-outline" href="loja.html">Ver Loja do Atleta completa</a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if tier_rank >= 2 %}
+<!-- Depoimentos -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Depoimentos</span>
+      <h2>Quem viveu, recomenda</h2>
+    </div>
+    <div class="grid grid-3">
+      {% for d in depoimentos[:3] %}
+      <blockquote class="card card-testimonial" data-reveal>
+        <div class="stars" aria-hidden="true">{{ '★' * d.avaliacao }}</div>
+        <p>"{{ d.texto }}"</p>
+        <footer>{{ d.nome }} · {{ d.servico }}</footer>
+      </blockquote>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Instagram / Galeria -->
+<section class="section bg-alt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">{{ config.identidade.instagram }}</span>
+      <h2>Inspire-se com nossos trabalhos</h2>
+    </div>
+    <div class="grid gallery-grid">
+      {% for i in range(8) %}
+      <div class="media-frame" data-reveal>{{ ph('Treino ' ~ (i+1) ~ ' do ' ~ config.identidade.nome, '1/1') }}</div>
+      {% endfor %}
+    </div>
+    <div class="text-center" style="margin-top:2rem;">
+      <a class="btn btn-outline" href="galeria.html">Ver galeria completa</a>
+      <a class="btn btn-ghost" href="{{ config.identidade.instagramLink }}" target="_blank" rel="noopener">Seguir no Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- Localização -->
+<section class="section">
+  <div class="container">
+    <div class="grid grid-2-wide">
+      <div data-reveal>
+        <span class="eyebrow">Localização</span>
+        <h2>Fácil de chegar, fácil de amar</h2>
+        <p class="lead" style="margin-top:.75rem;">{{ config.identidade.enderecoCompleto }}</p>
+        <ul class="stack" style="margin-top:1rem;">
+          {% for h in config.identidade.horario %}
+          <li class="text-soft">{{ h.dias }}: {{ h.horas }}</li>
+          {% endfor %}
+        </ul>
+        <a class="btn btn-outline" style="margin-top:1rem;" href="{{ config.identidade.googleMapsLink }}" target="_blank" rel="noopener">Ver no Google Maps</a>
+      </div>
+      <iframe class="map-frame" data-reveal src="{{ config.identidade.googleMapsEmbed }}" title="Mapa de localização do {{ config.identidade.nome }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+{% include "partials/cta_final.html" %}
+{% endblock %}

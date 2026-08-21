@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section" style="padding-bottom:0;">
+  <div class="container section-head center">
+    <span class="eyebrow">Eventos{{ ' & Noivas' if tier_rank >= 3 }}</span>
+    <h1>{{ 'Celebre momentos únicos com o ' + config.identidade.nomeCurto if tier_rank >= 3 else 'Aprenda, participe, se conecte' }}</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="h3" data-reveal>Próximos eventos</h2>
+    <div class="grid grid-3" style="margin-top:1.25rem;">
+      {% for ev in eventos.eventosGerais %}
+      <article class="card" data-reveal>
+        {% if ev.vagasLimitadas %}<span class="badge">Vagas limitadas</span>{% endif %}
+        <h3 class="h4">{{ ev.titulo }}</h3>
+        <p class="text-soft" style="font-size:.85rem;">{{ ev.data }}</p>
+        <p class="text-soft" style="font-size:.92rem;">{{ ev.descricao }}</p>
+        <a class="btn btn-outline btn-sm btn-block" style="margin-top:.75rem;" href="{{ whatsapp_link('Olá! Tenho interesse em participar do evento: ' + ev.titulo) }}" target="_blank" rel="noopener">Garantir vaga</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% if tier_rank >= 3 %}
+<section class="section bg-alt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Pacotes para Noivas</span>
+      <h2>Do teste de penteado ao "sim"</h2>
+      <p class="lead">Experiências premium pensadas para o dia mais importante — com acompanhamento próximo da nossa equipe.</p>
+    </div>
+    <div class="grid grid-2-wide">
+      {% for pacote in eventos.pacotesNoivas %}
+      <article class="card card-plan" data-reveal>
+        <h3 class="h4">{{ pacote.nome }}</h3>
+        <p class="price"><span class="from" style="display:block; font-size:.75rem; font-family:var(--font-system); color:var(--color-text-soft);">a partir de</span>R$ {{ "%.0f"|format(pacote.precoDe) }}</p>
+        <ul>
+          {% for item in pacote.itens %}<li>{{ item }}</li>{% endfor %}
+        </ul>
+        <a class="btn btn-primary btn-block" href="{{ whatsapp_link('Olá! Sou noiva e tenho interesse no pacote: ' + pacote.nome) }}" target="_blank" rel="noopener">{{ config.cta.noivas }}</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% include "partials/cta_final.html" %}
+{% endblock %}

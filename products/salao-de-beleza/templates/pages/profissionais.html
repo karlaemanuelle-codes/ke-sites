@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section" style="padding-bottom:0;">
+  <div class="container section-head center">
+    <span class="eyebrow">Nossa equipe</span>
+    <h1>Profissionais que transformam técnica em confiança</h1>
+    <p class="lead">Cada especialista do {{ config.identidade.nome }} passa por atualização técnica contínua.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-3">
+      {% for p in profissionais %}
+      <article class="card card-pro" data-reveal>
+        <div class="media-frame">{{ ph(p.nome, '1/1', monogram=p.nome) }}</div>
+        <h2 class="h4" style="margin-top:.75rem;">{{ p.nome }}</h2>
+        <p class="text-soft" style="font-size:.9rem; margin:0;">{{ p.cargo }}</p>
+        <p class="rating">★ {{ p.avaliacao }} · {{ p.avaliacoesTotal }} avaliações</p>
+        <div class="tag-list">
+          {% for esp in p.especialidades %}<span class="tag">{{ esp }}</span>{% endfor %}
+        </div>
+        {% if tier_rank >= 2 %}
+        <p class="text-soft" style="font-size:.88rem; margin-top:.85rem;">{{ p.bio }}</p>
+        <div class="flex flex-center" style="margin-top:1rem;">
+          <a class="btn btn-outline btn-sm" href="{{ primary_cta_href }}" {{ primary_cta_attrs|safe }}>Agendar com {{ p.nome.split(' ')[0] }}</a>
+          <a class="btn btn-ghost btn-sm" href="https://instagram.com/{{ p.instagram.lstrip('@') }}" target="_blank" rel="noopener">{{ p.instagram }}</a>
+        </div>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% include "partials/cta_final.html" %}
+{% endblock %}

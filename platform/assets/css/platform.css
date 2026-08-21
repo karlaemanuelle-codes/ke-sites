@@ -1,0 +1,109 @@
+/* =========================================================
+   PLATFORM.CSS — componentes exclusivos da plataforma comercial
+   KE Sites (NicheCard, TemplateCard, PlanComparison, seletor de
+   idioma). Tudo o que é genérico (botões, cards, hero, header,
+   footer, FAQ, grid) já vem de base.css/components.css — os
+   mesmos arquivos usados pelos produtos Salão de Beleza e CT de
+   Vôlei, prova de que o motor visual é 100% reutilizável.
+   ========================================================= */
+
+/* -------- Seletor de idioma -------- */
+.locale-switch { display: flex; gap: 0.25rem; font-family: var(--font-system); }
+.locale-switch a {
+  padding: 0.35rem 0.55rem; border-radius: 8px; font-size: 0.78rem; font-weight: 700;
+  color: var(--color-text-soft); border: 1px solid transparent;
+}
+.locale-switch a:hover { border-color: var(--color-border); }
+.locale-switch a.is-active { background: var(--color-bg-alt); color: var(--color-primary); border-color: var(--color-border); }
+.locale-switch-mobile { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--color-border); }
+
+/* -------- TemplateCard (Nossos Templates-Mestre) -------- */
+.template-card { display: flex; flex-direction: column; }
+.template-card .media-frame { --ratio: 16/10; margin-bottom: 1rem; }
+.template-card .tpl-meta { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.4rem; }
+.template-card .tpl-swatch { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.template-card ul { margin: 0.85rem 0 1.1rem; flex: 1; }
+.template-card li { display: flex; gap: 0.5rem; padding: 0.25rem 0; font-size: 0.88rem; color: var(--color-text-soft); align-items: flex-start; }
+.template-card li::before { content: "✓"; color: var(--color-accent); font-weight: 700; flex-shrink: 0; }
+.template-card .tpl-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: auto; }
+.template-card .tpl-actions .btn { flex: 1; min-width: 140px; }
+.tpl-levels { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-top: 0.5rem; }
+.tpl-levels span { font-size: 0.7rem; font-family: var(--font-system); font-weight: 700; padding: 0.2rem 0.55rem; border-radius: 999px; background: var(--color-bg-alt); color: var(--color-text-soft); }
+
+/* -------- Grid de nichos (2 até 5 colunas) -------- */
+.niche-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+@media (min-width: 640px) { .niche-grid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+@media (min-width: 1024px) { .niche-grid { grid-template-columns: repeat(5, minmax(0,1fr)); } }
+
+/* -------- NicheCard (Encontre seu nicho) -------- */
+.niche-card {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: 0.5rem; padding: clamp(1.1rem, 3vw, 1.5rem) 1rem;
+}
+.niche-card .niche-icon { font-size: 2.2rem; line-height: 1; }
+.niche-card h3 { margin: 0; font-size: 1rem; }
+.niche-card.is-available { border-color: var(--color-primary); }
+.niche-card .niche-cta { margin-top: 0.5rem; }
+
+/* -------- PlanComparison (Compare os níveis) -------- */
+.plan-table-scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.plan-table { border-collapse: collapse; width: 100%; min-width: 640px; }
+.plan-table th, .plan-table td { padding: 0.85rem 1rem; border-bottom: 1px solid var(--color-border); text-align: center; }
+.plan-table th:first-child, .plan-table td:first-child { text-align: left; min-width: 220px; }
+.plan-table thead th { font-family: var(--font-display); font-size: 1.05rem; color: var(--color-text); vertical-align: bottom; }
+.plan-table thead .plan-price { display: block; font-size: 1.3rem; color: var(--color-primary); margin-top: 0.35rem; }
+.plan-table thead .plan-price .from { display: block; font-size: 0.68rem; font-family: var(--font-system); color: var(--color-text-soft); font-weight: 400; }
+.plan-table thead .plan-price-oficial { display: block; font-size: 0.72rem; font-family: var(--font-system); color: var(--color-text-soft); font-weight: 400; margin-top: 0.15rem; }
+.plan-table thead .plan-price-oficial s { opacity: 0.75; }
+.sob-medida-card { max-width: 480px; margin: 1.5rem auto 0; text-align: center; }
+.plan-table th.is-featured, .plan-table td.is-featured { background: color-mix(in srgb, var(--color-primary) 6%, transparent); }
+.plan-table .yes { color: var(--color-accent); font-weight: 700; }
+.plan-table .no { color: var(--color-border); }
+.plan-table tbody td:first-child { font-size: 0.92rem; color: var(--color-text-soft); }
+.plan-cta-row td { border-bottom: none; padding-top: 1.25rem; }
+
+/* -------- Pronto x Personalizado -------- */
+.compare-split { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
+@media (min-width: 768px) { .compare-split { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+.compare-split .card { text-align: center; }
+.compare-split .compare-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+
+/* -------- Serviços (Como funciona a contratação) -------- */
+.service-card .service-icon { font-size: 1.6rem; margin-bottom: 0.5rem; display: block; }
+
+/* -------- Formulário de personalização -------- */
+.lead-form-shell { max-width: 720px; margin-inline: auto; }
+.radio-group { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.radio-pill {
+  display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.55rem 1rem;
+  border: 1px solid var(--color-border); border-radius: 999px; font-size: 0.88rem; cursor: pointer;
+}
+.radio-pill input { accent-color: var(--color-primary); }
+.radio-pill:has(input:checked) { border-color: var(--color-primary); background: color-mix(in srgb, var(--color-primary) 8%, transparent); color: var(--color-primary); font-weight: 600; }
+
+/* -------- Checkout (DEMO ONLY) -------- */
+.btn-link-sm { color: var(--color-primary); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+.btn-link-sm:hover { opacity: 0.8; }
+.checkout-summary-list { display: grid; gap: 0.6rem; }
+.checkout-summary-list > div { display: flex; justify-content: space-between; gap: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--color-border); }
+.checkout-summary-list dt { color: var(--color-text-soft); font-size: 0.88rem; }
+.checkout-summary-list dd { margin: 0; font-weight: 600; text-align: right; }
+.checkout-summary-list .checkout-total-row { border-bottom: none; padding-top: 0.15rem; }
+.checkout-summary-list .checkout-total-row dt, .checkout-summary-list .checkout-total-row dd { font-size: 1.1rem; font-weight: 700; color: var(--color-primary); }
+.pix-mock { display: flex; align-items: center; gap: 1rem; margin-top: 0.85rem; flex-wrap: wrap; }
+.pix-qr-placeholder {
+  width: 96px; height: 96px; border-radius: calc(var(--radius) * 0.6);
+  background: var(--color-bg-alt); border: 1px dashed var(--color-border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-system); font-weight: 700; font-size: 0.78rem; color: var(--color-text-soft);
+  flex-shrink: 0;
+}
+
+/* -------- Home hero: reforço de identidade própria (não copia produtos) -------- */
+.hero-platform .hero-art { display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+.hero-platform .hero-art .mock-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; width: 100%; }
+.hero-platform .hero-art .mock-card {
+  aspect-ratio: 1; border-radius: calc(var(--radius) * 0.7);
+  background: rgb(255 255 255 / 0.16); backdrop-filter: blur(2px);
+  display: flex; align-items: center; justify-content: center; font-size: 1.6rem;
+}

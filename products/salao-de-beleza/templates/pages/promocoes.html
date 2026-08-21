@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section" style="padding-bottom:0;">
+  <div class="container section-head center">
+    <span class="eyebrow">Promoções</span>
+    <h1>Ofertas especiais para você aproveitar mais</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-3">
+      {% for promo in promocoes.promocoes %}
+      <article class="card card-promo" data-reveal>
+        <span class="badge">{{ promo.selo }}</span>
+        <h2 class="h4">{{ promo.titulo }}</h2>
+        <p class="text-soft" style="font-size:.92rem;">{{ promo.descricao }}</p>
+        <p class="text-soft" style="font-size:.78rem; margin-top:.5rem;">{{ promo.validade }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section bg-alt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Combos</span>
+      <h2>Mais serviços, mais economia</h2>
+    </div>
+    <div class="grid grid-3">
+      {% for combo in promocoes.combos %}
+      <article class="card card-promo" data-reveal>
+        <span class="badge">-{{ combo.economiaPercentual }}%</span>
+        <h3 class="h4">{{ combo.nome }}</h3>
+        <ul style="margin:.5rem 0 1rem;">
+          {% for item in combo.itens %}<li class="text-soft" style="font-size:.9rem; padding:.15rem 0;">• {{ item }}</li>{% endfor %}
+        </ul>
+        <p class="price" style="margin-bottom:.75rem;">R$ {{ "%.0f"|format(combo.precoPor) }} <span style="text-decoration:line-through; font-size:.8rem; color:var(--color-text-soft);">R$ {{ "%.0f"|format(combo.precoDe) }}</span></p>
+        <a class="btn btn-primary btn-sm btn-block" href="{{ primary_cta_href }}" {{ primary_cta_attrs|safe }}>Agendar este combo</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% include "partials/cta_final.html" %}
+{% endblock %}

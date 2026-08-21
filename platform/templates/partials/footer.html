@@ -1,0 +1,50 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <h4>{{ config.identidade.nome }}</h4>
+        <p style="opacity:.85; margin-top:.75rem; max-width:32ch;">{{ t('footer.descricao') }}</p>
+        <p style="margin-top:1rem; font-size:.85rem; opacity:.7;">{{ t('footer.avisoDemo') }}</p>
+      </div>
+      <div>
+        <h4>{{ t('footer.navegacao') }}</h4>
+        <ul>
+          <li><a href="index.html">{{ t('nav.inicio') }}</a></li>
+          <li><a href="index.html#templates">{{ t('nav.templates') }}</a></li>
+          <li><a href="index.html#nichos">{{ t('nav.nichos') }}</a></li>
+          <li><a href="index.html#planos">{{ t('nav.planos') }}</a></li>
+          <li><a href="personalizar.html">{{ t('nav.cta') }}</a></li>
+          <li><a href="contato.html">{{ t('nav.contato') }}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>{{ t('footer.contato') }}</h4>
+        <ul>
+          <li><a href="{{ whatsapp_link() }}" target="_blank" rel="noopener">WhatsApp: {{ config.identidade.whatsapp }}</a></li>
+          <li><a href="mailto:{{ config.identidade.email }}">{{ config.identidade.email }}</a></li>
+          <li><a href="{{ config.identidade.instagramLink }}" target="_blank" rel="noopener">{{ config.identidade.instagram }}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>{{ t('nav.nichos') }}</h4>
+        <ul>
+          {% for tpl in templates_catalog[:4] %}
+          <li><a href="index.html#template-{{ tpl.id }}">{{ t(tpl.nomeKey) }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div>
+        <h4>KE Sites Partners</h4>
+        <ul>
+          <li><a href="afiliados.html">{{ t('afiliadosTeaser.cta') }}</a></li>
+          <li><a href="partners.html">{{ t('partnersTeaser.cta') }}</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom flex flex-between">
+      <span>© <span data-current-year></span> {{ config.identidade.nome }}. {{ t('footer.direitos') }}</span>
+      <span>KE Sites Template Factory · {{ locale }}</span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,23 @@
+/* =========================================================
+   THEME.CSS — GERADO AUTOMATICAMENTE pelo build.py a partir de
+   config/salon.config.json. NÃO EDITE ESTE ARQUIVO DIRETAMENTE.
+   Para reskinar o template para um novo cliente, altere o config.
+   ========================================================= */
+:root {
+  --color-primary: {{ tema.corPrimaria }};
+  --color-primary-dark: {{ tema.corPrimariaEscura }};
+  --color-primary-light: {{ tema.corPrimariaClara }};
+  --color-secondary: {{ tema.corSecundaria }};
+  --color-accent: {{ tema.corAcento }};
+  --color-bg: {{ tema.corFundo }};
+  --color-bg-alt: {{ tema.corFundoAlt }};
+  --color-text: {{ tema.corTexto }};
+  --color-text-soft: {{ tema.corTextoSuave }};
+  --color-border: color-mix(in srgb, {{ tema.corSecundaria }} 12%, transparent);
+
+  --font-display: {{ tema.fonteDisplay }};
+  --font-body: {{ tema.fonteCorpo }};
+  --font-system: {{ tema.fonteSistema }};
+
+  --radius: {{ tema.raioBorda }};
+}

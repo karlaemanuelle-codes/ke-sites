@@ -1,0 +1,26 @@
+# Cache/bytecode Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Backups (arquivos binarios grandes - ficam em disco, fora do Git)
+06_BACKUPS/
+
+# Saida gerada pelos builds (regenerada a partir do codigo-fonte)
+platform/dist/
+products/*/dist/
+
+# Segredos (precaucao - nunca deve existir, mas por seguranca)
+.env
+.env.*
+*.pem
+*.key
+
+# Ferramentas futuras (Wrangler/Node, quando forem usadas)
+node_modules/
+.wrangler/
+
+# Lixo de sistema operacional
+.DS_Store
+Thumbs.db
+*.log

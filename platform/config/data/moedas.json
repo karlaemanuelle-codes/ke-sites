@@ -1,0 +1,6 @@
+{
+  "BRL": { "simbolo": "R$", "codigo": "BRL", "taxaDemoDeBRL": 1, "nomeIdioma": "pt-BR" },
+  "USD": { "simbolo": "US$", "codigo": "USD", "taxaDemoDeBRL": 0.18, "nomeIdioma": "en-US" },
+  "EUR": { "simbolo": "€", "codigo": "EUR", "taxaDemoDeBRL": 0.17, "nomeIdioma": "es-ES" },
+  "_aviso": "Taxas meramente ilustrativas para fins de demonstração — não refletem cotação real ou em tempo real."
+}

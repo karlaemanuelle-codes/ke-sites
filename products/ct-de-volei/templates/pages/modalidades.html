@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section" style="padding-bottom:0;">
+  <div class="container section-head">
+    <span class="eyebrow">Modalidades</span>
+    <h1>Treino completo, técnica de ponta</h1>
+    <p class="lead">Explore nossas categorias de modalidade. Todos os valores são a partir de — a mensalidade final depende da carga horária e do plano escolhido.</p>
+  </div>
+</section>
+
+{% for cat in servicos.categorias %}
+<section class="section {{ 'bg-alt' if loop.index0 is even }}">
+  <div class="container">
+    <h2 class="h3" data-reveal>{{ cat.nome }}</h2>
+    <div class="grid grid-3" style="margin-top:1.5rem;">
+      {% for s in cat.servicos %}
+      <article class="card card-service" data-reveal>
+        <div class="media-frame">{{ ph(s.nome, '16/10') }}</div>
+        <h3 class="h4">{{ s.nome }}</h3>
+        <p class="text-soft" style="font-size:.92rem;">{{ s.descricao }}</p>
+        <p class="text-soft" style="font-size:.82rem; margin-top:.5rem;">⏱ {{ s.duracao }}</p>
+        <p class="price"><span class="from">a partir de</span>R$ {{ "%.0f"|format(s.precoDe) }}</p>
+        <a class="btn btn-outline btn-sm btn-block" style="margin-top:.75rem;" href="{{ primary_cta_href }}" {{ primary_cta_attrs|safe }}>Matricular-se nesta modalidade</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endfor %}
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-2-wide">
+      <div data-reveal>
+        <span class="eyebrow">Dúvida comum</span>
+        <h2>"Vale o investimento?"</h2>
+        <p class="lead" style="margin-top:.75rem;">{{ config.mensagensComerciais.objecaoPreco }} {{ config.mensagensComerciais.objecaoConfianca }}</p>
+        <a class="btn btn-primary" style="margin-top:1rem;" href="{{ primary_cta_href }}" {{ primary_cta_attrs|safe }}>{{ config.cta.principal }}</a>
+      </div>
+      <div class="media-frame" style="--ratio:4/5;">{{ ph('Treino no ' + config.identidade.nome, '4/5') }}</div>
+    </div>
+  </div>
+</section>
+
+{% include "partials/cta_final.html" %}
+{% endblock %}

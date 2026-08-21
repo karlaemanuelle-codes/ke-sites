@@ -1,0 +1,14 @@
+{
+  "basico": [
+    { "pergunta": "Preciso agendar horário ou posso chegar sem marcar?", "resposta": "Recomendamos sempre agendar para garantir o horário com o profissional de sua preferência. Encaixes são avaliados conforme disponibilidade." },
+    { "pergunta": "Quais formas de pagamento vocês aceitam?", "resposta": "Aceitamos cartão de crédito, débito, Pix e dinheiro. Parcelamos serviços acima de R$ 300." },
+    { "pergunta": "Onde vocês ficam localizados?", "resposta": "Estamos na Rua das Orquídeas, 482, Jardins, São Paulo/SP — a 5 minutos da estação de metrô mais próxima." },
+    { "pergunta": "Posso cancelar ou remarcar meu horário?", "resposta": "Sim, basta avisar com pelo menos 4h de antecedência pelo WhatsApp." }
+  ],
+  "avancado": [
+    { "pergunta": "Como funciona o Beauty Club?", "resposta": "É uma assinatura mensal com serviços inclusos, descontos exclusivos e prioridade de agenda. Cancele quando quiser, sem fidelidade." },
+    { "pergunta": "Os vouchers e gift cards têm validade?", "resposta": "Sim, vouchers têm validade de 6 meses e gift cards de 12 meses a partir da emissão." },
+    { "pergunta": "Vocês atendem noivas em domicílio?", "resposta": "Sim, o pacote Noivas Premium inclui a opção de atendimento no local da cerimônia mediante disponibilidade de agenda." },
+    { "pergunta": "A Área da Cliente e o Painel Admin são reais?", "resposta": "Nesta versão de demonstração, a Área da Cliente e o Painel Administrativo são ambientes DEMO ONLY — nenhum dado real é armazenado, processado ou cobrado." }
+  ]
+}

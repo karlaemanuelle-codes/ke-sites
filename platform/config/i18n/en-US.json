@@ -1,0 +1,367 @@
+{
+  "nav": {
+    "inicio": "Home",
+    "templates": "Templates",
+    "nichos": "Niches",
+    "planos": "Plans",
+    "sobre": "About",
+    "contato": "Contact",
+    "cta": "Get a site"
+  },
+  "hero": {
+    "eyebrow": "KE Sites Template Factory",
+    "titulo": "Your business deserves a professional digital presence.",
+    "subtitulo": "Professional digital solutions, customized and built around your business.",
+    "ctaTemplates": "VIEW TEMPLATES",
+    "ctaSite": "I WANT A SITE",
+    "ctaPersonalizado": "I WANT A CUSTOM SITE",
+    "destaque": "Choose your niche. Choose your tier. We handle the rest.",
+    "statTemplates": "ready master templates",
+    "statNichos": "niches mapped",
+    "statNiveis": "tiers per template"
+  },
+  "comoFunciona": {
+    "eyebrow": "How it works",
+    "titulo": "From niche to published site, in 4 steps",
+    "passo1Titulo": "Choose your niche",
+    "passo1Texto": "Find your business segment among the available master templates.",
+    "passo2Titulo": "Choose your tier",
+    "passo2Texto": "Basic, Intermediate or Advanced — each with more features than the last.",
+    "passo3Titulo": "See it working",
+    "passo3Texto": "Browse the template's real demo, not just static screenshots.",
+    "passo4Titulo": "Customize and publish",
+    "passo4Texto": "Send us your details, get a proposal, and take your site live with your brand."
+  },
+  "templatesSection": {
+    "eyebrow": "Our Master Templates",
+    "titulo": "Complete, tested templates ready for your niche",
+    "subtitulo": "Every Master Template is a real, working site with 3 feature tiers — not a mockup.",
+    "verDemo": "VIEW DEMO",
+    "personalizar": "CUSTOMIZE THIS SITE",
+    "niveisLabel": "Available tiers"
+  },
+  "nichosSection": {
+    "eyebrow": "Find your niche",
+    "titulo": "A master template for every segment",
+    "subtitulo": "Some niches already have a ready template. Others are on the way — the architecture is already built for them.",
+    "emBreve": "COMING SOON",
+    "verTemplate": "View template"
+  },
+  "compararSection": {
+    "eyebrow": "Compare tiers",
+    "titulo": "Basic, Intermediate or Advanced — choose what you need right now",
+    "subtitulo": "The same comparison applies to any niche: what changes is the content, not the structure.",
+    "precoDesde": "starting at",
+    "porMes": "project",
+    "escolher": "Choose this tier",
+    "maisEscolhido": "MOST CHOSEN",
+    "precoOficialLabel": "Official price",
+    "precoPromoLabel": "Launch promotional price",
+    "avisoPromo": "Limited-time launch pricing.",
+    "avisoConversao": "USD/EUR values calculated with an illustrative exchange rate — not official quotes. Check conditions for your country.",
+    "sobMedidaNome": "Custom",
+    "sobMedidaTagline": "When no ready template covers what you need",
+    "sobMedidaTexto": "A custom quote, with scope defined together with you.",
+    "sobMedidaCta": "REQUEST A QUOTE"
+  },
+  "porqueSection": {
+    "eyebrow": "Why KE Sites",
+    "titulo": "Ready-made templates, with the quality of a custom build",
+    "item1Titulo": "Real demonstrations",
+    "item1Texto": "You browse the actual site before deciding — not just screenshots.",
+    "item2Titulo": "Reusable architecture",
+    "item2Texto": "Every component is built to work across any niche, with the same quality standard.",
+    "item3Titulo": "Truly responsive",
+    "item3Texto": "Tested at every screen width, no shrunken desktop layouts disguised as mobile.",
+    "item4Titulo": "No fine print",
+    "item4Texto": "Price, timeline and what's included in each tier are clear before you commit."
+  },
+  "prontoVsPersonalizado": {
+    "eyebrow": "Ready template vs. custom site",
+    "titulo": "Two ways to get online",
+    "prontoTitulo": "Ready template",
+    "prontoTexto": "Faster and more affordable. Choose your niche and tier, customize your details, and publish.",
+    "prontoCta": "CHOOSE A TEMPLATE",
+    "personalizadoTitulo": "Custom site",
+    "personalizadoTexto": "A project designed from scratch around your business's specific identity and needs.",
+    "personalizadoCta": "I WANT A CUSTOM SITE"
+  },
+  "contratacaoSection": {
+    "eyebrow": "How hiring works",
+    "titulo": "From first contact to a live site",
+    "dominioTitulo": "Domain",
+    "dominioTexto": "Always registered in the client's name — the domain belongs to you, not to KE Sites.",
+    "hospedagemTitulo": "Hosting",
+    "hospedagemTexto": "Hosting set up for your site, with options depending on the tier you choose.",
+    "personalizacaoTitulo": "Customization",
+    "personalizacaoTexto": "We apply your brand, copy, images and contact information to the chosen template.",
+    "publicacaoTitulo": "Publishing",
+    "publicacaoTexto": "Final review and publishing — your site goes live, ready for visitors.",
+    "manutencaoTitulo": "Maintenance",
+    "manutencaoTexto": "Maintenance and update plans available after launch, on demand."
+  },
+  "manutencaoSection": {
+    "eyebrow": "Maintenance",
+    "titulo": "Continuity after your site goes live",
+    "subtitulo": "Maintenance plans to keep your site updated, active and cared for within the contracted scope.",
+    "porMes": "/month",
+    "cta": "Talk about maintenance"
+  },
+  "manutencao": {
+    "essencial": {
+      "nome": "Essential"
+    },
+    "profissional": {
+      "nome": "Professional"
+    },
+    "premium": {
+      "nome": "Premium"
+    }
+  },
+  "manutencaoItens": {
+    "hospedagem": "Hosting and site monitoring",
+    "pequenosAjustes": "Small content adjustments",
+    "suporte": "WhatsApp support",
+    "atualizacoesConteudo": "Monthly content updates",
+    "suportePrioritario": "Priority support",
+    "evolucaoContinua": "Ongoing site evolution"
+  },
+  "afiliadosTeaser": {
+    "eyebrow": "KE Sites Partners",
+    "titulo": "Want to earn money with KE Sites?",
+    "texto": "Refer businesses that need a professional digital presence and earn a commission on the sales generated through your link.",
+    "cta": "BECOME AN AFFILIATE"
+  },
+  "partnersTeaser": {
+    "eyebrow": "KE Sites Partners",
+    "titulo": "Want to sell digital solutions to your own clients?",
+    "texto": "Sell professional digital solutions without building the sites yourself — KE Sites handles production.",
+    "cta": "BECOME A PARTNER"
+  },
+  "faqSection": {
+    "eyebrow": "Frequently asked questions",
+    "titulo": "Get your questions answered"
+  },
+  "ctaFinalSection": {
+    "titulo": "Ready for a website that actually sells?",
+    "subtitulo": "Talk to us and get a custom proposal for your business.",
+    "ctaPrincipal": "I WANT A PROPOSAL",
+    "ctaSecundario": "Chat on WhatsApp"
+  },
+  "templates": {
+    "salao": {
+      "nome": "Beauty Salon — Master Template",
+      "descricao": "A complete site for beauty and aesthetics salons, with demo booking, client area and Beauty Club.",
+      "destaque1": "Service catalog organized by category",
+      "destaque2": "4-step demo booking flow",
+      "destaque3": "Client area and membership club (demo)",
+      "destaque4": "Demo admin dashboard"
+    },
+    "volei": {
+      "nome": "Volleyball Club — Master Template",
+      "descricao": "A complete site for sports training centers, with demo enrollment, athlete club and shop.",
+      "destaque1": "Programs organized by category",
+      "destaque2": "4-step demo enrollment flow",
+      "destaque3": "Athlete area and Athlete Club (demo)",
+      "destaque4": "Demo admin dashboard"
+    }
+  },
+  "nichos": {
+    "salao": "Beauty Salon",
+    "volei": "Volleyball / Sports",
+    "barbearia": "Barbershop",
+    "restaurante": "Restaurant",
+    "academia": "Gym",
+    "clinica": "Clinic",
+    "fisioterapeuta": "Physical Therapist",
+    "massoterapeuta": "Massage Therapist",
+    "nutricionista": "Nutritionist",
+    "correspondente": "Loan / Banking Agent"
+  },
+  "planos": {
+    "basico": {
+      "nome": "Basic",
+      "tagline": "A professional presence, live"
+    },
+    "intermediario": {
+      "nome": "Intermediate",
+      "tagline": "Basic + conversion features"
+    },
+    "avancado": {
+      "nome": "Advanced",
+      "tagline": "Intermediate + premium features"
+    }
+  },
+  "recursos": {
+    "site_responsivo": "Responsive site (mobile, tablet, desktop)",
+    "paginas_principais": "Core institutional pages",
+    "whatsapp_contato": "Direct WhatsApp contact",
+    "promocoes_combos": "Promotions and bundles",
+    "agendamento_demo": "Booking / enrollment (demo)",
+    "depoimentos_eventos": "Testimonials and events page",
+    "area_cliente_demo": "Client area (demo)",
+    "painel_admin_demo": "Admin dashboard (demo)",
+    "planos_assinatura": "Recurring membership plans",
+    "loja_demo": "Product shop (demo)",
+    "suporte_prioritario": "Priority support"
+  },
+  "depoimentos": {
+    "eyebrow": "Testimonials",
+    "titulo": "Businesses already live with KE Sites",
+    "aviso": "Illustrative content, used to demonstrate this section's layout — replace with real client testimonials before publishing.",
+    "d1": {
+      "nome": "Marina Costa",
+      "papel": "Beauty salon, São Paulo",
+      "texto": "The site was live within a week, exactly as I'd seen in the demo before signing."
+    },
+    "d2": {
+      "nome": "Rodrigo Alves",
+      "papel": "Sports training center, Rio de Janeiro",
+      "texto": "I liked being able to try the template running before deciding on a tier. It made choosing the advanced one an easy call."
+    },
+    "d3": {
+      "nome": "Camila Duarte",
+      "papel": "Small business owner, Minas Gerais",
+      "texto": "The whole process was transparent — price, timeline and what was included, all agreed upfront."
+    }
+  },
+  "faq": {
+    "q1": {
+      "pergunta": "Is the domain registered in my name?",
+      "resposta": "Yes. The domain is always registered in the client's name, even when KE Sites helps with the registration process."
+    },
+    "q2": {
+      "pergunta": "Can I see the template working before I commit?",
+      "resposta": "Yes. Every Master Template has a real, browsable demo across all three tiers — Basic, Intermediate and Advanced."
+    },
+    "q3": {
+      "pergunta": "What's the difference between a ready template and a custom site?",
+      "resposta": "A ready template uses a tested structure for your niche, reducing timeline and cost. A custom site is built from scratch for specific needs."
+    },
+    "q4": {
+      "pergunta": "Are the booking flow and admin dashboard real?",
+      "resposta": "In the demos, no — they're simulations so you can evaluate the experience. On a live production site, these features connect to real systems depending on your plan."
+    },
+    "q5": {
+      "pergunta": "My niche doesn't have a ready template yet. What now?",
+      "resposta": "KE Sites' architecture is already built to support new niches. Reach out to discuss timelines or a custom site."
+    },
+    "q6": {
+      "pergunta": "Is there maintenance after the site goes live?",
+      "resposta": "Yes, we offer maintenance and update plans on demand after launch."
+    }
+  },
+  "form": {
+    "titulo": "I want to customize this site",
+    "subtitulo": "Share your details and our team will follow up with a proposal.",
+    "nome": "Name",
+    "empresa": "Company / Business",
+    "nicho": "Niche",
+    "pais": "Country",
+    "cidade": "City",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "instagram": "Instagram",
+    "nivelDesejado": "Desired tier",
+    "nivelBasico": "Basic",
+    "nivelIntermediario": "Intermediate",
+    "nivelAvancado": "Advanced",
+    "nivelNaoSei": "Not sure yet",
+    "observacoes": "Notes",
+    "enviar": "I WANT A PROPOSAL",
+    "avisoDemo": "⚠️ DEMO ONLY — this form is a simulation. No data is sent to a server or actually processed."
+  },
+  "obrigado": {
+    "titulo": "We received your request (demo)",
+    "texto": "On a production site, your request would be sent to our sales team and logged in a CRM. Here, this page only illustrates the next step of the funnel.",
+    "voltar": "Back to home"
+  },
+  "footer": {
+    "descricao": "Template Factory and commercial platform for professional websites for small and medium businesses.",
+    "navegacao": "Navigation",
+    "contato": "Contact",
+    "direitos": "All rights reserved.",
+    "avisoDemo": "Demo site — features marked DEMO ONLY are simulated."
+  },
+  "badges": {
+    "emBreve": "COMING SOON",
+    "demoOnly": "DEMO ONLY"
+  },
+  "misc": {
+    "skipLink": "Skip to content"
+  },
+  "parceria": {
+    "afiliado": {
+      "eyebrow": "Affiliate Program",
+      "titulo": "Become a KE Sites Affiliate",
+      "subtitulo": "Refer businesses that need a professional digital presence and earn a commission on the sales generated through your link.",
+      "comissaoTitulo": "Starting commission",
+      "comissaoValor": "10% per sale",
+      "comissaoTexto": "A future progression structure (Start 10% · Pro 12% · Elite 15%) is planned, but is not yet in effect — criteria will be defined and officially communicated before it applies.",
+      "statusTitulo": "Where things stand right now",
+      "statusTexto": "Sign-up, an exclusive link, automatic click/sale tracking and the affiliate performance dashboard are part of the platform's next roadmap phase and aren't available yet. Leave your interest below to be notified when it opens.",
+      "cta": "I WANT TO BE AN AFFILIATE"
+    },
+    "partner": {
+      "eyebrow": "KE Sites Partners",
+      "titulo": "Become a KE Sites Partner",
+      "subtitulo": "Sell professional digital solutions without building the sites yourself — KE Sites acts as the production structure behind you.",
+      "comissaoTitulo": "Commercial terms",
+      "comissaoValor": "To be defined",
+      "comissaoTexto": "Partners/Resellers may in the future have special commercial terms and the possibility of white-label operation. No terms are defined or in effect yet.",
+      "statusTitulo": "Where things stand right now",
+      "statusTexto": "The formal Partner program — with training, materials and a dedicated commercial structure — is part of a future roadmap phase. Leave your interest below to be notified when it opens.",
+      "cta": "I WANT TO BE A PARTNER"
+    },
+    "comum": {
+      "distincaoTitulo": "Affiliate or Partner — which fits you?",
+      "afiliadoResumoTitulo": "Affiliate",
+      "afiliadoResumoTexto": "Refers clients. KE Sites sells, builds, and pays a commission on the resulting sale.",
+      "partnerResumoTitulo": "Partner / Reseller",
+      "partnerResumoTexto": "Sells directly to their own clients. KE Sites acts as the production structure behind the scenes.",
+      "regrasTitulo": "General rules",
+      "regra1": "Never change prices or terms without KE Sites' authorization.",
+      "regra2": "Never promise features that aren't confirmed in the contracted scope.",
+      "regra3": "Never guarantee financial results, client volume, or Google ranking.",
+      "regra4": "Never represent yourself as a KE Sites employee.",
+      "regra5": "When in doubt about what can or can't be offered: check with KE Sites first.",
+      "formTitulo": "Leave your interest",
+      "formSubtitulo": "No commitment — this just lets us notify you when the program opens.",
+      "avisoDemo": "⚠️ DEMO ONLY — this form is a simulation. No data is sent to a server or actually processed.",
+      "nome": "Name",
+      "whatsapp": "WhatsApp",
+      "email": "Email",
+      "instagram": "Instagram",
+      "observacoes": "Tell us a bit about yourself (optional)",
+      "enviar": "SEND INTEREST"
+    }
+  },
+  "checkout": {
+    "titulo": "Complete your order",
+    "subtitulo": "Review your order and choose how you'd like to pay.",
+    "avisoDemo": "⚠️ DEMO ONLY — this checkout is a visual simulation. No real payment is processed and no card data is collected here. In production, this step connects to the secure checkout of a certified payment provider.",
+    "resumoTitulo": "Your order",
+    "alterarPlano": "Change plan",
+    "semPlano": "No plan selected yet.",
+    "escolherPlano": "Choose a plan",
+    "comoPagar": "How would you like to pay?",
+    "pix": "Pix",
+    "cartao": "Credit card",
+    "avista": "Full payment",
+    "parcelar": "Installments",
+    "parcelasLabel": "How many installments?",
+    "pixInstrucao": "After confirming, you would receive a QR Code and a copy-paste code to pay from your bank app.",
+    "pixCopiar": "Copy Pix code",
+    "pixAguardando": "Awaiting payment",
+    "confirmarPagar": "Confirm and pay",
+    "continuarWhatsapp": "I'd rather talk to someone",
+    "confiancaTitulo": "Payment processed by a certified provider",
+    "confiancaTexto": "KE Sites never stores card numbers or CVV. Payment data is protected by the provider responsible for processing it.",
+    "metodosIndisponiveisNota": "Pix and multi-installment card payments are specific to the Brazilian market. For your market, payment is processed by card, with digital wallets when available through the provider.",
+    "totalLabel": "Total",
+    "mercado": "Market",
+    "template": "Template",
+    "plano": "Plan",
+    "termosNota": "By confirming, you agree to the commercial terms shown in this simulation."
+  }
+}

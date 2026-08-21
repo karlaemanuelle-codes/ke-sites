@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% set categorias_galeria = ['Vôlei de Quadra', 'Vôlei de Praia', 'Turmas', 'Estrutura'] %}
+
+<section class="section" style="padding-bottom:0;">
+  <div class="container section-head center">
+    <span class="eyebrow">Galeria</span>
+    <h1>Nosso clube em ação</h1>
+    <p class="lead">Uma amostra dos treinos, turmas e da estrutura do {{ config.identidade.nome }}.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid gallery-grid">
+      {% for i in range(12) %}
+      {% set cat = categorias_galeria[i % categorias_galeria|length] %}
+      <button type="button" data-modal-open="modal-galeria-{{ i }}" aria-label="Ampliar imagem: {{ cat }} {{ (i // 4) + 1 }}" data-reveal>
+        <div class="media-frame">{{ ph(cat ~ ' — ' ~ config.identidade.nome, '1/1') }}</div>
+      </button>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% for i in range(12) %}
+{% set cat = categorias_galeria[i % categorias_galeria|length] %}
+<div class="modal-overlay" id="modal-galeria-{{ i }}" role="dialog" aria-modal="true" aria-labelledby="modal-galeria-title-{{ i }}" aria-hidden="true">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2 id="modal-galeria-title-{{ i }}" class="h4" style="margin:0;">{{ cat }} — {{ config.identidade.nome }}</h2>
+      <button class="modal-close" type="button" data-modal-close aria-label="Fechar" data-autofocus>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1 1l14 14M15 1L1 15"/></svg>
+      </button>
+    </div>
+    <div class="media-frame" style="--ratio:4/3;">{{ ph(cat ~ ' ampliado', '4/3') }}</div>
+    <p class="text-soft" style="margin-top:1rem; font-size:.88rem;">Imagem meramente ilustrativa — substitua por fotos reais do clube ao configurar o template.</p>
+  </div>
+</div>
+{% endfor %}
+
+{% include "partials/cta_final.html" %}
+{% endblock %}

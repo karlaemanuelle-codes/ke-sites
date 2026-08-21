@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Depoimentos</span>
+      <h1>Histórias reais de quem confia no {{ config.identidade.nomeCurto }}</h1>
+      <p class="lead">{{ config.social.avaliacaoMedia }}★ de média em {{ config.social.totalAvaliacoes }}+ avaliações.</p>
+    </div>
+    <div class="grid grid-3">
+      {% for d in depoimentos %}
+      <blockquote class="card card-testimonial" data-reveal>
+        <div class="stars" aria-hidden="true">{{ '★' * d.avaliacao }}</div>
+        <p>"{{ d.texto }}"</p>
+        <footer>{{ d.nome }} · {{ d.servico }}</footer>
+      </blockquote>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% include "partials/cta_final.html" %}
+{% endblock %}

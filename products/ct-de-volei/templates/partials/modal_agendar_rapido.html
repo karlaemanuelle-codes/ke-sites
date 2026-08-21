@@ -1,0 +1,49 @@
+<div class="modal-overlay" id="modal-agendar" role="dialog" aria-modal="true" aria-labelledby="modal-agendar-title" aria-hidden="true">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div>
+        <h3 id="modal-agendar-title" class="h3" style="margin-bottom:.25rem;">Agendar horário</h3>
+        <p class="text-soft" style="margin:0; font-size:.9rem;">Preencha rapidinho e continue no WhatsApp.</p>
+      </div>
+      <button class="modal-close" type="button" data-modal-close aria-label="Fechar">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1 1l14 14M15 1L1 15"/></svg>
+      </button>
+    </div>
+
+    <form id="form-agendar-rapido" class="stack" data-autofocus>
+      <div class="field">
+        <label for="qb-nome">Seu nome</label>
+        <input type="text" id="qb-nome" name="nome" data-autofocus autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="qb-servico">Modalidade de interesse</label>
+        <select id="qb-servico" name="servico" class="select-field">
+          <option value="">Escolher depois</option>
+          {% for cat in servicos.categorias %}
+            {% for s in cat.servicos %}
+            <option value="{{ s.nome }}">{{ s.nome }}</option>
+            {% endfor %}
+          {% endfor %}
+        </select>
+      </div>
+      <button type="submit" class="btn btn-whatsapp btn-block">Continuar no WhatsApp</button>
+      <p class="text-soft" style="font-size:.78rem; text-align:center;">Você será direcionado ao WhatsApp para confirmar data e horário com nossa equipe.</p>
+    </form>
+  </div>
+</div>
+
+<script>
+(function () {
+  var form = document.getElementById('form-agendar-rapido');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var nome = form.nome.value.trim();
+    var servico = form.servico.value;
+    var msg = 'Olá! Meu nome é ' + (nome || '---') + '.';
+    if (servico) msg += ' Tenho interesse no modalidade: ' + servico + '.';
+    msg += ' Gostaria de agendar um horário no {{ config.identidade.nomeCurto }}.';
+    window.open('https://wa.me/{{ config.identidade.whatsapp }}?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+  });
+})();
+</script>

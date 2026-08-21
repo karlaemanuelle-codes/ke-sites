@@ -1,0 +1,14 @@
+{
+  "basico": [
+    { "pergunta": "Preciso ter experiência prévia para me matricular?", "resposta": "Não! Temos turmas para todos os níveis, da iniciação absoluta ao competitivo. Nossos treinadores avaliam o nível na primeira aula." },
+    { "pergunta": "Quais formas de pagamento vocês aceitam?", "resposta": "Aceitamos cartão de crédito, débito, Pix e boleto. A mensalidade pode ser recorrente ou avulsa." },
+    { "pergunta": "Onde fica o CT?", "resposta": "Estamos na Av. das Quadras, 120, Barra da Tijuca, Rio de Janeiro/RJ, com estacionamento próprio." },
+    { "pergunta": "Posso experimentar uma aula antes de me matricular?", "resposta": "Sim, oferecemos aula experimental gratuita mediante agendamento pelo WhatsApp." }
+  ],
+  "avancado": [
+    { "pergunta": "Como funciona o Clube do Atleta?", "resposta": "É uma assinatura mensal com aulas inclusas, acompanhamento de evolução e prioridade em torneios internos. Cancele quando quiser, sem fidelidade." },
+    { "pergunta": "Os créditos e vouchers têm validade?", "resposta": "Sim, créditos de aula têm validade de 3 meses e vouchers de kit têm validade de 12 meses a partir da emissão." },
+    { "pergunta": "Vocês organizam eventos e torneios internos?", "resposta": "Sim, realizamos torneios internos trimestrais e clínicas com convidados especiais ao longo do ano." },
+    { "pergunta": "A Área do Atleta e o Painel Admin são reais?", "resposta": "Nesta versão de demonstração, a Área do Atleta e o Painel Administrativo são ambientes DEMO ONLY — nenhum dado real é armazenado, processado ou cobrado." }
+  ]
+}

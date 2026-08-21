@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+  <div class="container" style="max-width:760px;">
+    <div class="section-head center">
+      <span class="eyebrow">Agendamento</span>
+      <h1>Simule seu horário em 4 passos</h1>
+      <p class="lead">Escolha serviço, profissional, data e horário — depois confirme pelo WhatsApp com nossa equipe.</p>
+      <span class="badge-demo" style="margin-top:.75rem;">⚠️ DEMO ONLY — nenhum agendamento real é criado aqui</span>
+    </div>
+
+    <div class="steps" id="booking-steps" aria-hidden="true">
+      <div class="step is-active" data-step-indicator="1"><span class="num">1</span><strong>Serviço</strong></div>
+      <div class="step" data-step-indicator="2"><span class="num">2</span><strong>Profissional</strong></div>
+      <div class="step" data-step-indicator="3"><span class="num">3</span><strong>Data</strong></div>
+      <div class="step" data-step-indicator="4"><span class="num">4</span><strong>Horário</strong></div>
+    </div>
+
+    <form id="form-agendamento" class="card" style="margin-top:1.5rem;" novalidate>
+      <p class="sr-only" role="status" aria-live="polite" id="booking-live"></p>
+
+      <fieldset data-step="1">
+        <legend class="h4" style="margin-bottom:1rem;">1. Qual serviço você deseja?</legend>
+        <div class="field">
+          <label for="bk-servico">Serviço</label>
+          <select id="bk-servico" name="servico" class="select-field" required>
+            <option value="">Selecione um serviço</option>
+            {% for cat in servicos.categorias %}
+            <optgroup label="{{ cat.nome }}">
+              {% for s in cat.servicos %}
+              <option value="{{ s.nome }}">{{ s.nome }} — a partir de R$ {{ "%.0f"|format(s.precoDe) }}</option>
+              {% endfor %}
+            </optgroup>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="flex flex-between" style="margin-top:1.5rem;">
+          <span></span>
+          <button type="button" class="btn btn-primary" data-step-next>Continuar</button>
+        </div>
+      </fieldset>
+
+      <fieldset data-step="2" hidden>
+        <legend class="h4" style="margin-bottom:1rem;">2. Alguma profissional de preferência?</legend>
+        <div class="field">
+          <label for="bk-profissional">Profissional</label>
+          <select id="bk-profissional" name="profissional" class="select-field">
+            <option value="Sem preferência">Sem preferência</option>
+            {% for p in profissionais %}
+            <option value="{{ p.nome }}">{{ p.nome }} — {{ p.cargo }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="flex flex-between" style="margin-top:1.5rem;">
+          <button type="button" class="btn btn-ghost" data-step-back>Voltar</button>
+          <button type="button" class="btn btn-primary" data-step-next>Continuar</button>
+        </div>
+      </fieldset>
+
+      <fieldset data-step="3" hidden>
+        <legend class="h4" style="margin-bottom:1rem;">3. Qual a melhor data?</legend>
+        <div class="field">
+          <label for="bk-data">Data</label>
+          <input type="date" id="bk-data" name="data" required>
+        </div>
+        <div class="flex flex-between" style="margin-top:1.5rem;">
+          <button type="button" class="btn btn-ghost" data-step-back>Voltar</button>
+          <button type="button" class="btn btn-primary" data-step-next>Continuar</button>
+        </div>
+      </fieldset>
+
+      <fieldset data-step="4" hidden>
+        <legend class="h4" style="margin-bottom:1rem;">4. Qual horário funciona melhor?</legend>
+        <div class="field">
+          <label for="bk-horario">Horário</label>
+          <select id="bk-horario" name="horario" class="select-field" required>
+            <option value="">Selecione um horário</option>
+            {% for h in ['09:00','10:00','11:00','13:00','14:00','15:00','16:00','17:00'] %}
+            <option value="{{ h }}">{{ h }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="flex flex-between" style="margin-top:1.5rem;">
+          <button type="button" class="btn btn-ghost" data-step-back>Voltar</button>
+          <button type="submit" class="btn btn-whatsapp">Confirmar no WhatsApp</button>
+        </div>
+      </fieldset>
+    </form>
+
+    <p class="text-soft text-center" style="font-size:.82rem; margin-top:1rem;">{{ config.mensagensComerciais.avisoDemo }}</p>
+  </div>
+</section>
+
+{% include "partials/cta_final.html" %}
+{% endblock %}
+
+{% block extra_js %}
+<script src="assets/js/booking-demo.js" defer></script>
+{% endblock %}

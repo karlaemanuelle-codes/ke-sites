@@ -1,0 +1,6 @@
+[
+  { "id": "gc-100", "tipo": "Gift Card", "valor": 100, "descricao": "Ideal para presentear um primeiro cuidado no Studio Lumière." },
+  { "id": "gc-250", "tipo": "Gift Card", "valor": 250, "descricao": "Cobre um serviço completo de cabelo ou um combo de estética." },
+  { "id": "gc-500", "tipo": "Gift Card", "valor": 500, "descricao": "Perfeito para presentear uma experiência premium completa." },
+  { "id": "vc-boasvindas", "tipo": "Voucher", "valor": 40, "descricao": "Voucher de boas-vindas para primeira visita — DEMO ONLY." }
+]

@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section" style="padding-bottom:0;">
+  <div class="container section-head center">
+    <span class="eyebrow">{{ t('nav.planos') }}</span>
+    <h1>{{ t('checkout.titulo') }}</h1>
+    <p class="lead">{{ t('checkout.subtitulo') }}</p>
+    <span class="badge-demo" style="margin-top:.75rem;">{{ t('checkout.avisoDemo') }}</span>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container lead-form-shell">
+
+    <div class="card" id="checkout-resumo" style="margin-bottom:1.25rem;">
+      <span class="eyebrow">{{ t('checkout.resumoTitulo') }}</span>
+      <dl class="checkout-summary-list" style="margin-top:.75rem;">
+        <div><dt>{{ t('checkout.template') }}</dt><dd id="co-template">—</dd></div>
+        <div><dt>{{ t('checkout.plano') }}</dt><dd id="co-plano">—</dd></div>
+        <div><dt>{{ t('checkout.mercado') }}</dt><dd>{{ config.identidade.nome }} · {{ locale }}</dd></div>
+        <div class="checkout-total-row"><dt>{{ t('checkout.totalLabel') }}</dt><dd id="co-total">—</dd></div>
+      </dl>
+      <a class="btn btn-outline btn-sm" style="margin-top:1rem;" id="co-alterar" href="index.html#planos">{{ t('checkout.alterarPlano') }}</a>
+      <p class="text-soft" id="co-sem-plano" style="margin-top:.75rem; display:none;">
+        {{ t('checkout.semPlano') }}
+        <a href="index.html#planos">{{ t('checkout.escolherPlano') }}</a>
+      </p>
+    </div>
+
+    <div class="card" id="checkout-pagamento">
+      <h2 class="h4">{{ t('checkout.comoPagar') }}</h2>
+
+      <div class="radio-group" role="radiogroup" aria-label="{{ t('checkout.comoPagar') }}" style="margin-top:1rem;">
+        {% if 'pix' in payment_methods %}
+        <label class="radio-pill"><input type="radio" name="metodo" value="pix" checked> {{ t('checkout.pix') }}</label>
+        {% endif %}
+        <label class="radio-pill"><input type="radio" name="metodo" value="cartao" {{ 'checked' if 'pix' not in payment_methods }}> {{ t('checkout.cartao') }}</label>
+      </div>
+
+      {% if not is_brazil %}
+      <p class="text-soft" style="font-size:.82rem; margin-top:.85rem;">{{ t('checkout.metodosIndisponiveisNota') }}</p>
+      {% endif %}
+
+      <div id="co-pix-block" style="margin-top:1.25rem; display:none;">
+        <p class="text-soft">{{ t('checkout.pixInstrucao') }}</p>
+        <div class="pix-mock" aria-hidden="true">
+          <div class="pix-qr-placeholder">QR</div>
+          <button type="button" class="btn btn-outline btn-sm" id="co-pix-copy">{{ t('checkout.pixCopiar') }}</button>
+        </div>
+        <span class="badge-demo" style="margin-top:.75rem;">{{ t('checkout.pixAguardando') }}</span>
+      </div>
+
+      <div id="co-cartao-block" style="margin-top:1.25rem; display:none;">
+        <div class="radio-group" role="radiogroup" aria-label="{{ t('checkout.cartao') }}">
+          <label class="radio-pill"><input type="radio" name="cartao-modo" value="avista" checked> {{ t('checkout.avista') }}</label>
+          {% if is_brazil %}
+          <label class="radio-pill"><input type="radio" name="cartao-modo" value="parcelar"> {{ t('checkout.parcelar') }}</label>
+          {% endif %}
+        </div>
+
+        {% if is_brazil %}
+        <div class="field" id="co-parcelas-field" style="margin-top:1rem; display:none; max-width:320px;">
+          <label for="co-parcelas-select">{{ t('checkout.parcelasLabel') }}</label>
+          <select id="co-parcelas-select" class="select-field"></select>
+        </div>
+        {% endif %}
+
+        <p class="text-soft" style="font-size:.82rem; margin-top:1rem;">{{ t('checkout.confiancaTexto') }}</p>
+      </div>
+
+      <button type="button" class="btn btn-primary btn-block" id="co-confirmar" style="margin-top:1.5rem;">{{ t('checkout.confirmarPagar') }}</button>
+      <p class="text-soft" style="font-size:.78rem; margin-top:.6rem; text-align:center;">{{ t('checkout.termosNota') }}</p>
+
+      <a class="btn btn-outline btn-block" id="co-whatsapp" href="#" target="_blank" rel="noopener" style="margin-top:.75rem;">{{ t('checkout.continuarWhatsapp') }}</a>
+    </div>
+
+    <div class="card" style="margin-top:1.25rem; text-align:center;">
+      <span class="eyebrow">{{ t('checkout.confiancaTitulo') }}</span>
+      <p class="text-soft" style="margin-top:.4rem;">{{ t('checkout.confiancaTexto') }}</p>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+window.KE_CHECKOUT_DATA = {{ checkout_pricing_json | safe }};
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  var tipo = params.get('tipo') === 'manutencao' ? 'manutencao' : 'site';
+  var planoId = params.get('plano') || params.get('nivel') || 'intermediario';
+  var templateId = params.get('template');
+  var wa = document.body.getAttribute('data-wa');
+
+  var pool = tipo === 'manutencao' ? window.KE_CHECKOUT_DATA.manutencao : window.KE_CHECKOUT_DATA.planos;
+  var plano = pool[planoId];
+
+  var elTemplate = document.getElementById('co-template');
+  var elPlano = document.getElementById('co-plano');
+  var elTotal = document.getElementById('co-total');
+  var elSemPlano = document.getElementById('co-sem-plano');
+  var elResumo = document.getElementById('checkout-resumo');
+  var elPagamento = document.getElementById('checkout-pagamento');
+
+  if (!plano) {
+    elSemPlano.style.display = 'block';
+    elPagamento.style.display = 'none';
+    elTemplate.closest('div').style.display = 'none';
+    elPlano.closest('div').style.display = 'none';
+    elTotal.closest('div').style.display = 'none';
+    return;
+  }
+
+  elTemplate.textContent = templateId ? templateId.replace(/-/g, ' ') : '—';
+  elPlano.textContent = planoId.charAt(0).toUpperCase() + planoId.slice(1);
+
+  var pixBlock = document.getElementById('co-pix-block');
+  var cartaoBlock = document.getElementById('co-cartao-block');
+  var parcelasField = document.getElementById('co-parcelas-field');
+  var parcelasSelect = document.getElementById('co-parcelas-select');
+
+  function currentTotal() {
+    var metodo = document.querySelector('input[name="metodo"]:checked');
+    metodo = metodo ? metodo.value : (plano.pix ? 'pix' : 'cartao');
+    if (metodo === 'pix' && plano.pix) return plano.pix.label;
+    var modo = document.querySelector('input[name="cartao-modo"]:checked');
+    modo = modo ? modo.value : 'avista';
+    if (modo === 'parcelar' && parcelasSelect && parcelasSelect.value) {
+      var idx = parseInt(parcelasSelect.value, 10);
+      var opt = (plano.parcelas || [])[idx];
+      if (opt) return opt.label;
+    }
+    return plano.avista ? plano.avista.label : plano.precoDisplay;
+  }
+
+  function refresh() {
+    var metodo = document.querySelector('input[name="metodo"]:checked');
+    metodo = metodo ? metodo.value : (plano.pix ? 'pix' : 'cartao');
+    pixBlock.style.display = (metodo === 'pix') ? 'block' : 'none';
+    cartaoBlock.style.display = (metodo === 'cartao') ? 'block' : 'none';
+
+    if (metodo === 'cartao' && parcelasField) {
+      var modo = document.querySelector('input[name="cartao-modo"]:checked');
+      modo = modo ? modo.value : 'avista';
+      parcelasField.style.display = (modo === 'parcelar') ? 'block' : 'none';
+    }
+    elTotal.textContent = currentTotal();
+    updateWhatsapp();
+  }
+
+  function updateWhatsapp() {
+    var waLink = document.getElementById('co-whatsapp');
+    if (!wa) return;
+    var msg = 'Olá! Tenho interesse no plano ' + planoId + (templateId ? (' do template ' + templateId) : '') +
+      '. Vi a condição de ' + currentTotal() + '. Gostaria de finalizar minha contratação.';
+    waLink.href = 'https://wa.me/' + wa + '?text=' + encodeURIComponent(msg);
+  }
+
+  if (plano.parcelas && parcelasSelect) {
+    plano.parcelas.forEach(function (opt, idx) {
+      var o = document.createElement('option');
+      o.value = idx;
+      o.textContent = opt.label;
+      parcelasSelect.appendChild(o);
+    });
+  }
+  if (!plano.pix) {
+    var pixRadio = document.querySelector('input[name="metodo"][value="pix"]');
+    if (pixRadio) pixRadio.closest('label').style.display = 'none';
+  }
+
+  document.querySelectorAll('input[name="metodo"], input[name="cartao-modo"]').forEach(function (el) {
+    el.addEventListener('change', refresh);
+  });
+  if (parcelasSelect) parcelasSelect.addEventListener('change', refresh);
+
+  var copyBtn = document.getElementById('co-pix-copy');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function () {
+      // ⚠️ DEMO ONLY — não há chave Pix real por trás deste botão.
+      copyBtn.textContent = '✓';
+      setTimeout(function () { copyBtn.textContent = "{{ t('checkout.pixCopiar') }}"; }, 1500);
+    });
+  }
+
+  document.getElementById('co-confirmar').addEventListener('click', function () {
+    // ⚠️ DEMO ONLY — nenhum pagamento real é processado. Em produção, este
+    // botão chamaria o checkout do provedor de pagamento conectado.
+    window.location.href = 'obrigado.html';
+  });
+
+  refresh();
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+  <div class="container lead-form-shell">
+    <div class="section-head center">
+      <span class="eyebrow">{{ t('nav.cta') }}</span>
+      <h1>{{ t('form.titulo') }}</h1>
+      <p class="lead">{{ t('form.subtitulo') }}</p>
+      <span class="badge-demo" style="margin-top:.75rem;">{{ t('form.avisoDemo') }}</span>
+    </div>
+
+    <form id="form-lead" class="card" style="margin-top:1.5rem;" novalidate>
+      <p class="sr-only" role="status" aria-live="polite" id="lead-live"></p>
+      <div class="form-row cols-2">
+        <div class="field">
+          <label for="lf-nome">{{ t('form.nome') }}</label>
+          <input type="text" id="lf-nome" name="nome" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="lf-empresa">{{ t('form.empresa') }}</label>
+          <input type="text" id="lf-empresa" name="empresa" autocomplete="organization" required>
+        </div>
+      </div>
+
+      <div class="form-row cols-2" style="margin-top:1rem;">
+        <div class="field">
+          <label for="lf-nicho">{{ t('form.nicho') }}</label>
+          <select id="lf-nicho" name="nicho" class="select-field" required>
+            <option value="">—</option>
+            {% for n in nichos %}
+            <option value="{{ n.id }}">{{ t(n.nomeKey) }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="field">
+          <span style="display:block; margin-bottom:.4rem; font-size:.85rem; font-weight:600; font-family:var(--font-system);">{{ t('form.nivelDesejado') }}</span>
+          <div class="radio-group" role="radiogroup" aria-label="{{ t('form.nivelDesejado') }}">
+            <label class="radio-pill"><input type="radio" name="nivel" value="basico"> {{ t('form.nivelBasico') }}</label>
+            <label class="radio-pill"><input type="radio" name="nivel" value="intermediario"> {{ t('form.nivelIntermediario') }}</label>
+            <label class="radio-pill"><input type="radio" name="nivel" value="avancado"> {{ t('form.nivelAvancado') }}</label>
+            <label class="radio-pill"><input type="radio" name="nivel" value="sob-medida"> {{ t('compararSection.sobMedidaNome') }}</label>
+            <label class="radio-pill"><input type="radio" name="nivel" value="nao-sei" checked> {{ t('form.nivelNaoSei') }}</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row cols-2" style="margin-top:1rem;">
+        <div class="field">
+          <label for="lf-pais">{{ t('form.pais') }}</label>
+          <input type="text" id="lf-pais" name="pais" autocomplete="country-name" required>
+        </div>
+        <div class="field">
+          <label for="lf-cidade">{{ t('form.cidade') }}</label>
+          <input type="text" id="lf-cidade" name="cidade" autocomplete="address-level2" required>
+        </div>
+      </div>
+
+      <div class="form-row cols-2" style="margin-top:1rem;">
+        <div class="field">
+          <label for="lf-whatsapp">{{ t('form.whatsapp') }}</label>
+          <input type="tel" id="lf-whatsapp" name="whatsapp" autocomplete="tel" required>
+        </div>
+        <div class="field">
+          <label for="lf-email">{{ t('form.email') }}</label>
+          <input type="email" id="lf-email" name="email" autocomplete="email" required>
+        </div>
+      </div>
+
+      <div class="field" style="margin-top:1rem;">
+        <label for="lf-instagram">{{ t('form.instagram') }}</label>
+        <input type="text" id="lf-instagram" name="instagram" placeholder="@">
+      </div>
+
+      <div class="field" style="margin-top:1rem;">
+        <label for="lf-observacoes">{{ t('form.observacoes') }}</label>
+        <textarea id="lf-observacoes" name="observacoes" rows="4"></textarea>
+      </div>
+
+      <input type="hidden" id="lf-template-hidden" name="template">
+
+      <button type="submit" class="btn btn-primary btn-block" style="margin-top:1.5rem;">{{ t('form.enviar') }}</button>
+    </form>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  var tpl = params.get('template');
+  var nivel = params.get('nivel');
+  if (tpl) {
+    var hidden = document.getElementById('lf-template-hidden');
+    if (hidden) hidden.value = tpl;
+  }
+  if (nivel) {
+    var radio = document.querySelector('input[name="nivel"][value="' + nivel + '"]');
+    if (radio) radio.checked = true;
+  }
+  var form = document.getElementById('form-lead');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    // ⚠️ DEMO ONLY — nenhum dado é enviado a um servidor real. Em produção,
+    // este formulário seria conectado a um CRM / integração de WhatsApp.
+    window.location.href = 'obrigado.html';
+  });
+})();
+</script>
+{% endblock %}
