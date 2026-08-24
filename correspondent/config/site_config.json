@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "cliente": {
+    "nome": "Karla Emanuelle",
+    "empresa": "Supera Promotora",
+    "profissao": "Correspondente bancária",
+    "whatsapp": "5581995217143",
+    "instagram": "@karlinhaemanuelle",
+    "cidade": "Natal",
+    "estado": "RN"
+  },
+  "compliance": {
+    "textoInstitucionalSeguro": "Atendimento realizado por profissional identificada, com apresentação clara das opções disponíveis e das condições aplicáveis a cada análise.",
+    "certificacoes": [],
+    "credenciamentos": [],
+    "instituicoesParceiras": [],
+    "bancos": [],
+    "informacoesRegulatorias": [],
+    "dadosEmpresa": [],
+    "dadosProfissionais": []
+  },
+  "avaliacoes": {
+    "habilitado": true,
+    "titulo": "O que nossos clientes dizem",
+    "mostrarMedia": true,
+    "exigirAutorizacaoPublicacao": true,
+    "exigirAprovacaoManual": true,
+    "permitirModeracao": true,
+    "permitirOcultarPublicada": true,
+    "opcoesNomePublico": ["nome_completo", "primeiro_nome", "iniciais", "anonimo"]
+  }
+}
