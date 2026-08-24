@@ -1,0 +1,18 @@
+{
+  "name": "Karla Emanuelle",
+  "company": "Supera Promotora",
+  "whatsapp": "5581995217143",
+  "instagram": "@karlinhaemanuelle",
+  "serviceArea": "Todo o Brasil",
+  "products": ["Empréstimo consignado INSS", "Portabilidade", "Refinanciamento"],
+  "operationalInstitutions": ["C6 Bank", "Ágil", "Happy", "Facta", "BMG", "PAN", "Daycoval", "Amigoz", "BRB", "iCred"],
+  "compliance": {
+    "certifications": [],
+    "registrations": [],
+    "accreditations": [],
+    "regulatoryInformation": [],
+    "showInstitutionsPublicly": false,
+    "safeStatement": "Atendimento com apresentação clara das opções disponíveis e das condições aplicáveis a cada análise."
+  },
+  "reviews": {"requireConsent": true, "requireManualApproval": true, "autoPublish": false}
+}

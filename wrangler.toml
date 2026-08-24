@@ -1,8 +1,6 @@
-name = "ke-sites"
-compatibility_date = "2026-08-21"
+name = "karla-correspondente"
+compatibility_date = "2026-08-24"
 
-# Publica o site estatico do CT de Volei - nivel Basico (primeiro teste de publicacao).
-# Site 100% estatico (Python/Jinja2 no momento do build) - nao precisa de "main" (Worker
-# sem codigo, so servindo arquivos), conforme documentacao oficial de Workers Static Assets.
 [assets]
-directory = "products/ct-de-volei/dist/basico"
+directory = "products/karla-correspondente"
+not_found_handling = "404-page"
