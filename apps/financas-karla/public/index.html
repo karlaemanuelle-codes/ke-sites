@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f6b5c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Finanças">
+<link rel="manifest" href="app.webmanifest">
+<link rel="icon" href="icone.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icone.svg">
+<title>Finanças da Karla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: sticky header (mês + abas) → painel de números → listas operáveis. Teal = consignado, âmbar = Rayka. */
+:root{
+  --bg:#f3f5f3; --surface:#ffffff; --ink:#15211d; --muted:#5d6b66; --line:#dde3df;
+  --cons:#0f6b5c; --cons-soft:#dcefe9; --rayka:#c4600f; --rayka-soft:#fbe8d7;
+  --ok:#1d7a3e; --ok-soft:#ddf1e3; --warn:#a86200; --warn-soft:#fdf0d5; --crit:#b42318; --crit-soft:#fde4e1;
+  --font-display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --font-body:"IBM Plex Sans",ui-sans-serif,system-ui,sans-serif;
+  --font-num:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1513; --surface:#18201d; --ink:#e7eeea; --muted:#9aaaa3; --line:#2a3530;
+  --cons:#4fc2a9; --cons-soft:#163a32; --rayka:#f29a4e; --rayka-soft:#3d2614;
+  --ok:#5fd18a; --ok-soft:#173a24; --warn:#f0b452; --warn-soft:#3b2c10; --crit:#ff8a7d; --crit-soft:#401b17; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1513; --surface:#18201d; --ink:#e7eeea; --muted:#9aaaa3; --line:#2a3530;
+  --cons:#4fc2a9; --cons-soft:#163a32; --rayka:#f29a4e; --rayka-soft:#3d2614;
+  --ok:#5fd18a; --ok-soft:#173a24; --warn:#f0b452; --warn-soft:#3b2c10; --crit:#ff8a7d; --crit-soft:#401b17; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.45}
+.wrap{max-width:980px;margin:0 auto;padding-inline:16px;padding-block:0 48px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.head-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:14px 8px;flex-wrap:wrap}
+h1{font-family:var(--font-display);font-weight:800;font-size:1.45rem;margin:0;letter-spacing:-.01em}
+h1 small{display:block;font-family:var(--font-body);font-weight:500;font-size:.78rem;color:var(--muted);letter-spacing:.02em}
+select,input{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 10px;min-width:0}
+select:focus-visible,input:focus-visible,button:focus-visible{outline:2px solid var(--cons);outline-offset:2px}
+.tabs{display:flex;gap:4px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
+.tab{border:0;background:transparent;color:var(--muted);font:600 .9rem var(--font-body);padding:8px 12px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.tab .count{font-family:var(--font-num);font-size:.75rem;margin-left:4px;opacity:.8}
+main{display:grid;gap:22px;padding-top:18px}
+h2{font-family:var(--font-display);font-weight:600;font-size:1.1rem;margin:0 0 10px;text-wrap:balance}
+.label{font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600}
+.num{font-family:var(--font-num);font-variant-numeric:tabular-nums}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:4px;min-width:0}
+.kpi .v{font-family:var(--font-num);font-size:1.45rem;font-weight:500;letter-spacing:-.02em}
+.kpi .s{font-size:.8rem;color:var(--muted)}
+.kpi.hero{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.kpi.hero .s,.kpi.hero .label{color:inherit;opacity:.75}
+.split{display:flex;height:10px;border-radius:99px;overflow:hidden;background:var(--line);margin-top:6px}
+.split i{display:block;height:100%}
+.legend{display:flex;gap:14px;font-size:.78rem;opacity:.85;flex-wrap:wrap}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:1px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;min-width:0}
+.bars{display:grid;gap:10px}
+.bar-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;font-size:.88rem}
+.bar-row .track{grid-column:1/-1;height:8px;background:var(--bg);border-radius:99px;overflow:hidden}
+.bar-row .fill{height:100%;border-radius:99px}
+.list{display:grid}
+.item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;padding:11px 0;border-top:1px solid var(--line);align-items:center}
+.item:first-child{border-top:0}
+.item .t{font-weight:600;overflow-wrap:anywhere}
+.item .m{font-size:.8rem;color:var(--muted);grid-column:1}
+.item .r{text-align:right;grid-row:1/span 2;grid-column:2;display:grid;gap:4px;justify-items:end}
+.chip{display:inline-block;font-size:.7rem;font-weight:600;letter-spacing:.03em;padding:2px 8px;border-radius:99px;white-space:nowrap}
+.c-cons{background:var(--cons-soft);color:var(--cons)} .c-rayka{background:var(--rayka-soft);color:var(--rayka)}
+.c-ok{background:var(--ok-soft);color:var(--ok)} .c-warn{background:var(--warn-soft);color:var(--warn)} .c-crit{background:var(--crit-soft);color:var(--crit)}
+.c-muted{background:var(--bg);color:var(--muted)}
+.btn{font:600 .85rem var(--font-body);border-radius:8px;padding:8px 12px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.small{padding:4px 9px;font-size:.75rem}
+a.btn{text-decoration:none;display:inline-block}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:10px}
+.seg{display:flex;gap:4px;flex-wrap:wrap}
+.seg button{border:1px solid var(--line);background:var(--surface);color:var(--muted);font:600 .78rem var(--font-body);padding:5px 10px;border-radius:99px;cursor:pointer}
+.seg button[aria-pressed="true"]{border-color:var(--ink);color:var(--ink)}
+form.add{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;padding:14px;border:1px dashed var(--line);border-radius:12px;margin-bottom:12px}
+form.add label{display:grid;gap:4px;font-size:.75rem;color:var(--muted);font-weight:600}
+form.add .actions{grid-column:1/-1;display:flex;gap:8px;justify-content:flex-end}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.86rem;min-width:520px}
+th{text-align:left;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;padding:6px 8px;border-bottom:1px solid var(--line)}
+td{padding:9px 8px;border-bottom:1px solid var(--line)}
+td.n,th.n{text-align:right;font-family:var(--font-num);font-variant-numeric:tabular-nums}
+tfoot td{font-weight:600;border-bottom:0}
+.empty{color:var(--muted);font-size:.9rem;padding:14px 0}
+.note{font-size:.8rem;color:var(--muted)}
+.status{font-size:.8rem;color:var(--muted);min-height:1.2em}
+[data-view]{display:grid;gap:22px}
+@media (prefers-reduced-motion:no-preference){.fill,.split i{transition:width .4s ease}}
+</style>
+
+</head>
+<body>
+<style>
+/* Tela de entrada: cobre tudo até a Karla fazer login. */
+.porta{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:var(--bg);padding:24px}
+.porta[hidden]{display:none}
+.caixa-porta{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;width:min(380px,100%);display:grid;gap:14px;box-shadow:0 10px 40px rgba(0,0,0,.08)}
+.caixa-porta h1{font-family:var(--font-display);font-weight:800;font-size:1.4rem;margin:0;letter-spacing:-.01em}
+.caixa-porta .sub{font-size:.82rem;color:var(--muted);margin:-8px 0 4px}
+.caixa-porta label{display:grid;gap:5px;font-size:.78rem;font-weight:600;color:var(--muted)}
+.caixa-porta input{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:11px 12px;width:100%}
+.caixa-porta .btn{width:100%;padding:12px}
+.caixa-porta .aviso-porta{font-size:.82rem;min-height:1.2em;margin:0}
+.caixa-porta .aviso-porta.ruim{color:var(--crit)}
+.caixa-porta .aviso-porta.bom{color:var(--ok)}
+.sair{border:1px solid var(--line);background:var(--surface);color:var(--muted);font:600 .75rem var(--font-body);padding:6px 11px;border-radius:999px;cursor:pointer}
+</style>
+
+<div class="porta" id="porta">
+  <form class="caixa-porta" id="form-porta">
+    <h1>Finanças da Karla</h1>
+    <p class="sub">Consignado · Rayka Viagens</p>
+    <label>E-mail
+      <input id="p-email" type="email" autocomplete="username" inputmode="email" required>
+    </label>
+    <label>Senha
+      <input id="p-senha" type="password" autocomplete="current-password" required minlength="6">
+    </label>
+    <button class="btn primary" type="submit" id="p-entrar">Entrar</button>
+    <button class="btn" type="button" id="p-criar">É a primeira vez — criar minha senha</button>
+    <p class="aviso-porta" id="p-aviso"></p>
+  </form>
+</div>
+<header>
+  <div class="wrap">
+    <div class="head-row">
+      <h1>Finanças da Karla<small>Consignado · Rayka Viagens</small></h1>
+      <label class="label" for="mes">Mês
+        <select id="mes" aria-label="Mês de referência"></select>
+      </label>
+    </div>
+    <nav class="tabs" role="tablist" id="tabs">
+      <button class="tab" role="tab" data-tab="painel" aria-selected="true">Painel</button>
+      <button class="tab" role="tab" data-tab="atender" aria-selected="false">Atender<span class="count" id="at-count"></span></button>
+      <button class="tab" role="tab" data-tab="entradas" aria-selected="false">Entradas</button>
+      <button class="tab" role="tab" data-tab="consignado" aria-selected="false">Consignado</button>
+      <button class="tab" role="tab" data-tab="carteira" aria-selected="false">Carteira<span class="count" id="cart-count"></span></button>
+      <button class="tab" role="tab" data-tab="rayka" aria-selected="false">Rayka</button>
+      <button class="tab" role="tab" data-tab="emissoes" aria-selected="false">Emissões</button>
+      <button class="tab" role="tab" data-tab="clientes" aria-selected="false">Clientes</button>
+      <button class="tab" role="tab" data-tab="pendencias" aria-selected="false">Pendências<span class="count" id="pend-count"></span></button>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+<main>
+  <p class="status" id="status">Carregando seus dados…</p>
+
+  <!-- PAINEL -->
+  <section data-view="painel">
+    <div class="kpis">
+      <div class="kpi hero">
+        <span class="label">Entrou na conta</span>
+        <span class="v" id="k-recebido">R$ 0,00</span>
+        <div class="split" aria-hidden="true"><i id="split-cons" style="background:var(--cons-soft)"></i><i id="split-rayka" style="background:var(--rayka)"></i></div>
+        <div class="legend"><span><i class="dot" style="background:var(--cons-soft)"></i>Consignado <b class="num" id="k-rec-cons"></b></span><span><i class="dot" style="background:var(--rayka)"></i>Rayka <b class="num" id="k-rec-rayka"></b></span></div>
+      </div>
+      <div class="kpi"><span class="label">A receber</span><span class="v" id="k-areceber">R$ 0,00</span><span class="s" id="k-areceber-s">Nenhum valor previsto</span></div>
+      <div class="kpi"><span class="label">Produção consignado</span><span class="v" id="k-prod">R$ 0,00</span><span class="s" id="k-prod-s">0 contratos</span></div>
+      <div class="kpi"><span class="label">Vendido Rayka</span><span class="v" id="k-vend">R$ 0,00</span><span class="s" id="k-vend-s">0 emissões</span></div>
+    </div>
+    <div class="grid2">
+      <div class="panel"><h2>De onde veio o dinheiro</h2><div class="bars" id="bars-origem"><p class="empty">Nenhuma entrada recebida neste mês.</p></div></div>
+      <div class="panel"><h2>Precisa de ação</h2><div class="list" id="acoes"><p class="empty">Nada pendente agora.</p></div></div>
+    </div>
+  </section>
+
+  <!-- ENTRADAS -->
+  <section data-view="entradas" hidden>
+    <div class="toolbar">
+      <div class="seg" id="f-entradas">
+        <button aria-pressed="true" data-f="todos">Todas</button>
+        <button aria-pressed="false" data-f="Consignado">Consignado</button>
+        <button aria-pressed="false" data-f="Rayka">Rayka</button>
+        <button aria-pressed="false" data-f="areceber">A receber</button>
+      </div>
+      <button class="btn primary" id="btn-nova-entrada">+ Nova entrada</button>
+    </div>
+    <form class="add" id="form-entrada" hidden>
+      <label>Data<input id="e-data" type="date" required></label>
+      <label>Negócio<select id="e-negocio"><option>Consignado</option><option>Rayka</option></select></label>
+      <label>Origem<input id="e-origem" list="origens" placeholder="Ex.: Taxa cliente" required></label>
+      <label>Quem pagou<input id="e-pagador" placeholder="Nome"></label>
+      <label>Valor (R$)<input id="e-valor" inputmode="decimal" placeholder="0,00" required></label>
+      <label>Situação<select id="e-status"><option value="recebido">Recebido</option><option value="areceber">A receber</option></select></label>
+      <label>Mês da venda<input id="e-comp" type="month"></label>
+      <div class="actions"><button type="button" class="btn" id="e-cancel">Cancelar</button><button class="btn primary">Salvar entrada</button></div>
+    </form>
+    <datalist id="origens"><option>Taxa cliente</option><option>Repasse Everton</option><option>HotelDo</option><option>Ōner Travel</option><option>RecMilhas</option></datalist>
+    <div class="panel"><div class="list" id="lista-entradas"></div></div>
+  </section>
+
+  <!-- CONSIGNADO -->
+  <section data-view="consignado" hidden>
+    <div class="kpis" id="cons-kpis"></div>
+    <div class="grid2">
+      <div class="panel"><h2>Produção por banco</h2><div class="bars" id="bars-banco"></div></div>
+      <div class="panel"><h2>Por produto</h2><div class="bars" id="bars-produto"></div></div>
+    </div>
+    <div class="panel">
+      <div class="toolbar"><h2 style="margin:0">Contratos</h2><button class="btn primary" id="btn-novo-contrato">+ Novo contrato</button></div>
+      <form class="add" id="form-contrato" hidden>
+        <label>Cliente<input id="c-cliente" required></label>
+        <label>Produto<select id="c-produto"><option>REFIN</option><option>NOVO</option><option>PORTABILIDADE</option></select></label>
+        <label>Data<input id="c-data" type="date" required></label>
+        <label>Valor liberado (R$)<input id="c-valor" inputmode="decimal" required></label>
+        <label>Banco<input id="c-banco" list="bancos" required></label>
+        <label>Situação<select id="c-status"><option>PAGO</option><option>ANDAMENTO</option></select></label>
+        <label>WhatsApp<input id="c-tel" inputmode="tel" placeholder="DDD + número" required></label>
+        <label>Nascimento<input id="c-nasc" type="date" required></label>
+        <div class="actions"><button type="button" class="btn" id="c-cancel">Cancelar</button><button class="btn primary">Salvar contrato</button></div>
+      </form>
+      <datalist id="bancos"><option>C6</option><option>ICRED</option><option>HAPPY</option><option>AGIL</option><option>FACTA</option><option>BMG</option><option>PAN</option></datalist>
+      <div class="scroll"><table><thead><tr><th>Cliente</th><th>Produto</th><th>Data</th><th>Banco</th><th class="n">Valor</th><th class="n">Comissão</th><th>Situação</th></tr></thead><tbody id="tb-contratos"></tbody></table></div>
+    </div>
+  </section>
+
+  <!-- CARTEIRA (agente do consignado) -->
+  <section data-view="carteira" hidden>
+    <div class="kpis" id="cart-kpis"></div>
+    <div class="toolbar">
+      <input id="cart-busca" type="search" placeholder="Buscar cliente ou telefone" aria-label="Buscar cliente do consignado" style="flex:1 1 220px">
+      <div class="seg" id="f-cart">
+        <button aria-pressed="true" data-f="agora">Chamar agora</button>
+        <button aria-pressed="false" data-f="todos">Todos</button>
+        <button aria-pressed="false" data-f="andamento">Em andamento</button>
+        <button aria-pressed="false" data-f="semtel">Sem telefone</button>
+      </div>
+    </div>
+    <form class="add" id="form-cart" hidden>
+      <label>Cliente<input id="k-nome" disabled></label>
+      <label>WhatsApp<input id="k-tel" inputmode="tel" placeholder="DDD + número"></label>
+      <label>Nascimento<input id="k-nasc" type="date"></label>
+      <label>Observação<input id="k-obs" placeholder="Ex.: prefere ligação à tarde"></label>
+      <label style="grid-auto-flow:column;justify-content:start;align-items:center;gap:8px"><input id="k-optout" type="checkbox"> Não quer receber ofertas</label>
+      <div class="actions"><button type="button" class="btn" id="k-cancel">Cancelar</button><button class="btn primary">Salvar cliente</button></div>
+    </form>
+    <div class="panel"><div class="list" id="lista-cart"></div></div>
+    <p class="note">Margem nova: toda a carteira em dezembro e janeiro. Refin: avisa quando o último contrato completa o prazo do banco. O botão WhatsApp abre a conversa com a mensagem pronta; escolha o WhatsApp do número do consignado e confira antes de enviar. Depois toque em “Mandei”.</p>
+  </section>
+
+  <!-- RAYKA -->
+  <section data-view="rayka" hidden>
+    <div class="panel">
+      <h2>Comissões por fornecedor</h2>
+      <div class="scroll"><table><thead><tr><th>Fornecedor</th><th class="n">Emissões</th><th class="n">Vendido</th><th class="n">Comissão</th><th class="n">Recebido</th><th class="n">Falta</th></tr></thead><tbody id="tb-forn"></tbody><tfoot id="tf-forn"></tfoot></table></div>
+      <p class="note">Ōner paga no mês seguinte. HotelDo paga às quintas, via Decolar.</p>
+    </div>
+    <div class="panel"><h2>Próximos embarques</h2><div class="list" id="lista-embarques"></div></div>
+  </section>
+
+  <!-- EMISSÕES (Rayka, detalhe) -->
+  <section data-view="emissoes" hidden>
+    <div class="kpis" id="emi-kpis"></div>
+    <div class="toolbar">
+      <div class="seg" id="f-emi">
+        <button aria-pressed="true" data-f="todos">Todas</button>
+        <button aria-pressed="false" data-f="OnerTravel">Ōner</button>
+        <button aria-pressed="false" data-f="HotelDo">HotelDo</button>
+        <button aria-pressed="false" data-f="RecMilhas">RecMilhas</button>
+        <button aria-pressed="false" data-f="cancel">Canceladas</button>
+      </div>
+    </div>
+    <div class="panel"><div class="list" id="lista-emissoes"></div></div>
+    <p class="note">Emissões da Rayka pela data da venda, no mês escolhido no topo. Canceladas e lotes de comissão não somam em “Vendido”.</p>
+  </section>
+
+  <!-- CLIENTES (Rayka) -->
+  <section data-view="clientes" hidden>
+    <div class="toolbar">
+      <input id="cli-busca" type="search" placeholder="Buscar por nome, telefone ou CPF" aria-label="Buscar cliente" style="flex:1 1 220px">
+      <div class="seg" id="f-cli">
+        <button aria-pressed="true" data-f="todos">Todos</button>
+        <button aria-pressed="false" data-f="Cliente">Pagantes</button>
+        <button aria-pressed="false" data-f="Passageiro">Passageiros</button>
+        <button aria-pressed="false" data-f="niver">Aniversário no mês</button>
+      </div>
+    </div>
+    <div class="panel"><div class="list" id="lista-clientes"></div></div>
+  </section>
+
+  <!-- ATENDER -->
+  <section data-view="atender" hidden>
+    <div class="toolbar">
+      <div class="seg" id="f-at">
+        <button aria-pressed="true" data-f="todos">Todos</button>
+        <button aria-pressed="false" data-f="Consignado">Consignado</button>
+        <button aria-pressed="false" data-f="Rayka">Rayka</button>
+      </div>
+      <button class="btn primary" id="btn-novo-at">+ Novo atendimento</button>
+    </div>
+    <form class="add" id="form-at" hidden>
+      <label>Cliente<input id="a-cliente" placeholder="Nome" required></label>
+      <label>Negócio<select id="a-negocio"><option>Consignado</option><option>Rayka</option></select></label>
+      <label>O que fazer<select id="a-acao"><option>Retornar</option><option>Simular</option><option>Cotar</option><option>Cobrar documento</option><option>Acompanhar pagamento</option><option>Pós-venda</option></select></label>
+      <label>Quando<input id="a-quando" type="date" required></label>
+      <label>WhatsApp<input id="a-tel" inputmode="tel" placeholder="DDD + número"></label>
+      <label>Detalhe<input id="a-detalhe" placeholder="Ex.: quer Salvador em novembro, 2 pessoas"></label>
+      <div class="actions"><button type="button" class="btn" id="a-cancel">Cancelar</button><button class="btn primary">Salvar atendimento</button></div>
+    </form>
+    <div class="panel"><h2>Atrasados</h2><div class="list" id="at-atrasados"></div></div>
+    <div class="panel"><h2>Hoje</h2><div class="list" id="at-hoje"></div></div>
+    <div class="panel"><h2>Amanhã</h2><div class="list" id="at-amanha"></div></div>
+    <div class="panel"><h2>Próximos dias</h2><div class="list" id="at-proximos"></div></div>
+    <div class="panel"><h2>Feitos recentemente</h2><div class="list" id="at-feitos"></div></div>
+  </section>
+
+  <!-- PENDÊNCIAS -->
+  <section data-view="pendencias" hidden>
+    <div class="panel"><h2>Em aberto</h2><div class="list" id="pend-abertas"></div></div>
+    <div class="panel"><h2>Resolvidas</h2><div class="list" id="pend-resolvidas"></div></div>
+  </section>
+</main>
+</div>
+
+<script>
+const S={entradas:[],contratos:[],embarques:[],pendencias:[],rayka_resumo:[],vendas:[],clientes:[],atendimentos:[],carteira:[]};
+let fCart="agora", qCart="", editCart=null;
+let fAt="todos";
+const diaLocal=(n=0)=>{const d=new Date(Date.now()+n*864e5);return d.toLocaleDateString("sv-SE",{timeZone:"America/Fortaleza"})};
+let fEmi="todos", fCli="todos", qCli="";
+let db=null, mes=null, fEnt="todos", tab="painel";
+const $=id=>document.getElementById(id);
+const brl=v=>(v||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const fmtD=iso=>{if(!iso)return"";const[y,m,d]=iso.split("-");return d+"/"+m};
+const mesNome=ym=>{const[y,m]=ym.split("-");return["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"][+m-1]+"/"+y};
+const ymOf=iso=>iso?iso.slice(0,7):null;
+const today=()=>{const d=new Date();d.setHours(0,0,0,0);return d};
+const daysTo=iso=>Math.round((new Date(iso+"T00:00:00")-today())/864e5);
+const parseBR=s=>{s=String(s).trim().replace(/[R$\s]/g,"");if(s.includes(","))s=s.replace(/\./g,"").replace(",",".");return parseFloat(s)};
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const sum=(a,f)=>a.reduce((t,x)=>t+(+f(x)||0),0);
+try{const t=localStorage.getItem("fk-tab");if(t)tab=t;mes=localStorage.getItem("fk-mes")}catch(e){}
+
+function months(){
+  const set=new Set();
+  S.entradas.forEach(e=>{if(e.data)set.add(ymOf(e.data));if(e.competencia)set.add(e.competencia)});
+  S.contratos.forEach(c=>set.add(ymOf(c.data)));
+  S.rayka_resumo.forEach(r=>set.add(r.mes));
+  S.vendas.forEach(v=>set.add(ymOf(v.data)));
+  set.delete(null);set.delete(undefined);
+  return [...set].sort().reverse();
+}
+function renderMes(){
+  const ms=months(), sel=$("mes");
+  if(!ms.length){sel.innerHTML='<option>—</option>';return}
+  if(!mes||!ms.includes(mes))mes=ms.find(m=>S.entradas.some(e=>e.status==="recebido"&&ymOf(e.data)===m))||ms[0];
+  sel.innerHTML=ms.map(m=>`<option value="${m}" ${m===mes?"selected":""}>${mesNome(m)}</option>`).join("");
+}
+
+function bars(el,rows,color){
+  const max=Math.max(...rows.map(r=>r.v),1);
+  el.innerHTML=rows.length?rows.map(r=>`<div class="bar-row"><span>${esc(r.k)}${r.sub?` <span class="note">· ${esc(r.sub)}</span>`:""}</span><span class="num">${brl(r.v)}</span><div class="track"><div class="fill" style="width:${(r.v/max*100).toFixed(1)}%;background:${r.c||color}"></div></div></div>`).join(""):'<p class="empty">Sem dados neste mês.</p>';
+}
+
+function embStatus(e){
+  const d=daysTo(e.ida);
+  if(d<0)return{t:"Já embarcou",c:"c-muted",d};
+  if(d<=7)return{t:`Embarca em ${d} dia${d===1?"":"s"}`,c:"c-crit",d};
+  if(d<=30)return{t:`Em ${d} dias`,c:"c-warn",d};
+  return{t:`Em ${d} dias`,c:"c-muted",d};
+}
+
+function render(){
+  renderMes();
+  const recMes=S.entradas.filter(e=>e.status==="recebido"&&ymOf(e.data)===mes);
+  const aRec=S.entradas.filter(e=>e.status==="areceber");
+  const recCons=sum(recMes.filter(e=>e.negocio==="Consignado"),e=>e.valor), recRay=sum(recMes.filter(e=>e.negocio==="Rayka"),e=>e.valor), recTot=recCons+recRay;
+  $("k-recebido").textContent=brl(recTot);
+  $("k-rec-cons").textContent=brl(recCons); $("k-rec-rayka").textContent=brl(recRay);
+  $("split-cons").style.width=(recTot?recCons/recTot*100:0)+"%"; $("split-rayka").style.width=(recTot?recRay/recTot*100:0)+"%";
+  $("k-areceber").textContent=brl(sum(aRec,e=>e.valor));
+  $("k-areceber-s").textContent=aRec.length?`${aRec.length} valor${aRec.length>1?"es":""} previsto${aRec.length>1?"s":""}`:"Nenhum valor previsto";
+  const cMes=S.contratos.filter(c=>ymOf(c.data)===mes);
+  $("k-prod").textContent=brl(sum(cMes,c=>c.valor));
+  $("k-prod-s").textContent=`${cMes.length} contratos · ${cMes.filter(c=>c.status==="ANDAMENTO").length} em andamento`;
+  const rr=S.rayka_resumo.filter(r=>r.mes===mes);
+  $("k-vend").textContent=brl(sum(rr,r=>r.vendido));
+  $("k-vend-s").textContent=`${sum(rr,r=>r.emissoes)} emissões · comissão ${brl(sum(rr,r=>r.comissao))}`;
+
+  const byOrig={};recMes.forEach(e=>{const k=e.origem;byOrig[k]=byOrig[k]||{k,v:0,c:e.negocio==="Rayka"?"var(--rayka)":"var(--cons)",n:0};byOrig[k].v+=e.valor;byOrig[k].n++});
+  bars($("bars-origem"),Object.values(byOrig).sort((a,b)=>b.v-a.v).map(o=>({...o,sub:o.n+"x"})));
+
+  // Ações
+  const acoes=[];
+  S.embarques.forEach(e=>{const st=embStatus(e);if(st.d>=0&&st.d<=30&&(!e.contato||st.d<=7))acoes.push({o:st.d,h:`<div class="item"><span class="t">Avisar ${esc(e.passageiros)}</span><span class="m">Embarque ${fmtD(e.ida)} · ${esc(e.destino)}${e.contato?"":" · <b>sem contato cadastrado</b>"}</span><span class="r"><span class="chip ${st.c}">${st.t}</span></span></div>`})});
+  aRec.forEach(e=>acoes.push({o:e.previsao?daysTo(e.previsao):99,h:`<div class="item"><span class="t">${esc(e.origem)} ${e.pagador?"· "+esc(e.pagador):""}</span><span class="m">A receber${e.previsao?" · previsto "+fmtD(e.previsao):""}</span><span class="r"><b class="num">${brl(e.valor)}</b></span></div>`}));
+  const pa=S.pendencias.filter(p=>p.status!=="resolvido");
+  if(pa.length)acoes.push({o:100,h:`<div class="item"><span class="t">${pa.length} pendência${pa.length>1?"s":""} para conferir</span><span class="m">${esc(pa.slice(0,2).map(p=>p.item).join(" · "))}</span><span class="r"><button class="btn small" data-go="pendencias">Ver</button></span></div>`});
+  $("acoes").innerHTML=acoes.length?acoes.sort((a,b)=>a.o-b.o).map(a=>a.h).join(""):'<p class="empty">Nada pendente agora.</p>';
+  $("pend-count").textContent=pa.length?pa.length:"";
+
+  // Entradas
+  let ent=S.entradas.filter(e=>e.status==="areceber"||ymOf(e.data)===mes);
+  if(fEnt==="areceber")ent=S.entradas.filter(e=>e.status==="areceber");
+  else if(fEnt!=="todos")ent=ent.filter(e=>e.negocio===fEnt);
+  ent.sort((a,b)=>(b.status==="areceber")-(a.status==="areceber")||(b.data||b.previsao||"").localeCompare(a.data||a.previsao||""));
+  $("lista-entradas").innerHTML=ent.length?ent.map(e=>`<div class="item"><span class="t">${esc(e.pagador||e.origem)}</span><span class="m"><span class="chip ${e.negocio==="Rayka"?"c-rayka":"c-cons"}">${esc(e.negocio)}</span> ${esc(e.origem)} · ${e.status==="recebido"?fmtD(e.data):"previsto "+(fmtD(e.previsao)||"—")}${e.competencia&&e.competencia!==ymOf(e.data)?" · venda de "+mesNome(e.competencia):""}</span><span class="r"><b class="num">${brl(e.valor)}</b>${e.status==="areceber"?`<button class="btn small" data-receber="${e.id}">Marcar recebido</button>`:""}</span></div>`).join(""):'<p class="empty">Nenhuma entrada aqui. Toque em “+ Nova entrada” para lançar a primeira.</p>';
+
+  // Consignado
+  const pago=cMes.filter(c=>c.status==="PAGO"), andam=cMes.filter(c=>c.status==="ANDAMENTO");
+  const ganhoCons=sum(S.entradas.filter(e=>e.negocio==="Consignado"&&e.status==="recebido"&&ymOf(e.data)===mes),e=>e.valor);
+  $("cons-kpis").innerHTML=`<div class="kpi"><span class="label">Produção</span><span class="v">${brl(sum(cMes,c=>c.valor))}</span><span class="s">${cMes.length} contratos</span></div><div class="kpi"><span class="label">Pagos</span><span class="v">${brl(sum(pago,c=>c.valor))}</span><span class="s">${pago.length} contratos</span></div><div class="kpi"><span class="label">Em andamento</span><span class="v">${brl(sum(andam,c=>c.valor))}</span><span class="s">${andam.length} contratos</span></div><div class="kpi"><span class="label">Seu ganho no mês</span><span class="v">${brl(ganhoCons)}</span><span class="s">taxas + repasses</span></div><div class="kpi"><span class="label">Comissão calculada</span><span class="v">${brl(sum(cMes,c=>c.comissao||0))}</span><span class="s">${cMes.filter(c=>c.comissao==null).length} sem comissão informada</span></div>`;
+  const grp=(arr,key)=>{const o={};arr.forEach(c=>{o[c[key]]=o[c[key]]||{k:c[key],v:0,n:0};o[c[key]].v+=c.valor;o[c[key]].n++});return Object.values(o).sort((a,b)=>b.v-a.v).map(x=>({...x,sub:x.n+(x.n>1?" contratos":" contrato")}))};
+  bars($("bars-banco"),grp(cMes,"banco"),"var(--cons)");
+  bars($("bars-produto"),grp(cMes,"produto"),"var(--cons)");
+  $("tb-contratos").innerHTML=cMes.length?cMes.sort((a,b)=>b.data.localeCompare(a.data)).map(c=>`<tr><td>${esc(c.cliente)}</td><td>${esc(c.produto)}</td><td>${fmtD(c.data)}</td><td>${esc(c.banco)}</td><td class="n">${brl(c.valor)}</td><td class="n">${c.comissao!=null?brl(c.comissao):"a informar"}</td><td><span class="chip ${c.status==="PAGO"?"c-ok":"c-warn"}">${c.status==="PAGO"?"Pago":"Andamento"}</span></td></tr>`).join(""):'<tr><td colspan="7" class="empty">Nenhum contrato neste mês.</td></tr>';
+
+  // Rayka
+  $("tb-forn").innerHTML=rr.length?rr.map(r=>`<tr><td>${esc(r.fornecedor)}</td><td class="n">${r.emissoes}</td><td class="n">${brl(r.vendido)}</td><td class="n">${brl(r.comissao)}</td><td class="n">${brl(r.recebido)}</td><td class="n">${r.comissao-r.recebido>0.005?brl(r.comissao-r.recebido):"—"}</td></tr>`).join(""):'<tr><td colspan="6" class="empty">Sem vendas da Rayka neste mês.</td></tr>';
+  $("tf-forn").innerHTML=rr.length?`<tr><td>Total</td><td class="n">${sum(rr,r=>r.emissoes)}</td><td class="n">${brl(sum(rr,r=>r.vendido))}</td><td class="n">${brl(sum(rr,r=>r.comissao))}</td><td class="n">${brl(sum(rr,r=>r.recebido))}</td><td class="n">${brl(sum(rr,r=>r.comissao-r.recebido))}</td></tr>`:"";
+  const emb=[...S.embarques].sort((a,b)=>a.ida.localeCompare(b.ida));
+  $("lista-embarques").innerHTML=emb.length?emb.map(e=>{const st=embStatus(e);return`<div class="item"><span class="t">${esc(e.passageiros)}</span><span class="m">${fmtD(e.ida)}${e.volta?"–"+fmtD(e.volta):""} · ${esc(e.destino)} · ${esc(e.fornecedor)}${e.contato?" · "+esc(e.contato):' · <b>sem contato</b>'}${e.obs?" · "+esc(e.obs):""}</span><span class="r"><span class="chip ${st.c}">${st.t}</span></span></div>`}).join(""):'<p class="empty">Nenhum embarque cadastrado.</p>';
+
+  // Emissões (detalhe Rayka)
+  const vMes=S.vendas.filter(v=>ymOf(v.data)===mes);
+  const vEmi=vMes.filter(v=>v.tipo==="Emissão");
+  $("emi-kpis").innerHTML=`<div class="kpi"><span class="label">Emissões</span><span class="v">${vEmi.length}</span><span class="s">${vMes.filter(v=>v.tipo==="Cancelamento").length} canceladas</span></div><div class="kpi"><span class="label">Vendido</span><span class="v">${brl(sum(vEmi,v=>v.valor))}</span><span class="s">só emissões válidas</span></div><div class="kpi"><span class="label">Comissão</span><span class="v">${brl(sum(vMes,v=>v.comissao))}</span><span class="s">recebido ${brl(sum(vMes.filter(v=>v.statusComissao==="Recebida"),v=>v.comissao))}</span></div>`;
+  let vl=vMes;
+  if(fEmi==="cancel")vl=vMes.filter(v=>v.tipo==="Cancelamento");
+  else if(fEmi!=="todos")vl=vMes.filter(v=>v.fornecedor===fEmi);
+  vl=[...vl].sort((a,b)=>(b.data||"").localeCompare(a.data||""));
+  const tipoChip=v=>v.tipo==="Emissão"?'<span class="chip c-ok">Emissão</span>':v.tipo==="Cancelamento"?'<span class="chip c-crit">Cancelada</span>':`<span class="chip c-muted">${esc(v.tipo)}</span>`;
+  $("lista-emissoes").innerHTML=vl.length?vl.map(v=>{
+    const rota=[v.origem,v.destino].filter(Boolean).join(" → ");
+    const datas=v.ida?fmtD(v.ida)+(v.volta?"–"+fmtD(v.volta):""):"";
+    const linha2=[v.cia,rota,datas?("viagem "+datas):"",v.localizador?("loc. "+v.localizador):(v.pedido?("pedido "+v.pedido):"")].filter(Boolean).map(esc).join(" · ");
+    const com=v.comissao?`<span class="note">comissão ${brl(v.comissao)}${v.statusComissao?" · "+esc(v.statusComissao):""}</span>`:(v.statusComissao?`<span class="note">${esc(v.statusComissao)}</span>`:"");
+    return `<div class="item"><span class="t">${esc(v.passageiros||v.cliente||v.fornecedor)}</span><span class="m">${tipoChip(v)} <span class="chip c-rayka">${esc(v.fornecedor)}</span> venda ${fmtD(v.data)}${v.cliente&&v.cliente!==v.passageiros?" · pagou: "+esc(v.cliente):""}${linha2?"<br>"+linha2:""}${v.obs?"<br>"+esc(v.obs):""}</span><span class="r">${v.valor?`<b class="num">${brl(v.valor)}</b>`:""}${com}</span></div>`}).join(""):'<p class="empty">Nenhuma emissão da Rayka neste mês.</p>';
+
+  // Clientes
+  const mesHoje=new Date().getMonth()+1;
+  const nivMes=c=>c.nascimento&&+c.nascimento.slice(5,7)===mesHoje;
+  const idade=c=>{if(!c.nascimento)return null;const n=new Date(c.nascimento+"T00:00:00"),h=today();let a=h.getFullYear()-n.getFullYear();if(h<new Date(h.getFullYear(),n.getMonth(),n.getDate()))a--;return a};
+  let cl=[...S.clientes];
+  if(fCli==="niver")cl=cl.filter(nivMes);else if(fCli!=="todos")cl=cl.filter(c=>c.tipo===fCli);
+  if(qCli){const q=qCli.toLowerCase();cl=cl.filter(c=>[c.nome,c.telefone,c.cpf,c.grupo,c.email].some(x=>String(x||"").toLowerCase().includes(q)))}
+  cl.sort((a,b)=>String(a.nome).localeCompare(String(b.nome),"pt-BR"));
+  $("lista-clientes").innerHTML=cl.length?cl.map(c=>{
+    const viagens=S.vendas.filter(v=>v.tipo==="Emissão"&&String(v.passageiros||"").toLowerCase().includes(String(c.nome).toLowerCase())).length;
+    const pago=sum(S.vendas.filter(v=>v.tipo==="Emissão"&&String(v.cliente||"").toLowerCase()===String(c.nome).toLowerCase()),v=>v.valor);
+    const l1=[c.telefone,c.email].filter(Boolean).map(esc).join(" · ")||"<b>sem contato</b>";
+    const l2=[c.cpf?"CPF "+c.cpf:"",c.nascimento?"nasc. "+fmtD(c.nascimento)+"/"+c.nascimento.slice(0,4)+" ("+idade(c)+" anos)":"",c.cidade,c.grupo?"grupo: "+c.grupo:""].filter(Boolean).map(esc).join(" · ");
+    return `<div class="item"><span class="t">${esc(c.nome)}</span><span class="m"><span class="chip ${c.tipo==="Cliente"?"c-ok":c.tipo==="Lead"?"c-warn":"c-muted"}">${esc(c.tipo||"")}</span>${nivMes(c)?' <span class="chip c-rayka">Aniversário este mês</span>':""} ${l1}${l2?"<br>"+l2:""}${c.obs?"<br>"+esc(c.obs):""}</span><span class="r">${viagens?`<span class="chip c-muted">${viagens} viagem${viagens>1?"s":""}</span>`:""}${pago?`<b class="num">${brl(pago)}</b>`:""}</span></div>`}).join(""):'<p class="empty">Nenhum cliente encontrado.</p>';
+
+  // Atender
+  {const hoje=diaLocal(0),aman=diaLocal(1);
+  const ab=S.atendimentos.filter(a=>a.status!=="feito"&&(fAt==="todos"||a.negocio===fAt)).sort((a,b)=>(a.quando||"").localeCompare(b.quando||""));
+  const fe=S.atendimentos.filter(a=>a.status==="feito"&&(fAt==="todos"||a.negocio===fAt)).sort((a,b)=>(b.feitoEm||"").localeCompare(a.feitoEm||"")).slice(0,10);
+  const wa=a=>{const n=(a.telefone||"").replace(/\D/g,"");return n.length>=10?`<a class="btn small" href="https://wa.me/${n.startsWith("55")&&n.length>11?n:"55"+n}" target="_blank" rel="noopener">WhatsApp</a>`:""};
+  const aitem=(a,feito)=>`<div class="item"><span class="t">${esc(a.cliente)}</span><span class="m"><span class="chip ${a.negocio==="Rayka"?"c-rayka":"c-cons"}">${esc(a.negocio)}</span> <b>${esc(a.acao||"")}</b>${a.quando?" · "+fmtD(a.quando):""}${a.detalhe?"<br>"+esc(a.detalhe):""}</span><span class="r">${feito?`<button class="btn small" data-at="${a.id}" data-to="aberto">Reabrir</button>`:`${wa(a)}<button class="btn small" data-at="${a.id}" data-to="feito">Feito</button><button class="btn small" data-at="${a.id}" data-to="adiar">Amanhã</button>`}</span></div>`;
+  const put=(id,arr,vazio)=>$(id).innerHTML=arr.length?arr.map(a=>aitem(a,false)).join(""):`<p class="empty">${vazio}</p>`;
+  const atr=ab.filter(a=>(a.quando||hoje)<hoje);
+  put("at-atrasados",atr,"Nada atrasado.");
+  put("at-hoje",ab.filter(a=>(a.quando||hoje)===hoje),"Ninguém marcado para hoje.");
+  put("at-amanha",ab.filter(a=>a.quando===aman),"Ninguém marcado para amanhã.");
+  put("at-proximos",ab.filter(a=>a.quando>aman),"Nada agendado para os próximos dias.");
+  $("at-feitos").innerHTML=fe.length?fe.map(a=>aitem(a,true)).join(""):'<p class="empty">Nada concluído ainda.</p>';
+  const n=S.atendimentos.filter(a=>a.status!=="feito"&&(a.quando||hoje)<=hoje).length;
+  $("at-count").textContent=n?n:"";}
+
+  renderCarteira();
+
+  // Pendências
+  const pr=S.pendencias.filter(p=>p.status==="resolvido");
+  const pitem=(p,res)=>`<div class="item"><span class="t">${esc(p.item)}</span><span class="m">${esc(p.detalhe)}</span><span class="r"><button class="btn small" data-pend="${p.id}" data-to="${res?"aberto":"resolvido"}">${res?"Reabrir":"Resolvido"}</button></span></div>`;
+  $("pend-abertas").innerHTML=pa.length?pa.map(p=>pitem(p,false)).join(""):'<p class="empty">Nenhuma pendência em aberto.</p>';
+  $("pend-resolvidas").innerHTML=pr.length?pr.map(p=>pitem(p,true)).join(""):'<p class="empty">Nada resolvido ainda.</p>';
+}
+
+// ---------- Carteira do consignado ----------
+const POS_DESDE="2026-10-14"; // pós-venda só para contratos a partir desta data
+const REFIN_MESES={C6:12,ICRED:12,BMG:12,PAN:12,FACTA:12,HAPPY:12,AGIL:12}; // prazo padrão para revisar refin — ajustar conforme regra de cada banco
+const slug=s=>String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+const nomeBonito=s=>String(s||"").toLowerCase().replace(/(^|\s)\S/g,m=>m.toUpperCase());
+const primeiro=s=>nomeBonito(String(s||"").trim().split(/\s+/)[0]);
+const addMeses=(iso,n)=>{const[y,m,d]=iso.split("-").map(Number);const dt=new Date(Date.UTC(y,m-1+n,Math.min(d,28)));return dt.toISOString().slice(0,10)};
+const mesAno=iso=>{const[y,m]=iso.split("-");return m+"/"+y};
+function ofertasDo(k,x,hoje){
+  const ops=[], c=k.ult, contatos=x.contatos||[], feito=(tipo,ref)=>contatos.some(t=>t.tipo===tipo&&(ref==null||t.ref===ref));
+  const nome=primeiro(k.nome), banco=c.banco;
+  if(k.contratos.some(z=>z.status==="ANDAMENTO"))ops.push({tipo:"andamento",agora:false,chip:"Contrato em andamento",cls:"c-warn"});
+  if(x.optout)return ops;
+  const dias=-daysTo(c.data);
+  if(c.status==="PAGO"&&c.data>=POS_DESDE&&dias>=0&&dias<=15&&!feito("pos",c.data))
+    ops.push({tipo:"pos",ref:c.data,agora:true,chip:"Pós-venda · indicação",cls:"c-ok",msg:`Oi, ${nome}! Aqui é a Karla. Que bom que deu tudo certo com seu contrato. Você tem alguém da família ou amigo aposentado que também precisa de crédito? Me passa o contato que eu cuido com o mesmo carinho.`});
+  const [hy,hm]=hoje.split("-").map(Number);
+  if(hm===12||hm===1){const temp=String(hm===12?hy+1:hy);
+    if(!feito("margem",temp))ops.push({tipo:"margem",ref:temp,agora:true,chip:"Margem nova "+temp,cls:"c-cons",msg:`Oi, ${nome}! Aqui é a Karla. Com o reajuste do INSS de ${temp}, abre margem nova no benefício. Quero consultar a sua e te passar o valor exato liberado. Posso consultar hoje ou amanhã de manhã?`})}
+  const lib=addMeses(c.data,REFIN_MESES[banco]||12);
+  if(lib<=hoje){if(!feito("refin",lib))ops.push({tipo:"refin",ref:lib,agora:true,chip:"Revisar refin",cls:"c-cons",msg:`Oi, ${nome}! Aqui é a Karla. Seu contrato no ${banco} já completou o prazo para eu revisar um refinanciamento, que pode liberar um troco novo. Faço a simulação hoje ou amanhã de manhã?`})}
+  else ops.push({tipo:"refin-futuro",agora:false,chip:"Refin a partir de "+mesAno(lib),cls:"c-muted"});
+  if(x.nascimento){const md=x.nascimento.slice(5),hd=hoje.slice(5);const atraso=Math.round((new Date(hoje)-new Date(hoje.slice(0,4)+"-"+md))/864e5);
+    if(atraso>=0&&atraso<=3&&!feito("niver",hoje.slice(0,4)))ops.push({tipo:"niver",ref:hoje.slice(0,4),agora:true,chip:"Aniversário",cls:"c-rayka",msg:`Parabéns, ${nome}! Aqui é a Karla. Desejo um ano de muita saúde e alegria para você.`})}
+  if(x.oferta&&x.oferta.titulo&&(!x.oferta.ate||x.oferta.ate>=hoje)&&!feito("oferta",x.oferta.titulo))
+    ops.push({tipo:"oferta",ref:x.oferta.titulo,agora:true,chip:x.oferta.titulo,cls:"c-cons",msg:String(x.oferta.texto||"").replace(/\{nome\}/g,nome)});
+  return ops;
+}
+function carteira(){
+  const by={}, hoje=diaLocal(0);
+  S.contratos.forEach(c=>{const id=slug(c.cliente);if(!id||!c.data)return;(by[id]=by[id]||{id,nome:nomeBonito(c.cliente),contratos:[]}).contratos.push(c)});
+  return Object.values(by).map(k=>{
+    const x=S.carteira.find(d=>d.id===k.id)||{};
+    k.contratos.sort((a,b)=>b.data.localeCompare(a.data)); k.ult=k.contratos[0];
+    const at=S.atendimentos.find(a=>a.negocio==="Consignado"&&slug(a.cliente)===k.id&&a.telefone);
+    k.tel=x.telefone||(k.contratos.find(c=>c.telefone)||{}).telefone||(at&&at.telefone)||"";
+    k.x=x; k.ops=ofertasDo(k,x,hoje); k.agora=k.ops.filter(o=>o.agora);
+    return k;
+  }).sort((a,b)=>(b.agora.length>0)-(a.agora.length>0)||a.nome.localeCompare(b.nome,"pt-BR"));
+}
+const waNum=t=>{const n=String(t||"").replace(/\D/g,"");return n.length>=10?(n.startsWith("55")&&n.length>11?n:"55"+n):""};
+function renderCarteira(){
+  const all=carteira();
+  const agora=all.filter(k=>k.agora.length&&k.tel), semTel=all.filter(k=>!k.tel), andam=all.filter(k=>k.ops.some(o=>o.tipo==="andamento"));
+  $("cart-count").textContent=all.filter(k=>k.agora.length).length||"";
+  $("cart-kpis").innerHTML=`<div class="kpi"><span class="label">Clientes na carteira</span><span class="v">${all.length}</span><span class="s">${all.filter(k=>k.x.optout).length} não querem ofertas</span></div><div class="kpi"><span class="label">Chamar agora</span><span class="v">${all.filter(k=>k.agora.length).length}</span><span class="s">${all.filter(k=>k.agora.length&&!k.tel).length} sem telefone</span></div><div class="kpi"><span class="label">Em andamento</span><span class="v">${andam.length}</span><span class="s">contratos aguardando</span></div><div class="kpi"><span class="label">Sem telefone</span><span class="v">${semTel.length}</span><span class="s">toque em Editar para completar</span></div>`;
+  let l=all;
+  if(fCart==="agora")l=all.filter(k=>k.agora.length);else if(fCart==="andamento")l=andam;else if(fCart==="semtel")l=semTel;
+  if(qCart){const q=qCart.toLowerCase();l=l.filter(k=>k.nome.toLowerCase().includes(q)||String(k.tel).includes(q))}
+  $("lista-cart").innerHTML=l.length?l.map(k=>{
+    const c=k.ult, n=waNum(k.tel), op=k.agora[0];
+    const chips=k.ops.map(o=>`<span class="chip ${o.cls}">${esc(o.chip)}</span>`).join(" ")+(k.x.optout?' <span class="chip c-crit">Não quer ofertas</span>':"");
+    const ult=`${esc(c.produto)} ${esc(c.banco)} · ${fmtD(c.data)}/${c.data.slice(0,4)} · ${brl(c.valor)}${c.parcela?" · parcela "+brl(c.parcela):""}`;
+    const hist=(k.x.contatos||[]).slice(-1)[0];
+    const msg=op?`<br><span style="display:block;margin-top:6px;padding:8px 10px;background:var(--bg);border-radius:8px;color:var(--ink)">${esc(op.msg)}</span>`:"";
+    const btns=(op&&n?`<a class="btn small primary" href="https://wa.me/${n}?text=${encodeURIComponent(op.msg)}" target="_blank" rel="noopener">WhatsApp</a>`:"")+(op?`<button class="btn small" data-cart="${k.id}" data-tipo="${op.tipo}" data-ref="${esc(op.ref)}">Mandei</button>`:"")+`<button class="btn small" data-cart-edit="${k.id}">Editar</button>`;
+    return `<div class="item"><span class="t">${esc(k.nome)}</span><span class="m">${chips}<br>${ult}${k.contratos.length>1?` · ${k.contratos.length} contratos`:""}<br>${k.tel?esc(k.tel):"<b>sem telefone</b>"}${hist?" · último contato "+fmtD(hist.data):""}${k.x.obs?" · "+esc(k.x.obs):""}${msg}</span><span class="r">${btns}</span></div>`}).join(""):`<p class="empty">${fCart==="agora"?"Ninguém para chamar agora.":"Nenhum cliente aqui."}</p>`;
+}
+function salvarCart(id,patch){
+  const k=carteira().find(z=>z.id===id);if(!k)return;
+  const {id:_i,...x}=k.x;
+  return write(()=>db.doc("carteira/"+id).set({...x,nome:k.nome,...patch}),"Cliente atualizado.");
+}
+
+function showTab(t){
+  tab=t;try{localStorage.setItem("fk-tab",t)}catch(e){}
+  document.querySelectorAll(".tab").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===t));
+  document.querySelectorAll("[data-view]").forEach(s=>s.hidden=s.dataset.view!==t);
+}
+$("tabs").addEventListener("click",e=>{const b=e.target.closest(".tab");if(b)showTab(b.dataset.tab)});
+document.addEventListener("click",e=>{const g=e.target.closest("[data-go]");if(g)showTab(g.dataset.go)});
+$("mes").addEventListener("change",e=>{mes=e.target.value;try{localStorage.setItem("fk-mes",mes)}catch(x){}render()});
+$("f-emi").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;fEmi=b.dataset.f;$("f-emi").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));render()});
+$("f-cli").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;fCli=b.dataset.f;$("f-cli").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));render()});
+$("cli-busca").addEventListener("input",e=>{qCli=e.target.value.trim();render()});
+$("f-cart").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;fCart=b.dataset.f;$("f-cart").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));render()});
+$("cart-busca").addEventListener("input",e=>{qCart=e.target.value.trim();render()});
+$("k-cancel").onclick=()=>{toggle("form-cart",false);editCart=null};
+$("form-cart").addEventListener("submit",e=>{e.preventDefault();if(!editCart)return;
+  salvarCart(editCart,{telefone:$("k-tel").value.trim(),nascimento:$("k-nasc").value||null,obs:$("k-obs").value.trim(),optout:$("k-optout").checked});toggle("form-cart",false);editCart=null});
+document.addEventListener("click",e=>{
+  const ed=e.target.closest("[data-cart-edit]");
+  if(ed){const k=carteira().find(z=>z.id===ed.dataset.cartEdit);if(!k)return;editCart=k.id;
+    $("k-nome").value=k.nome;$("k-tel").value=k.tel||"";$("k-nasc").value=k.x.nascimento||"";$("k-obs").value=k.x.obs||"";$("k-optout").checked=!!k.x.optout;toggle("form-cart",true);$("form-cart").scrollIntoView({block:"nearest"})}
+  const m=e.target.closest("[data-cart]");
+  if(m){const k=carteira().find(z=>z.id===m.dataset.cart);if(!k)return;
+    salvarCart(k.id,{contatos:[...(k.x.contatos||[]),{tipo:m.dataset.tipo,ref:m.dataset.ref,data:diaLocal(0)}]})}
+});
+$("f-entradas").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;fEnt=b.dataset.f;$("f-entradas").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));render()});
+
+const status=t=>$("status").textContent=t;
+async function write(fn,ok){
+  if(!db){status("Não foi possível salvar: entre na sua conta para editar.");return}
+  try{await fn();status(ok)}catch(err){status(err&&err.code==="invalid_argument"?"Você não tem permissão para editar este painel.":"Não salvou. Verifique a conexão e tente de novo.")}
+}
+const toggle=(form,show)=>{$(form).hidden=!show};
+$("btn-nova-entrada").onclick=()=>{toggle("form-entrada",true);$("e-data").value=new Date().toISOString().slice(0,10)};
+$("e-cancel").onclick=()=>toggle("form-entrada",false);
+$("btn-novo-contrato").onclick=()=>{toggle("form-contrato",true);$("c-data").value=new Date().toISOString().slice(0,10)};
+$("c-cancel").onclick=()=>toggle("form-contrato",false);
+$("btn-novo-at").onclick=()=>{toggle("form-at",true);$("a-quando").value=diaLocal(0)};
+$("a-cancel").onclick=()=>toggle("form-at",false);
+$("f-at").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;fAt=b.dataset.f;$("f-at").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));render()});
+$("form-at").addEventListener("submit",e=>{e.preventDefault();
+  const doc={cliente:$("a-cliente").value.trim(),negocio:$("a-negocio").value,acao:$("a-acao").value,quando:$("a-quando").value,telefone:$("a-tel").value.trim(),detalhe:$("a-detalhe").value.trim(),status:"aberto",criado:diaLocal(0)};
+  write(()=>db.collection("atendimentos").add(doc),"Atendimento salvo.").then(()=>{e.target.reset();toggle("form-at",false)})});
+$("form-entrada").addEventListener("submit",e=>{e.preventDefault();
+  const v=parseBR($("e-valor").value);if(!(v>0)){status("Digite um valor válido, por exemplo 199,80.");return}
+  const st=$("e-status").value, d=$("e-data").value;
+  const doc={negocio:$("e-negocio").value,origem:$("e-origem").value.trim(),pagador:$("e-pagador").value.trim(),valor:v,status:st,data:st==="recebido"?d:null,previsao:st==="areceber"?d:null,competencia:$("e-comp").value||ymOf(d)};
+  write(()=>db.collection("entradas").add(doc),"Entrada salva.").then(()=>{e.target.reset();toggle("form-entrada",false)})});
+$("form-contrato").addEventListener("submit",e=>{e.preventDefault();
+  const v=parseBR($("c-valor").value);if(!(v>0)){status("Digite um valor válido, por exemplo 2.277,47.");return}
+  const tel=$("c-tel").value.trim(), nasc=$("c-nasc").value;
+  const doc={cliente:$("c-cliente").value.trim(),produto:$("c-produto").value,data:$("c-data").value,valor:v,banco:$("c-banco").value.trim().toUpperCase(),status:$("c-status").value,telefone:tel};
+  const cid=slug(doc.cliente), cx=S.carteira.find(d=>d.id===cid)||{}; const {id:_c,...cxd}=cx;
+  write(async()=>{await db.collection("contratos").add(doc);await db.doc("carteira/"+cid).set({...cxd,nome:nomeBonito(doc.cliente),telefone:tel,nascimento:nasc})},"Contrato salvo com telefone e aniversário.").then(()=>{e.target.reset();toggle("form-contrato",false)})});
+document.addEventListener("click",e=>{
+  const r=e.target.closest("[data-receber]");
+  if(r){const hoje=new Date().toISOString().slice(0,10);write(()=>db.doc("entradas/"+r.dataset.receber).update({status:"recebido",data:hoje}),"Marcado como recebido hoje.")}
+  const at=e.target.closest("[data-at]");
+  if(at){const to=at.dataset.to,ref=db&&db.doc("atendimentos/"+at.dataset.at);
+    if(to==="feito")write(()=>ref.update({status:"feito",feitoEm:diaLocal(0)}),"Atendimento concluído.");
+    else if(to==="adiar")write(()=>ref.update({quando:diaLocal(1)}),"Passado para amanhã.");
+    else write(()=>ref.update({status:"aberto"}),"Atendimento reaberto.")}
+  const p=e.target.closest("[data-pend]");
+  if(p)write(()=>db.doc("pendencias/"+p.dataset.pend).update({status:p.dataset.to}),p.dataset.to==="resolvido"?"Pendência resolvida.":"Pendência reaberta.");
+});
+
+
+/* ============================================================
+   PONTE COM O BANCO (Supabase) + ENTRADA COM SENHA
+
+   O painel acima é o mesmo de sempre e não sabe de onde vêm os
+   dados: ele só conversa com `db`. Aqui embaixo `db` passa a ser
+   o Supabase da Karla, em vez do banco do artifact.
+
+   A chave abaixo é a PÚBLICA — ela sozinha não abre nada. Quem
+   protege os dados é a tranca do banco (RLS): sem login, não lê
+   nem escreve. Por isso ela pode ficar aqui no código.
+   ============================================================ */
+const SB_URL = "https://nxppsfouinsyhfgbmhno.supabase.co";
+const SB_KEY = "sb_publishable_iIxImdAoqmQUDyvp9y5sYQ_h6usXI2a";
+
+const TABELA = {
+  entradas:"fin_entradas", contratos:"fin_contratos", vendas:"fin_vendas",
+  clientes:"fin_clientes", embarques:"fin_embarques", pendencias:"fin_pendencias",
+  atendimentos:"fin_atendimentos", carteira:"fin_carteira", rayka_resumo:"fin_rayka_resumo"
+};
+/* o painel escreve em camelCase, o banco guarda com underline */
+const APELIDO  = { statusComissao:"status_comissao", recebidoEm:"recebido_em", feitoEm:"feito_em" };
+const DE_VOLTA = Object.fromEntries(Object.entries(APELIDO).map(([js,sql])=>[sql,js]));
+const SO_DO_BANCO = new Set(["criado_em","atualizado_em"]);
+
+/* ---------- sessão ---------- */
+let SESSAO = null;
+try{ SESSAO = JSON.parse(localStorage.getItem("fk-sessao") || "null"); }catch(e){}
+const guardarSessao = s => { SESSAO = s; try{ localStorage.setItem("fk-sessao", JSON.stringify(s)); }catch(e){} };
+const esquecerSessao = () => { SESSAO = null; try{ localStorage.removeItem("fk-sessao"); }catch(e){} };
+
+async function auth(caminho, corpo){
+  const r = await fetch(SB_URL + "/auth/v1/" + caminho, {
+    method:"POST",
+    headers:{ apikey:SB_KEY, "Content-Type":"application/json" },
+    body: JSON.stringify(corpo)
+  });
+  const j = await r.json().catch(()=>({}));
+  if(!r.ok) throw new Error(j.error_description || j.msg || j.message || ("erro " + r.status));
+  return j;
+}
+const entrar     = (email,senha) => auth("token?grant_type=password",{email,password:senha}).then(s=>{guardarSessao(s);return s});
+const criarConta = (email,senha) => auth("signup",{email,password:senha});
+async function renovarSessao(){
+  if(!SESSAO || !SESSAO.refresh_token) return false;
+  try{ guardarSessao(await auth("token?grant_type=refresh_token",{refresh_token:SESSAO.refresh_token})); return true; }
+  catch(e){ esquecerSessao(); return false; }
+}
+
+/* ---------- conversa com as tabelas ---------- */
+async function rest(caminho, opcoes = {}){
+  const chamar = () => fetch(SB_URL + "/rest/v1/" + caminho, {
+    ...opcoes,
+    headers:{
+      apikey: SB_KEY,
+      Authorization: "Bearer " + (SESSAO ? SESSAO.access_token : SB_KEY),
+      "Content-Type": "application/json",
+      ...(opcoes.headers || {})
+    }
+  });
+  let r = await chamar();
+  if(r.status === 401 && await renovarSessao()) r = await chamar();   // token venceu: renova e tenta de novo
+  if(!r.ok){
+    let detalhe = "";
+    try{ const j = await r.json(); detalhe = j.message || j.hint || ""; }catch(e){}
+    throw new Error(detalhe || ("HTTP " + r.status));
+  }
+  const txt = await r.text();
+  return txt ? JSON.parse(txt) : null;
+}
+
+const paraPainel = linha => {
+  const o = {};
+  for(const [k,v] of Object.entries(linha)) if(!SO_DO_BANCO.has(k)) o[DE_VOLTA[k] || k] = v;
+  return o;
+};
+const paraBanco = doc => {
+  const o = {};
+  for(const [k,v] of Object.entries(doc)) o[APELIDO[k] || k] = v;
+  return o;
+};
+const novoId = col => col.slice(0,4) + "-" + Date.now().toString(36) + Math.random().toString(36).slice(2,5);
+
+async function baixarTudo(){
+  await Promise.all(Object.keys(TABELA).map(async col => {
+    S[col] = (await rest(TABELA[col] + "?select=*")).map(paraPainel);
+  }));
+}
+
+/* Mesma cara do `db` que o painel já usava, para o código acima não mudar. */
+function ligarBanco(){
+  db = {
+    collection: col => ({
+      add: async doc => {
+        const id = novoId(col);
+        await rest(TABELA[col], { method:"POST", body: JSON.stringify({ id, ...paraBanco(doc) }) });
+        await baixarTudo(); render();
+        return { id };
+      }
+    }),
+    doc: caminho => {
+      const [col, id] = caminho.split("/");
+      return {
+        set: async obj => {
+          await rest(TABELA[col], {
+            method:"POST",
+            headers:{ Prefer:"resolution=merge-duplicates" },
+            body: JSON.stringify({ id, ...paraBanco(obj) })
+          });
+          await baixarTudo(); render();
+        },
+        update: async obj => {
+          await rest(TABELA[col] + "?id=eq." + encodeURIComponent(id), {
+            method:"PATCH", body: JSON.stringify(paraBanco(obj))
+          });
+          await baixarTudo(); render();
+        }
+      };
+    }
+  };
+}
+
+/* ---------- abrir o app ---------- */
+const porta = $("porta"), avisoPorta = $("p-aviso");
+const dizerPorta = (txt, classe) => { avisoPorta.textContent = txt; avisoPorta.className = "aviso-porta " + (classe||""); };
+
+function botaoSair(){
+  if($("btn-sair")) return;
+  const b = document.createElement("button");
+  b.id = "btn-sair"; b.className = "sair"; b.type = "button"; b.textContent = "Sair";
+  b.onclick = () => { esquecerSessao(); location.reload(); };
+  document.querySelector(".head-row").appendChild(b);
+}
+
+async function abrirPainel(){
+  porta.hidden = true;
+  botaoSair();
+  ligarBanco();
+  status("Carregando seus dados…");
+  try{
+    await baixarTudo();
+    status("");
+    render();
+  }catch(e){
+    status("Não consegui carregar seus dados: " + e.message + " — confira a internet e recarregue.");
+  }
+}
+
+$("form-porta").addEventListener("submit", async e => {
+  e.preventDefault();
+  const b = $("p-entrar"), email = $("p-email").value.trim(), senha = $("p-senha").value;
+  b.disabled = true; dizerPorta("Entrando…");
+  try{
+    await entrar(email, senha);
+    await abrirPainel();
+  }catch(err){
+    const m = String(err.message || "");
+    dizerPorta(
+      /failed to fetch|networkerror|load failed/i.test(m) ? "Sem conexão com o banco. Confira a internet e tente de novo." :
+      /invalid/i.test(m) ? "E-mail ou senha não conferem." :
+      /confirm/i.test(m) ? "Falta confirmar seu e-mail — procure a mensagem do Supabase na caixa de entrada." :
+      "Não consegui entrar: " + m, "ruim");
+    b.disabled = false;
+  }
+});
+
+$("p-criar").addEventListener("click", async () => {
+  const email = $("p-email").value.trim(), senha = $("p-senha").value;
+  if(!email || senha.length < 6){ dizerPorta("Escreva seu e-mail e uma senha de 6 letras ou mais.", "ruim"); return; }
+  dizerPorta("Criando…");
+  try{
+    await criarConta(email, senha);
+    try{ await entrar(email, senha); await abrirPainel(); }
+    catch(e){ dizerPorta("Conta criada. Confirme o e-mail que o Supabase acabou de te mandar e volte aqui para entrar.", "bom"); }
+  }catch(err){
+    const m = String(err.message || "");
+    dizerPorta(/already|registered/i.test(m) ? "Esse e-mail já tem conta — é só entrar." : "Não deu para criar: " + m, "ruim");
+  }
+});
+
+showTab(tab);
+(async () => {
+  if(SESSAO && await renovarSessao()) await abrirPainel();   // já tinha entrado antes neste celular
+  else $("p-email").focus();
+})();
+</script>
+</body>
+</html>

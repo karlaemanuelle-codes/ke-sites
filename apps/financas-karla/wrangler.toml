@@ -1,0 +1,12 @@
+# Publica so o aplicativo Financas da Karla, separado do worker "ke-sites"
+# (que serve o site do CT de Volei no dominio da consultoria).
+#
+# No Cloudflare, o projeto que usa este arquivo precisa ter
+# "Root directory" = apps/financas-karla
+name = "financas-karla"
+compatibility_date = "2026-08-21"
+
+# Site 100% estatico: Worker sem codigo, so entregando arquivos.
+[assets]
+directory = "public"
+not_found_handling = "single-page-application"
