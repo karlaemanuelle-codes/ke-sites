@@ -8,21 +8,31 @@ dados no Supabase da Karla.
 
 | Arquivo | Para que serve |
 |---|---|
-| `index.html` | O aplicativo inteiro — telas, cálculos, login e conexão com o banco |
-| `app.webmanifest` | Faz o celular tratar como aplicativo (ícone, nome, tela cheia) |
-| `icone.svg` | O ícone que aparece na tela de início |
+| `public/index.html` | O aplicativo inteiro — telas, cálculos, login e conexão com o banco |
+| `public/app.webmanifest` | Faz o celular tratar como aplicativo (ícone, nome, tela cheia) |
+| `public/icone.svg` | O ícone que aparece na tela de início |
+| `wrangler.toml` | Diz ao Cloudflare para publicar só a pasta `public/` |
 
 É tudo estático: não tem build, não tem dependência, não precisa de servidor.
 
 ## Como publicar
 
-No Cloudflare Pages, criando um projeto ligado a este repositório:
+Projeto próprio no Cloudflare, ligado a este repositório — separado do worker
+`ke-sites`, que serve o site do CT de Vôlei no domínio da consultoria.
+
+Pelo caminho **Workers** (conectando o repositório pelo GitHub):
+
+- **Root directory:** `apps/financas-karla` — é o que faz o Cloudflare achar o
+  `wrangler.toml` daqui, em vez do que está na raiz do repositório
+- **Build command:** deixar vazio
+
+Pelo caminho **Pages**:
 
 - **Framework preset:** None
 - **Build command:** deixar vazio
-- **Build output directory:** `apps/financas-karla`
+- **Build output directory:** `apps/financas-karla/public`
 
-Cada push na branch publicada republica sozinho.
+Em qualquer um dos dois, cada push na branch publicada republica sozinho.
 
 ## Como os dados são guardados
 
