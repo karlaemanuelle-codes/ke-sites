@@ -621,7 +621,7 @@ document.addEventListener("click",e=>{
    nem escreve. Por isso ela pode ficar aqui no código.
    ============================================================ */
 const SB_URL = "https://nxppsfouinsyhfgbmhno.supabase.co";
-const SB_KEY = "sb_publishable_iIxImdAoqmQUDyvp9y5sYQ_h6usXI2a";
+const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im54cHBzZm91aW5zeWhmZ2JtaG5vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc1ODI0NzYsImV4cCI6MjEwMzE1ODQ3Nn0.8yClijpnuM3P6Xo9RmrI1JtONdmHrbVBGdIrjWnDmSM";
 
 const TABELA = {
   entradas:"fin_entradas", contratos:"fin_contratos", vendas:"fin_vendas",
@@ -749,11 +749,28 @@ async function abrirPainel(){
   status("Carregando seus dados…");
   try{
     await baixarTudo();
-    status("");
+    const total = Object.keys(TABELA).reduce((t,c)=>t + (S[c]||[]).length, 0);
+    if(total === 0){
+      /* O banco responde "vazio" sem dar erro quando não reconhece quem está
+         pedindo. Então zero registros aqui quase sempre quer dizer que o
+         pedido chegou sem a identificação da Karla — e não que a conta está
+         vazia. Mostrar o papel que o banco enxergou é o que diz qual dos dois é. */
+      status("Entrei, mas o banco devolveu 0 registros. Papel reconhecido: " + papelDaSessao() + ". Mande isso para a Claude.");
+    }else{
+      status("");
+    }
     render();
   }catch(e){
     status("Não consegui carregar seus dados: " + e.message + " — confira a internet e recarregue.");
   }
+}
+
+/* Lê, do próprio crachá da sessão, com que papel o banco vai nos atender. */
+function papelDaSessao(){
+  try{
+    const corpo = JSON.parse(atob(SESSAO.access_token.split(".")[1].replace(/-/g,"+").replace(/_/g,"/")));
+    return corpo.role || "(sem papel)";
+  }catch(e){ return "(não consegui ler)"; }
 }
 
 $("form-porta").addEventListener("submit", async e => {
