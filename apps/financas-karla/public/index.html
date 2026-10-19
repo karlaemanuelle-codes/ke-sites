@@ -10,6 +10,14 @@
 <link rel="manifest" href="app.webmanifest">
 <link rel="icon" href="icone.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icone.svg">
+<style>
+/* O painel troca de aba marcando as seções com o atributo "hidden". Mas a
+   regra [data-view]{display:grid} do estilo abaixo é do autor e por isso
+   ganha da regra padrão do navegador para [hidden] — sem esta linha, todas
+   as abas ficam abertas ao mesmo tempo e clicar nelas não muda nada.
+   No artifact essa regra vinha do ambiente; aqui ela precisa ser explícita. */
+[hidden]{display:none !important}
+</style>
 <title>Finanças da Karla</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
