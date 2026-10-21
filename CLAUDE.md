@@ -55,6 +55,20 @@ force por cima sem olhar o que mudou.
 - A tabela do banco diz 2%, mas o que cai fica entre 2,25% e 2,81%. Valor real
   sempre ganha de estimativa.
 
+## Cartões da Karla (aba Pessoal) — o que "quitei" quer dizer
+
+Quando a Karla diz **"quitei o cartão X"**, ela quer dizer que pagou **a
+parcela daquele mês** — não o cartão inteiro. Zere só a coluna do mês na lista
+`valores` daquele cartão e recalcule o `total`; as parcelas seguintes ficam.
+
+Para quitar o cartão por inteiro ela vai dizer com todas as letras, do tipo
+"quitei o PicPay inteiro". Na dúvida, faça o caminho conservador (só o mês) e
+pergunte: errar para menos mostra uma dívida menor do que a real.
+
+Os dados ficam no documento `pessoal/dados` da planilha — uma lista `cards`,
+cada um com `nome`, `valores` (um por mês, na ordem de `meses`) e `total`, mais
+o `totalFalta` geral, que é a soma dos totais.
+
 ## O aplicativo da Raíssa
 
 `apps/vendas-raissa` — site estático, publicado pelo Cloudflare, dados nas
