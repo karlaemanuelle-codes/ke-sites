@@ -24,9 +24,14 @@ Raíssa.
 ## A planilha Finanças da Karla é a fonte da verdade
 
 Fica no artifact `https://claude.ai/artifact/BbBekTNBBSpBUzZLmmkvUZ`, lida e
-escrita pela ferramenta `ArtifactData`. Abas: Painel, Atender, Entradas,
-Consignado, Carteira, Rayka, Emissões, Clientes, Pendências e **Pessoal** (a
-última da fileira — no celular precisa arrastar as abas para o lado).
+escrita pela ferramenta `ArtifactData`. Abas, nesta ordem: Painel, **Pessoal**,
+Atender, Entradas, Consignado, Carteira, Rayka, Emissões, Clientes e
+Pendências.
+
+A Pessoal era a última da fileira e a Karla não a encontrava — no celular ela
+ficava fora da tela. Passou para o segundo lugar em 21/10/2026. Se for mexer na
+ordem das abas de novo, lembre que a fileira rola na horizontal e o que fica
+depois da quarta aba some da vista num telefone.
 
 Houve um aplicativo espelho em `apps/financas-karla`, publicado no Cloudflare
 com tabelas `fin_` no Supabase. **Foi aposentado**: mostrava números diferentes
