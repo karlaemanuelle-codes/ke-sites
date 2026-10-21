@@ -1,7 +1,7 @@
 {
-  "name": "Finanças da Karla",
-  "short_name": "Finanças",
-  "description": "Consignado e Rayka Viagens: entradas, contratos, carteira e atendimentos.",
+  "name": "Vendas da Raíssa",
+  "short_name": "Vendas",
+  "description": "Consignado INSS: contratos, carteira de clientes, atendimentos e biblioteca de abordagens.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

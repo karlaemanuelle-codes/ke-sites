@@ -18,7 +18,7 @@
    No artifact essa regra vinha do ambiente; aqui ela precisa ser explícita. */
 [hidden]{display:none !important}
 </style>
-<title>Finanças da Karla</title>
+<title>Vendas da Raíssa</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
@@ -109,7 +109,7 @@ tfoot td{font-weight:600;border-bottom:0}
 </head>
 <body>
 <style>
-/* Tela de entrada: cobre tudo até a Karla fazer login. */
+/* Tela de entrada: cobre tudo até a Raíssa fazer login. */
 .porta{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:var(--bg);padding:24px}
 .porta[hidden]{display:none}
 .caixa-porta{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;width:min(380px,100%);display:grid;gap:14px;box-shadow:0 10px 40px rgba(0,0,0,.08)}
@@ -126,7 +126,7 @@ tfoot td{font-weight:600;border-bottom:0}
 
 <div class="porta" id="porta">
   <form class="caixa-porta" id="form-porta">
-    <h1>Finanças da Karla</h1>
+    <h1>Vendas da Raíssa</h1>
     <p class="sub">Consignado · Rayka Viagens</p>
     <label>E-mail
       <input id="p-email" type="email" autocomplete="username" inputmode="email" required>
@@ -142,7 +142,7 @@ tfoot td{font-weight:600;border-bottom:0}
 <header>
   <div class="wrap">
     <div class="head-row">
-      <h1>Finanças da Karla<small>Consignado · Rayka Viagens</small></h1>
+      <h1>Vendas da Raíssa<small>Consignado · INSS</small></h1>
       <label class="label" for="mes">Mês
         <select id="mes" aria-label="Mês de referência"></select>
       </label>
@@ -150,11 +150,9 @@ tfoot td{font-weight:600;border-bottom:0}
     <nav class="tabs" role="tablist" id="tabs">
       <button class="tab" role="tab" data-tab="painel" aria-selected="true">Painel</button>
       <button class="tab" role="tab" data-tab="atender" aria-selected="false">Atender<span class="count" id="at-count"></span></button>
-      <button class="tab" role="tab" data-tab="entradas" aria-selected="false">Entradas</button>
-      <button class="tab" role="tab" data-tab="consignado" aria-selected="false">Consignado</button>
+      <button class="tab" role="tab" data-tab="consignado" aria-selected="false">Contratos</button>
+      <button class="tab" role="tab" data-tab="biblioteca" aria-selected="false">Biblioteca</button>
       <button class="tab" role="tab" data-tab="carteira" aria-selected="false">Carteira<span class="count" id="cart-count"></span></button>
-      <button class="tab" role="tab" data-tab="rayka" aria-selected="false">Rayka</button>
-      <button class="tab" role="tab" data-tab="emissoes" aria-selected="false">Emissões</button>
       <button class="tab" role="tab" data-tab="clientes" aria-selected="false">Clientes</button>
       <button class="tab" role="tab" data-tab="pendencias" aria-selected="false">Pendências<span class="count" id="pend-count"></span></button>
     </nav>
@@ -169,45 +167,18 @@ tfoot td{font-weight:600;border-bottom:0}
   <section data-view="painel">
     <div class="kpis">
       <div class="kpi hero">
-        <span class="label">Entrou na conta</span>
+        <span class="label">Comissão do mês</span>
         <span class="v" id="k-recebido">R$ 0,00</span>
-        <div class="split" aria-hidden="true"><i id="split-cons" style="background:var(--cons-soft)"></i><i id="split-rayka" style="background:var(--rayka)"></i></div>
-        <div class="legend"><span><i class="dot" style="background:var(--cons-soft)"></i>Consignado <b class="num" id="k-rec-cons"></b></span><span><i class="dot" style="background:var(--rayka)"></i>Rayka <b class="num" id="k-rec-rayka"></b></span></div>
       </div>
       <div class="kpi"><span class="label">A receber</span><span class="v" id="k-areceber">R$ 0,00</span><span class="s" id="k-areceber-s">Nenhum valor previsto</span></div>
-      <div class="kpi"><span class="label">Produção consignado</span><span class="v" id="k-prod">R$ 0,00</span><span class="s" id="k-prod-s">0 contratos</span></div>
-      <div class="kpi"><span class="label">Vendido Rayka</span><span class="v" id="k-vend">R$ 0,00</span><span class="s" id="k-vend-s">0 emissões</span></div>
-    </div>
+      <div class="kpi"><span class="label">Produção do mês</span><span class="v" id="k-prod">R$ 0,00</span><span class="s" id="k-prod-s">0 contratos</span></div>
+      </div>
     <div class="grid2">
-      <div class="panel"><h2>De onde veio o dinheiro</h2><div class="bars" id="bars-origem"><p class="empty">Nenhuma entrada recebida neste mês.</p></div></div>
+      <div class="panel"><h2>Produção por banco</h2><div class="bars" id="bars-origem"><p class="empty">Nenhuma entrada recebida neste mês.</p></div></div>
       <div class="panel"><h2>Precisa de ação</h2><div class="list" id="acoes"><p class="empty">Nada pendente agora.</p></div></div>
     </div>
   </section>
 
-  <!-- ENTRADAS -->
-  <section data-view="entradas" hidden>
-    <div class="toolbar">
-      <div class="seg" id="f-entradas">
-        <button aria-pressed="true" data-f="todos">Todas</button>
-        <button aria-pressed="false" data-f="Consignado">Consignado</button>
-        <button aria-pressed="false" data-f="Rayka">Rayka</button>
-        <button aria-pressed="false" data-f="areceber">A receber</button>
-      </div>
-      <button class="btn primary" id="btn-nova-entrada">+ Nova entrada</button>
-    </div>
-    <form class="add" id="form-entrada" hidden>
-      <label>Data<input id="e-data" type="date" required></label>
-      <label>Negócio<select id="e-negocio"><option>Consignado</option><option>Rayka</option></select></label>
-      <label>Origem<input id="e-origem" list="origens" placeholder="Ex.: Taxa cliente" required></label>
-      <label>Quem pagou<input id="e-pagador" placeholder="Nome"></label>
-      <label>Valor (R$)<input id="e-valor" inputmode="decimal" placeholder="0,00" required></label>
-      <label>Situação<select id="e-status"><option value="recebido">Recebido</option><option value="areceber">A receber</option></select></label>
-      <label>Mês da venda<input id="e-comp" type="month"></label>
-      <div class="actions"><button type="button" class="btn" id="e-cancel">Cancelar</button><button class="btn primary">Salvar entrada</button></div>
-    </form>
-    <datalist id="origens"><option>Taxa cliente</option><option>Repasse Everton</option><option>HotelDo</option><option>Ōner Travel</option><option>RecMilhas</option></datalist>
-    <div class="panel"><div class="list" id="lista-entradas"></div></div>
-  </section>
 
   <!-- CONSIGNADO -->
   <section data-view="consignado" hidden>
@@ -258,31 +229,7 @@ tfoot td{font-weight:600;border-bottom:0}
     <p class="note">Margem nova: toda a carteira em dezembro e janeiro. Refin: avisa quando o último contrato completa o prazo do banco. O botão WhatsApp abre a conversa com a mensagem pronta; escolha o WhatsApp do número do consignado e confira antes de enviar. Depois toque em “Mandei”.</p>
   </section>
 
-  <!-- RAYKA -->
-  <section data-view="rayka" hidden>
-    <div class="panel">
-      <h2>Comissões por fornecedor</h2>
-      <div class="scroll"><table><thead><tr><th>Fornecedor</th><th class="n">Emissões</th><th class="n">Vendido</th><th class="n">Comissão</th><th class="n">Recebido</th><th class="n">Falta</th></tr></thead><tbody id="tb-forn"></tbody><tfoot id="tf-forn"></tfoot></table></div>
-      <p class="note">Ōner paga no mês seguinte. HotelDo paga às quintas, via Decolar.</p>
-    </div>
-    <div class="panel"><h2>Próximos embarques</h2><div class="list" id="lista-embarques"></div></div>
-  </section>
 
-  <!-- EMISSÕES (Rayka, detalhe) -->
-  <section data-view="emissoes" hidden>
-    <div class="kpis" id="emi-kpis"></div>
-    <div class="toolbar">
-      <div class="seg" id="f-emi">
-        <button aria-pressed="true" data-f="todos">Todas</button>
-        <button aria-pressed="false" data-f="OnerTravel">Ōner</button>
-        <button aria-pressed="false" data-f="HotelDo">HotelDo</button>
-        <button aria-pressed="false" data-f="RecMilhas">RecMilhas</button>
-        <button aria-pressed="false" data-f="cancel">Canceladas</button>
-      </div>
-    </div>
-    <div class="panel"><div class="list" id="lista-emissoes"></div></div>
-    <p class="note">Emissões da Rayka pela data da venda, no mês escolhido no topo. Canceladas e lotes de comissão não somam em “Vendido”.</p>
-  </section>
 
   <!-- CLIENTES (Rayka) -->
   <section data-view="clientes" hidden>
@@ -303,14 +250,12 @@ tfoot td{font-weight:600;border-bottom:0}
     <div class="toolbar">
       <div class="seg" id="f-at">
         <button aria-pressed="true" data-f="todos">Todos</button>
-        <button aria-pressed="false" data-f="Consignado">Consignado</button>
-        <button aria-pressed="false" data-f="Rayka">Rayka</button>
       </div>
       <button class="btn primary" id="btn-novo-at">+ Novo atendimento</button>
     </div>
     <form class="add" id="form-at" hidden>
       <label>Cliente<input id="a-cliente" placeholder="Nome" required></label>
-      <label>Negócio<select id="a-negocio"><option>Consignado</option><option>Rayka</option></select></label>
+      
       <label>O que fazer<select id="a-acao"><option>Retornar</option><option>Simular</option><option>Cotar</option><option>Cobrar documento</option><option>Acompanhar pagamento</option><option>Pós-venda</option></select></label>
       <label>Quando<input id="a-quando" type="date" required></label>
       <label>WhatsApp<input id="a-tel" inputmode="tel" placeholder="DDD + número"></label>
@@ -329,17 +274,52 @@ tfoot td{font-weight:600;border-bottom:0}
     <div class="panel"><h2>Em aberto</h2><div class="list" id="pend-abertas"></div></div>
     <div class="panel"><h2>Resolvidas</h2><div class="list" id="pend-resolvidas"></div></div>
   </section>
+
+  <!-- BIBLIOTECA DE ABORDAGENS -->
+  <section data-view="biblioteca" hidden>
+    <div class="toolbar">
+      <input id="bib-busca" type="search" placeholder="Buscar no texto do script" aria-label="Buscar script" style="flex:1 1 220px">
+      <div class="seg" id="f-bib">
+        <button aria-pressed="true" data-f="todos">Todos</button>
+        <button aria-pressed="false" data-f="abordagem">Abordagem</button>
+        <button aria-pressed="false" data-f="proposta">Proposta</button>
+        <button aria-pressed="false" data-f="objecao">Objeção</button>
+        <button aria-pressed="false" data-f="fechamento">Fechamento</button>
+        <button aria-pressed="false" data-f="pos-assinatura">Pós</button>
+      </div>
+    </div>
+    <label class="label" style="display:block;margin:0 0 4px">Seu nome nas mensagens
+      <input id="bib-nome" placeholder="Como você se apresenta ao cliente" style="width:100%;max-width:320px">
+    </label>
+    <div class="panel"><div class="list" id="lista-bib"></div></div>
+    <p class="note">Toque em <b>Copiar</b> para levar o texto pronto para o WhatsApp e troque o que está entre colchetes pelos dados do cliente. Depois marque <b>Usei</b>; se fechar a venda, marque <b>Vendeu</b> — assim a lista vai mostrando quais mensagens realmente vendem.</p>
+  </section>
 </main>
 </div>
 
 <script>
-const S={entradas:[],contratos:[],embarques:[],pendencias:[],rayka_resumo:[],vendas:[],clientes:[],atendimentos:[],carteira:[]};
+const S={scripts:[],entradas:[],contratos:[],embarques:[],pendencias:[],rayka_resumo:[],vendas:[],clientes:[],atendimentos:[],carteira:[]};
 let fCart="agora", qCart="", editCart=null;
 let fAt="todos";
 const diaLocal=(n=0)=>{const d=new Date(Date.now()+n*864e5);return d.toLocaleDateString("sv-SE",{timeZone:"America/Fortaleza"})};
 let fEmi="todos", fCli="todos", qCli="";
 let db=null, mes=null, fEnt="todos", tab="painel";
-const $=id=>document.getElementById(id);
+/* $ tolerante: este painel e uma copia do da Karla sem as abas de
+   Entradas, Rayka e Emissoes. O render() ainda cita alguns ids que
+   sairam junto, entao em vez de cacar cada linha, um id que nao existe
+   devolve um alvo de mentira que aceita escrita e nao faz nada. */
+const VAZIO = new Proxy({}, { get:(o,k)=> k==="style"||k==="dataset" ? VAZIO
+  : k==="classList" ? {add(){},remove(){},toggle(){}}
+  : typeof k==="string" && /^(appendChild|addEventListener|remove|focus|setAttribute)$/.test(k) ? ()=>{}
+  : "", set:()=>true });
+const $=id=>document.getElementById(id)||VAZIO;
+
+/* Nome de quem está vendendo. Entra no lugar de [SEU NOME] nos scripts e
+   nas mensagens prontas da Carteira, para nada sair assinado com o nome
+   de outra pessoa. Ela troca na aba Biblioteca. */
+let VENDEDORA = "Raíssa";
+try{ VENDEDORA = localStorage.getItem("rv-vendedora") || VENDEDORA; }catch(e){}
+const comNome = t => String(t).replaceAll("[SEU NOME]", VENDEDORA);
 const brl=v=>(v||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 const fmtD=iso=>{if(!iso)return"";const[y,m,d]=iso.split("-");return d+"/"+m};
 const mesNome=ym=>{const[y,m]=ym.split("-");return["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"][+m-1]+"/"+y};
@@ -349,7 +329,7 @@ const daysTo=iso=>Math.round((new Date(iso+"T00:00:00")-today())/864e5);
 const parseBR=s=>{s=String(s).trim().replace(/[R$\s]/g,"");if(s.includes(","))s=s.replace(/\./g,"").replace(",",".");return parseFloat(s)};
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const sum=(a,f)=>a.reduce((t,x)=>t+(+f(x)||0),0);
-try{const t=localStorage.getItem("fk-tab");if(t)tab=t;mes=localStorage.getItem("fk-mes")}catch(e){}
+try{const t=localStorage.getItem("rv-tab");if(t)tab=t;mes=localStorage.getItem("rv-mes")}catch(e){}
 
 function months(){
   const set=new Set();
@@ -485,6 +465,8 @@ function render(){
   const pitem=(p,res)=>`<div class="item"><span class="t">${esc(p.item)}</span><span class="m">${esc(p.detalhe)}</span><span class="r"><button class="btn small" data-pend="${p.id}" data-to="${res?"aberto":"resolvido"}">${res?"Reabrir":"Resolvido"}</button></span></div>`;
   $("pend-abertas").innerHTML=pa.length?pa.map(p=>pitem(p,false)).join(""):'<p class="empty">Nenhuma pendência em aberto.</p>';
   $("pend-resolvidas").innerHTML=pr.length?pr.map(p=>pitem(p,true)).join(""):'<p class="empty">Nada resolvido ainda.</p>';
+
+  renderBib();
 }
 
 // ---------- Carteira do consignado ----------
@@ -502,15 +484,15 @@ function ofertasDo(k,x,hoje){
   if(x.optout)return ops;
   const dias=-daysTo(c.data);
   if(c.status==="PAGO"&&c.data>=POS_DESDE&&dias>=0&&dias<=15&&!feito("pos",c.data))
-    ops.push({tipo:"pos",ref:c.data,agora:true,chip:"Pós-venda · indicação",cls:"c-ok",msg:`Oi, ${nome}! Aqui é a Karla. Que bom que deu tudo certo com seu contrato. Você tem alguém da família ou amigo aposentado que também precisa de crédito? Me passa o contato que eu cuido com o mesmo carinho.`});
+    ops.push({tipo:"pos",ref:c.data,agora:true,chip:"Pós-venda · indicação",cls:"c-ok",msg:`Oi, ${nome}! Aqui é a ${VENDEDORA}. Que bom que deu tudo certo com seu contrato. Você tem alguém da família ou amigo aposentado que também precisa de crédito? Me passa o contato que eu cuido com o mesmo carinho.`});
   const [hy,hm]=hoje.split("-").map(Number);
   if(hm===12||hm===1){const temp=String(hm===12?hy+1:hy);
-    if(!feito("margem",temp))ops.push({tipo:"margem",ref:temp,agora:true,chip:"Margem nova "+temp,cls:"c-cons",msg:`Oi, ${nome}! Aqui é a Karla. Com o reajuste do INSS de ${temp}, abre margem nova no benefício. Quero consultar a sua e te passar o valor exato liberado. Posso consultar hoje ou amanhã de manhã?`})}
+    if(!feito("margem",temp))ops.push({tipo:"margem",ref:temp,agora:true,chip:"Margem nova "+temp,cls:"c-cons",msg:`Oi, ${nome}! Aqui é a ${VENDEDORA}. Com o reajuste do INSS de ${temp}, abre margem nova no benefício. Quero consultar a sua e te passar o valor exato liberado. Posso consultar hoje ou amanhã de manhã?`})}
   const lib=addMeses(c.data,REFIN_MESES[banco]||12);
-  if(lib<=hoje){if(!feito("refin",lib))ops.push({tipo:"refin",ref:lib,agora:true,chip:"Revisar refin",cls:"c-cons",msg:`Oi, ${nome}! Aqui é a Karla. Seu contrato no ${banco} já completou o prazo para eu revisar um refinanciamento, que pode liberar um troco novo. Faço a simulação hoje ou amanhã de manhã?`})}
+  if(lib<=hoje){if(!feito("refin",lib))ops.push({tipo:"refin",ref:lib,agora:true,chip:"Revisar refin",cls:"c-cons",msg:`Oi, ${nome}! Aqui é a ${VENDEDORA}. Seu contrato no ${banco} já completou o prazo para eu revisar um refinanciamento, que pode liberar um troco novo. Faço a simulação hoje ou amanhã de manhã?`})}
   else ops.push({tipo:"refin-futuro",agora:false,chip:"Refin a partir de "+mesAno(lib),cls:"c-muted"});
   if(x.nascimento){const md=x.nascimento.slice(5),hd=hoje.slice(5);const atraso=Math.round((new Date(hoje)-new Date(hoje.slice(0,4)+"-"+md))/864e5);
-    if(atraso>=0&&atraso<=3&&!feito("niver",hoje.slice(0,4)))ops.push({tipo:"niver",ref:hoje.slice(0,4),agora:true,chip:"Aniversário",cls:"c-rayka",msg:`Parabéns, ${nome}! Aqui é a Karla. Desejo um ano de muita saúde e alegria para você.`})}
+    if(atraso>=0&&atraso<=3&&!feito("niver",hoje.slice(0,4)))ops.push({tipo:"niver",ref:hoje.slice(0,4),agora:true,chip:"Aniversário",cls:"c-rayka",msg:`Parabéns, ${nome}! Aqui é a ${VENDEDORA}. Desejo um ano de muita saúde e alegria para você.`})}
   if(x.oferta&&x.oferta.titulo&&(!x.oferta.ate||x.oferta.ate>=hoje)&&!feito("oferta",x.oferta.titulo))
     ops.push({tipo:"oferta",ref:x.oferta.titulo,agora:true,chip:x.oferta.titulo,cls:"c-cons",msg:String(x.oferta.texto||"").replace(/\{nome\}/g,nome)});
   return ops;
@@ -552,13 +534,13 @@ function salvarCart(id,patch){
 }
 
 function showTab(t){
-  tab=t;try{localStorage.setItem("fk-tab",t)}catch(e){}
+  tab=t;try{localStorage.setItem("rv-tab",t)}catch(e){}
   document.querySelectorAll(".tab").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===t));
   document.querySelectorAll("[data-view]").forEach(s=>s.hidden=s.dataset.view!==t);
 }
 $("tabs").addEventListener("click",e=>{const b=e.target.closest(".tab");if(b)showTab(b.dataset.tab)});
 document.addEventListener("click",e=>{const g=e.target.closest("[data-go]");if(g)showTab(g.dataset.go)});
-$("mes").addEventListener("change",e=>{mes=e.target.value;try{localStorage.setItem("fk-mes",mes)}catch(x){}render()});
+$("mes").addEventListener("change",e=>{mes=e.target.value;try{localStorage.setItem("rv-mes",mes)}catch(x){}render()});
 $("f-emi").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;fEmi=b.dataset.f;$("f-emi").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));render()});
 $("f-cli").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;fCli=b.dataset.f;$("f-cli").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));render()});
 $("cli-busca").addEventListener("input",e=>{qCli=e.target.value.trim();render()});
@@ -617,12 +599,93 @@ document.addEventListener("click",e=>{
 });
 
 
+
+/* ============================================================
+   BIBLIOTECA DE ABORDAGENS
+   Os 24 scripts de consignado. O texto fica aqui no codigo (nao
+   muda); o que o banco guarda e so a contagem de usos e vendas,
+   na tabela rai_scripts, uma linha por script.
+   ============================================================ */
+const SCRIPTS = [{"categoria":"abordagem","titulo":"Primeira mensagem – Refin C6 (RCA)","produto":"Consignado · Refin C6","quando":"Primeiro contato com cliente que tem contrato no C6.","texto":"Sou [SEU NOME], especialista da RCA Intermediações, correspondente de instituições financeiras, em parceria com o C6 Consig.\n\nEstou entrando em contato porque seu contrato possui condição para refinanciamento, com possibilidade de liberar um valor sem aumentar sua parcela atual e ainda reduzir a taxa de juros para 1,75% ao mês.\n\nPosso consultar o benefício disponível para você?","id":"s01"},{"categoria":"abordagem","titulo":"Primeira mensagem – Refin C6 (curta)","produto":"Consignado · Refin C6","quando":"Versão curta do primeiro contato.","texto":"Me chamo [SEU NOME], consultora financeira da C6 Consig.\nEstou entrando em contato porque seu contrato possui condição para refinanciamento, com possibilidade de liberar um valor sem aumentar sua parcela atual e ainda reduzir a taxa de juros para 1,75% ao mês.\nPosso consultar o benefício disponível para você?","id":"s02"},{"categoria":"abordagem","titulo":"Primeira mensagem – oportunidade de crédito","produto":"Consignado · geral","quando":"Abordagem genérica quando ainda não sabe o produto.","texto":"Bom dia, me chamo [SEU NOME], sou consultora financeira. Temos uma ótima oportunidade de crédito no seu benefício do INSS. Gostaria de receber nossa simulação sem compromisso?","id":"s03"},{"categoria":"abordagem","titulo":"Primeira mensagem – margem","produto":"Consignado · Margem","quando":"Cliente com margem livre.","texto":"Bom dia, me chamo [SEU NOME], sou consultora financeira. Temos uma ótima oportunidade de margem no seu benefício do INSS. Gostaria de receber nossa simulação sem compromisso?","id":"s04"},{"categoria":"abordagem","titulo":"Retomada – troquei de chip","produto":"Consignado · geral","quando":"Cliente que pediu cotação e você voltou a falar por outro número.","texto":"Boa tarde, [NOME]! [SEU NOME] aqui. Você tinha pedido a sua cotação e meu chip deu um probleminha, por isso estou entrando em contato por este canal de atendimento.","id":"s05"},{"categoria":"credibilidade","titulo":"Quem é a RCA","produto":"Consignado · geral","quando":"Quando o cliente desconfia ou pergunta de onde você é.","texto":"Sou especialista da RCA Intermediações (CNPJ 42.188.002/0001-04, com mais de 20 anos de mercado).\nComo temos parceria com o banco C6, apareceu essa oferta para a senhora do refin com troco oferecendo redução de juros.","id":"s06"},{"categoria":"proposta","titulo":"Oferta de refin – valor","produto":"Consignado · Refin C6","quando":"Depois de simular.","texto":"Consigo liberar com refinanciamento e redução de juros para 1,75% um total de R$ [VALOR].\nDo teu contrato com C6... tua taxa atual é de [TAXA ATUAL]%.\nValor liberado em 2h após adesão do contrato, sem aumentar nada nas parcelas que você já paga.","id":"s07"},{"categoria":"proposta","titulo":"Oferta de refin – taxa e parcela","produto":"Consignado · Refin C6","quando":"Mostrar a redução de taxa com a parcela igual.","texto":"[NOME], consegui reduzir sua taxa de [TAXA ATUAL]% para 1,75%, mantendo sua parcela em R$ [PARCELA] e liberando R$ [VALOR] de troco para você.","id":"s08"},{"categoria":"proposta","titulo":"Oferta – mesma parcela + valor extra","produto":"Consignado · Refin C6","quando":"","texto":"O banco liberou uma condição de refinanciamento com taxa reduzida para 1,75% ao mês, mantendo a mesma parcela de R$ [PARCELA].\n\nAlém da melhoria na condição do contrato, ainda fica disponível um valor extra de R$ [VALOR] para liberação.","id":"s09"},{"categoria":"proposta","titulo":"Oferta – empréstimo novo (margem)","produto":"Consignado · Novo","quando":"Margem livre com carência.","texto":"Identifiquei no sistema que você tem R$ [VALOR] disponível, parcelas fixas de apenas R$ [PARCELA] e começa a pagar só em [MÊS].\nPrazo [PRAZO]x.\nValor liberado HOJE em 2h após adesão do contrato.","id":"s10"},{"categoria":"proposta","titulo":"Simulação de limite alto","produto":"Consignado · geral","quando":"Retorno de simulação combinada antes.","texto":"Bom dia! Conforme você solicitou na sexta-feira, finalizei sua simulação considerando o limite de R$ [VALOR].\nEstou te enviando as condições para você analisar com calma. Na segunda-feira, seguimos com a opção que fizer sentido para você.","id":"s11"},{"categoria":"explicacao","titulo":"Como funciona o refin","produto":"Consignado · Refin","quando":"Cliente pergunta como funciona.","texto":"Funciona assim:\n\nComo o senhor já possui um contrato consignado ativo, o banco permite atualizar esse contrato em uma condição mais vantajosa.\n\nCom isso, o senhor pode receber um valor extra em conta sem aumentar a parcela que já é descontada hoje.\n\nPrimeiro eu verifico quanto está disponível no seu caso e depois lhe apresento todos os valores para análise.","id":"s12"},{"categoria":"objecao","titulo":"Valor menor que o esperado","produto":"Consignado · Refin","quando":"Cliente achou pouco (\"ano passado peguei mais\").","texto":"No seu caso, essa condição apareceu pelo C6, com refinanciamento e redução da taxa para [TAXA]%, gerando R$ [VALOR] de troco.\nO valor não é definido por mim; ele depende da margem e das condições atuais do seu contrato. Como a senhora comentou que no ano passado conseguiu R$ [VALOR ANTERIOR], posso verificar se existe outra condição de refinanciamento ou portabilidade que melhore esse valor antes de descartarmos a proposta.","id":"s13"},{"categoria":"fechamento","titulo":"Pedir banco para o crédito","produto":"Consignado · geral","quando":"Cliente aceitou.","texto":"Perfeito, [NOME]! Então vamos dar andamento na sua proposta.\nPara eu preencher a etapa de liberação do valor de R$ [VALOR], me informa, por favor, qual banco você prefere para receber o crédito?","id":"s14"},{"categoria":"fechamento","titulo":"Por que preciso da conta","produto":"Consignado · geral","quando":"Cliente desconfia de passar a conta.","texto":"[NOME], fica tranquila. É só para eu completar os dados da proposta. Como o cadastro do benefício não tem a conta completa, preciso confirmar banco, agência e conta para deixar o crédito indicado corretamente. Só isso, tá?","id":"s15"},{"categoria":"fechamento","titulo":"Conta + escolha binária","produto":"Consignado · geral","quando":"Cliente enrolando para mandar os dados.","texto":"[NOME], o sistema exige a validação da conta bancária para manter a taxa reduzida de 1,75% e a liberação dos R$ [VALOR].\nMe envie o banco, agência e conta (com dígito) para eu gerar a proposta final agora, ou prefere que eu libere essa taxa para o próximo atendimento da fila?","id":"s16"},{"categoria":"pos-assinatura","titulo":"Assinou – falta desbloqueio","produto":"Consignado · geral","quando":"Depois da assinatura.","texto":"[NOME], sua assinatura já foi concluída.\nAgora o sistema está solicitando o desbloqueio do seu benefício para que a operação possa seguir para análise.\nÉ só realizar o desbloqueio pelo canal oficial do INSS. Assim que concluir, me avisa aqui que eu dou continuidade à sua proposta, tá?","id":"s17"},{"categoria":"pos-assinatura","titulo":"Desbloqueio pelo Meu INSS (curta)","produto":"Consignado · geral","quando":"","texto":"Para podermos dar andamento, é preciso fazer o desbloqueio do benefício pelo aplicativo oficial Meu INSS.","id":"s18"},{"categoria":"objecao","titulo":"Por que 108x e não 96x?","produto":"Consignado · Refin C6","quando":"Cliente estranha o prazo de 108 parcelas no refin. Dica: se ele perguntar, confirme que o prazo do contrato aumenta; é isso que deixa a parcela igual.","texto":"Bom dia! Explicando certinho: como a gente reduziu a sua taxa de juros de [TAXA ATUAL]% para 1,75%, o sistema faz o cálculo-base em 108x justamente para liberar esses R$ [VALOR] na sua conta sem subir absolutamente nada na parcela que o senhor já paga. Se a gente fechasse em 96x com o troco, a sua parcela ia acabar subindo. Desse jeito, você mantém o orçamento totalmente seguro e ainda sai com dinheiro extra na mão!","id":"s19"},{"categoria":"explicacao","titulo":"Como funciona o refin (curta)","produto":"Consignado · Refin","quando":"Cliente pergunta \"como funciona?\" e quer uma resposta rápida.","texto":"Funciona assim: eu pego seu contrato atual, faço o refinanciamento com uma taxa de juros menor e recalculo o contrato. Sua parcela continua a mesma, não aumenta, e a diferença que for liberada é depositada na sua conta.","id":"s20"},{"categoria":"objecao","titulo":"Cliente diz \"agora não\" (sua versão)","produto":"Consignado · Refin C6","quando":"Cliente responde \"não no momento\". Atenção: \"o banco te devolve\" e \"o dinheiro fica retido no C6\" não correspondem ao que acontece (é um novo contrato). Veja a versão ajustada logo abaixo.","texto":"Tranquilo, [NOME]! Mas veja bem: a sua parcela de R$ [PARCELA] não vai aumentar 1 centavo.\n\nÉ apenas o resgate de R$ [VALOR] em dinheiro que o banco te devolve ao reduzirmos a sua taxa de juros. Se não fizer agora, o dinheiro fica retido no C6 e a senhora segue pagando a taxa antiga.\n\nServe até para você guardar ou usar como quiser.","id":"s21"},{"categoria":"objecao","titulo":"Cliente diz \"agora não\" (versão ajustada)","produto":"Consignado · Refin C6","quando":"Cliente responde \"não no momento\". Mesma força da sua versão, sem risco de reclamação.","texto":"Tranquilo, [NOME]! Só pra senhora decidir com tudo na mão: a sua parcela de R$ [PARCELA] não aumenta 1 centavo. Com a taxa caindo de [TAXA ATUAL]% para 1,75%, o banco libera R$ [VALOR] na sua conta, renovando o seu contrato. Taxa e valor podem mudar a qualquer momento. Deixo reservado para hoje ou prefere que eu veja amanhã de manhã?","id":"s22"},{"categoria":"objecao","titulo":"Qual o meu lucro? (refin + margem nova) — sua versão","produto":"Consignado · Refin + Novo","quando":"Cliente pergunta qual o ganho dele juntando refin com margem nova. Atenção: o reajuste do INSS vem em janeiro, não em dezembro; e a parcela nova soma no orçamento. Veja a versão ajustada.","texto":"O lucro para você está em dois pontos principais: primeiro, você coloca R$ [VALOR] direto na sua conta hoje, em até 2 horas, para usar como quiser. Segundo, a sua parcela continua muito baixa, de apenas R$ [PARCELA], e só começa a pagar em dezembro — mês em que o salário já vem com reajuste. Ou seja, você ganha um dinheiro extra graúdo na mão agora sem mexer em nada no seu orçamento mensal!","id":"s23"},{"categoria":"objecao","titulo":"Qual o meu lucro? (refin + margem nova) — versão ajustada","produto":"Consignado · Refin + Novo","quando":"Mesma força da sua versão, com as datas e valores certos.","texto":"O ganho para você está em dois pontos: primeiro, você recebe R$ [VALOR] direto na sua conta hoje, em até 2 horas, para usar como quiser. Segundo, o refinanciamento mantém a sua parcela atual igual, e o único acréscimo é a parcela nova de apenas R$ [PARCELA], que só começa a ser descontada em [MÊS]. E em janeiro o benefício do INSS já vem com o reajuste do ano. Ou seja: dinheiro graúdo na mão agora, com um impacto pequeno no seu orçamento. Fechamos hoje?","id":"s24"}];
+let fBib="todos", qBib="";
+const CAT={abordagem:"Abordagem",credibilidade:"Credibilidade",proposta:"Proposta",explicacao:"Explicação",objecao:"Objeção",fechamento:"Fechamento","pos-assinatura":"Pós-assinatura"};
+
+const usoDo = id => S.scripts.find(x=>x.id===id) || {id,usos:0,vendas:0};
+
+function renderBib(){
+  let rows = SCRIPTS.slice();
+  if(fBib!=="todos") rows = rows.filter(s=>s.categoria===fBib);
+  if(qBib){ const q=qBib.toLowerCase();
+    rows = rows.filter(s=>(s.titulo+" "+s.texto+" "+s.quando).toLowerCase().includes(q)); }
+  rows.sort((a,b)=>{ const ua=usoDo(a.id), ub=usoDo(b.id);
+    return (ub.vendas-ua.vendas) || (ub.usos-ua.usos) || a.id.localeCompare(b.id); });
+  $("lista-bib").innerHTML = rows.length ? rows.map(s=>{
+    const u = usoDo(s.id);
+    const placar = u.vendas ? `<span class="chip c-cons">${u.vendas} venda${u.vendas>1?"s":""}</span>` :
+                   u.usos   ? `<span class="chip">${u.usos} uso${u.usos>1?"s":""}</span>` : "";
+    return `<div class="item" style="display:block">
+      <div style="display:flex;gap:8px;align-items:baseline;flex-wrap:wrap">
+        <span class="t">${esc(s.titulo)}</span>
+        <span class="chip c-cons">${esc(CAT[s.categoria]||s.categoria)}</span>${placar}
+      </div>
+      <span class="m">${esc(s.produto)}${s.quando?" · "+esc(s.quando):""}</span>
+      <p style="white-space:pre-wrap;margin:8px 0 0">${esc(comNome(s.texto))}</p>
+      <div class="actions" style="justify-content:flex-start;margin-top:8px">
+        <button class="btn small primary" data-copiar="${s.id}">Copiar</button>
+        <button class="btn small" data-usei="${s.id}">Usei</button>
+        <button class="btn small" data-vendeu="${s.id}">Vendeu</button>
+      </div></div>`;
+  }).join("") : '<p class="empty">Nenhum script com esse filtro.</p>';
+}
+
+async function marcarScript(id, campo){
+  const atual = usoDo(id);
+  const novo = { id, usos:(atual.usos||0)+(campo==="usos"?1:0), vendas:(atual.vendas||0)+(campo==="vendas"?1:0) };
+  if(campo==="vendas") novo.usos = Math.max(atual.usos||0, 1);
+  const i = S.scripts.findIndex(x=>x.id===id);
+  if(i<0) S.scripts.push(novo); else S.scripts[i]=novo;
+  renderBib();
+  try{ await db.doc("scripts/"+id).set(novo); }
+  catch(e){ status("Não deu para guardar a marcação agora. Ela vale nesta tela e eu tento de novo quando a internet voltar."); }
+}
+
+function ligarBiblioteca(){
+  $("bib-nome").value = VENDEDORA;
+  $("bib-nome").addEventListener("input", e=>{
+    VENDEDORA = e.target.value.trim() || "Raíssa";
+    try{ localStorage.setItem("rv-vendedora", VENDEDORA); }catch(x){}
+    renderBib();
+  });
+  $("bib-busca").addEventListener("input", e=>{ qBib=e.target.value.trim(); renderBib(); });
+  $("f-bib").addEventListener("click", e=>{
+    const b=e.target.closest("button[data-f]"); if(!b) return;
+    fBib=b.dataset.f;
+    [...$("f-bib").querySelectorAll("button")].forEach(x=>x.setAttribute("aria-pressed", String(x===b)));
+    renderBib();
+  });
+  $("lista-bib").addEventListener("click", async e=>{
+    const c=e.target.closest("[data-copiar]"), u=e.target.closest("[data-usei]"), v=e.target.closest("[data-vendeu]");
+    if(c){ const s=SCRIPTS.find(x=>x.id===c.dataset.copiar);
+      try{ await navigator.clipboard.writeText(comNome(s.texto)); c.textContent="Copiado!";
+           setTimeout(()=>c.textContent="Copiar",1500); }
+      catch(err){ status("O navegador não deixou copiar. Selecione o texto e copie à mão."); }
+      return; }
+    if(u) return marcarScript(u.dataset.usei,"usos");
+    if(v) return marcarScript(v.dataset.vendeu,"vendas");
+  });
+}
+/* Liga na carga, não depois do login: a Biblioteca é texto que já está
+   aqui no arquivo, então ela funciona mesmo antes de o banco responder —
+   e se o login falhar, a Raíssa ainda tem os scripts na mão. */
+ligarBiblioteca();
+renderBib();
+
 /* ============================================================
    PONTE COM O BANCO (Supabase) + ENTRADA COM SENHA
 
    O painel acima é o mesmo de sempre e não sabe de onde vêm os
    dados: ele só conversa com `db`. Aqui embaixo `db` passa a ser
-   o Supabase da Karla, em vez do banco do artifact.
+   o Supabase, nas tabelas rai_ (só dela).
 
    A chave abaixo é a PÚBLICA — ela sozinha não abre nada. Quem
    protege os dados é a tranca do banco (RLS): sem login, não lê
@@ -632,9 +695,8 @@ const SB_URL = "https://nxppsfouinsyhfgbmhno.supabase.co";
 const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im54cHBzZm91aW5zeWhmZ2JtaG5vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc1ODI0NzYsImV4cCI6MjEwMzE1ODQ3Nn0.8yClijpnuM3P6Xo9RmrI1JtONdmHrbVBGdIrjWnDmSM";
 
 const TABELA = {
-  entradas:"fin_entradas", contratos:"fin_contratos", vendas:"fin_vendas",
-  clientes:"fin_clientes", embarques:"fin_embarques", pendencias:"fin_pendencias",
-  atendimentos:"fin_atendimentos", carteira:"fin_carteira", rayka_resumo:"fin_rayka_resumo"
+  contratos:"rai_contratos", clientes:"rai_clientes", pendencias:"rai_pendencias",
+  atendimentos:"rai_atendimentos", carteira:"rai_carteira", scripts:"rai_scripts"
 };
 /* o painel escreve em camelCase, o banco guarda com underline */
 const APELIDO  = { statusComissao:"status_comissao", recebidoEm:"recebido_em", feitoEm:"feito_em" };
@@ -643,9 +705,9 @@ const SO_DO_BANCO = new Set(["criado_em","atualizado_em"]);
 
 /* ---------- sessão ---------- */
 let SESSAO = null;
-try{ SESSAO = JSON.parse(localStorage.getItem("fk-sessao") || "null"); }catch(e){}
-const guardarSessao = s => { SESSAO = s; try{ localStorage.setItem("fk-sessao", JSON.stringify(s)); }catch(e){} };
-const esquecerSessao = () => { SESSAO = null; try{ localStorage.removeItem("fk-sessao"); }catch(e){} };
+try{ SESSAO = JSON.parse(localStorage.getItem("rv-sessao") || "null"); }catch(e){}
+const guardarSessao = s => { SESSAO = s; try{ localStorage.setItem("rv-sessao", JSON.stringify(s)); }catch(e){} };
+const esquecerSessao = () => { SESSAO = null; try{ localStorage.removeItem("rv-sessao"); }catch(e){} };
 
 async function auth(caminho, corpo){
   const r = await fetch(SB_URL + "/auth/v1/" + caminho, {
@@ -761,7 +823,7 @@ async function abrirPainel(){
     if(total === 0){
       /* O banco responde "vazio" sem dar erro quando não reconhece quem está
          pedindo. Então zero registros aqui quase sempre quer dizer que o
-         pedido chegou sem a identificação da Karla — e não que a conta está
+         pedido chegou sem a identificação dela — e não que a conta está
          vazia. Mostrar o papel que o banco enxergou é o que diz qual dos dois é. */
       status("Entrei, mas o banco devolveu 0 registros. Papel reconhecido: " + papelDaSessao() + ". Mande isso para a Claude.");
     }else{
